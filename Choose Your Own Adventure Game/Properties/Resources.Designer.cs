@@ -63,6 +63,26 @@ namespace Choose_Your_Own_Adventure_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Death_Anim {
+            get {
+                object obj = ResourceManager.GetObject("Death_Anim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap endPage {
+            get {
+                object obj = ResourceManager.GetObject("endPage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icons_Fade_In {
             get {
                 object obj = ResourceManager.GetObject("Icons_Fade_In", resourceCulture);

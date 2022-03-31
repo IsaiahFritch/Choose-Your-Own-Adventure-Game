@@ -21,6 +21,7 @@ namespace Choose_Your_Own_Adventure_Game
 
         string player = "name";
 
+        int character = 0; //1 is Jon, 2 is Shimshon
         int saidNo = 0;
         int brokenArms = 0;
         int shoesTied = 0;
@@ -33,6 +34,12 @@ namespace Choose_Your_Own_Adventure_Game
         int trustInnKeeper = 0;
         int bloodlust = 0;
         int caughtMurder = 0;
+        int beenHere = 0;
+        int knowsOfTunnels = 0;
+        int hasKnife = 0;
+        int hasSpoon = 0;
+        int insideDateSim = 0;
+        int movedOnChance = -1;
 
         public AdventureGame()
         {
@@ -45,6 +52,10 @@ namespace Choose_Your_Own_Adventure_Game
             closeStartButon.Location = new Point(260, 736);
 
             //Main UI
+            pageNumberLabel.Parent = mainUiBox;
+            goodbyeMessageText.Parent = goodbyeMessageBack;
+            goodbyeMessageText.Location = new Point(101, 177);
+            goodbyeMessageBack.Parent = mainUiBox;
             mainUiBox.Parent = mainMenuBox;
             mainUiBox.Visible = false;
             startAnimBox.Parent = mainMenuBox;
@@ -232,6 +243,14 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 32;
             }
+            else if (page == 21)
+            {
+                page = 24;
+            }
+            else if (page == 14)
+            {
+                page = 11;
+            }
             else if (page == 32)
             {
                 page = 11;
@@ -304,6 +323,17 @@ namespace Choose_Your_Own_Adventure_Game
             else if (page == 77)
             {
                 page = 106;
+            }
+            else if (page == 28)
+            {
+                if (shoesTied == 0)
+                {
+                    page = 31;
+                }
+                else
+                {
+                    page = 29;
+                }
             }
 
             //perform the actions on that page
@@ -652,6 +682,8 @@ namespace Choose_Your_Own_Adventure_Game
 
         public void DisplayPage()
         {
+            //display page for fixin errors
+            pageNumberLabel.Text = $"page: {page}";
 
             switch (page)
             {
@@ -758,7 +790,7 @@ namespace Choose_Your_Own_Adventure_Game
                         playerNameText.Enabled = true;
                         playerNameTextTip.Visible = true;
                         playerNameTextJon.Visible = true;
-                        player = "Jon";
+                        character = 1;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -779,6 +811,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 4: ///icon, reset
                     {
                         //name input
+                        player = playerNameText.Text;
                         if(player == "")
                         {
                             player = "Jon";
@@ -907,7 +940,18 @@ namespace Choose_Your_Own_Adventure_Game
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionThreeButton.Text = "";
+                        optionThreeBlocked.Visible = true;
+                        optionThreeButton.Enabled = false;
                         optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
@@ -950,7 +994,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 14: 
                     {
                         //output
-                        outputLabel.Text = "Display: The door is locked, but {player} could pick it.";
+                        outputLabel.Text = $"Display: The door is locked, but {player} could pick it.";
 
                         //button settings
                         optionOneButton.Text = "Pick the lock";
@@ -1016,10 +1060,21 @@ namespace Choose_Your_Own_Adventure_Game
                 case 18: 
                     {
                         //output
-                        outputLabel.Text = $"Display: The lock stood no chance against the wit of {player} !";
+                        outputLabel.Text = $"Display: The lock stood no chance against the wit of {player}!";
 
                         //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionThreeButton.Text = "";
+                        optionThreeBlocked.Visible = true;
+                        optionThreeButton.Enabled = false;
                         optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
@@ -1037,7 +1092,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 20: 
                     {
                         //output
-                        outputLabel.Text = "Display: {player} is met by a staircase at the end of the hallway, which weaves through a long and bendy corridor.";
+                        outputLabel.Text = $"Display: {player} is met by a staircase at the end of the hallway, which weaves through a long and bendy corridor.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -1118,7 +1173,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 25: ///scene bottom stairs
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} slowly descends down a squeaking stair case--being careful not to step on their laces--and makes their way to what appears to be a reception desk.";
+                        outputLabel.Text = $"Display: {player} slowly descends down a squeaking stair case—being careful not to step on their laces--and makes their way to what appears to be a reception desk.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -1362,7 +1417,7 @@ namespace Choose_Your_Own_Adventure_Game
                         optionOneButton.Text = "'Checked in? If this place is an Inn, why was I locked into my room?'";
                         optionOneBlocked.Visible = false;
                         optionOneButton.Enabled = true;
-                        optionTwoButton.Text = "Yes, which kigdom?";
+                        optionTwoButton.Text = "'Yes, which kigdom?'";
                         optionTwoBlocked.Visible = false;
                         optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
@@ -1405,7 +1460,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 44: 
                     {
                         //output
-                        outputLabel.Text = "I did plan to unlock it early in the morning... Actually I should go  unlock the other doors now. Sorry for the trouble that caused you.";
+                        outputLabel.Text = "I did plan to unlock it early in the morning... Actually I should go unlock the other doors now. Sorry for the trouble that caused you.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -1610,7 +1665,7 @@ namespace Choose_Your_Own_Adventure_Game
                         playerNameText.Enabled = true;
                         playerNameTextTip.Visible = true;
                         playerNameTextShimshon.Visible = true;
-                        player = "Shimshon";
+                        character = 2;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -1631,6 +1686,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 60: ///icon, reset stuff
                     {
                         //name input
+                        player = playerNameText.Text;
                         if (player == "")
                         {
                             player = "Shimshon";
@@ -2494,12 +2550,116 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 119: //////START HERE TOMORROW
+                case 119://make sure icon is default, scene is outside Inn
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"{player} is outside of the Inn";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings reset
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionThreeButton.Text = "";
+                        optionThreeBlocked.Visible = true;
+                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "";
+                        optionFourBlocked.Visible = true;
+                        optionFourButton.Enabled = false;
+
+                        //all the options
+                        if (brokenLegs == 1)
+                        {
+                            optionOneButton.Text = "Scream in pain";
+                            optionOneBlocked.Visible = false;
+                            optionOneButton.Enabled = true;
+                            character = 0; //1 is Jon, 2 is Shimshon
+                            saidNo = 0;
+                            brokenArms = 0;
+                            shoesTied = 0;
+                            antiSocial = 0;
+                            brokenLegs = 0;
+                            knowsOfThief = 0;
+                            hasCube = 0;
+                            knowsOfCastle = 0;
+                            knowsOfChurch = 0;
+                            trustInnKeeper = 0;
+                            bloodlust = 0;
+                            caughtMurder = 0;
+
+                        }
+                        if (character == 1)
+                        {
+                            if (beenHere == 0)
+                            {
+                                optionTwoButton.Text = "Follow suspicious man down hallway";
+                                optionTwoBlocked.Visible = false;
+                                optionTwoButton.Enabled = true;
+                            }
+                        }
+                        if (knowsOfChurch == 1)
+                        {
+                            optionOneButton.Text = "Investigate the Church";
+                            optionOneBlocked.Visible = false;
+                            optionOneButton.Enabled = true;
+                        }
+                        if (knowsOfThief == 1)
+                        {
+                            optionOneButton.Text = "Stake out the thief";
+                            optionOneBlocked.Visible = false;
+                            optionOneButton.Enabled = true;
+                        }
+                        if (knowsOfCastle == 1)
+                        {
+                            optionOneButton.Text = "Travel to castle";
+                            optionOneBlocked.Visible = false;
+                            optionOneButton.Enabled = true;
+                        }
+                        if (trustInnKeeper == 1)
+                        {
+                            optionOneButton.Text = "Hang around Inn";
+                            optionOneBlocked.Visible = false;
+                            optionOneButton.Enabled = true;
+                        }
+                        if (bloodlust == 1)
+                        {
+                            optionOneButton.Text = "Hunt for blood";
+                            optionOneBlocked.Visible = false;
+                            optionOneButton.Enabled = true;
+                        }
+                        if (caughtMurder == 1)
+                        {
+                            optionThreeButton.Text = "Track the one who saw the murder";
+                            optionThreeBlocked.Visible = false;
+                            optionThreeButton.Enabled = true;
+                        }
+                        if (trustInnKeeper == 0)
+                        {
+                            if (character == 2)
+                            {
+                                optionTwoButton.Text = "Burn down the Inn";
+                                optionTwoBlocked.Visible = false;
+                                optionTwoButton.Enabled = true;
+                            }
+                        }
+                        if (brokenLegs == 0)
+                        {
+                            optionFourButton.Text = "Leave the kingdom";
+                            optionFourBlocked.Visible = false;
+                            optionFourButton.Enabled = true;
+                        }
+                    }
+                    break;
+
+                case 120: ///new scene
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} spots a suspicious, slender man turn around an alleyway.";
+                        mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2511,18 +2671,77 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 121: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} is 10 steps back from the suspicious target.";
+
+                        //button settings
+                        optionOneButton.Text = "Watch";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Confront";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
+                        optionFourButton.Text = "";
+                        optionFourBlocked.Visible = true;
+                        optionFourButton.Enabled = false;
+
+                        //stop player from returning here
+                        beenHere = 1;
+                    }
+                    break;
+
+                case 122: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} watches an bends over something just out of sight.";
+
+                        //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionThreeButton.Text = "";
+                        optionThreeBlocked.Visible = true;
+                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 123: 
+                    {
+                        //output
+                        outputLabel.Text = $"{player} thinks the man is looting a dead body off the street...";
+
+                        //button settings
+                        optionOneButton.Text = "Not my promblem";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Confront";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 120: //
+                case 124: ///display new scene closer to man
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} confronts the man in the alleyway.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2531,21 +2750,35 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 125: 
+                    {
+                        //output
+                        outputLabel.Text = "Display: A creature scampers off behind a trash bin during the confrontation.";
+
+                        //button settings
+                        optionOneButton.Text = "Find the creature";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Arrest the man";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 121: //
+                case 126: //scene puppy
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} searches behind the trash bin and finds a small puppy.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2554,134 +2787,74 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 122: //
+                case 127: //scene man, icon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "The thin man: Please don't hurt her, I was just out here making sure she had something to eat.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 123: //
+                case 128: //scene alleyway
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} feels embarrassed. They had assumed this man was out doing no good.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = $"{player} is so rude...";
                     }
                     break;
 
-                case 124: //
+                case 129: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Display: The man does not resist.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 125: //
+                case 130: // scene puppy
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Display: A small puppy jumps out from behind the trash can.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 126: //
+                case 131: //scene blackout
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: The puppy knocks {player} down to the ground. {player} blacks out.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 127: //
+                case 132: //scene outside church, icon default
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} makes their way over to the Church.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -2695,156 +2868,47 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
 
-                case 128: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 129: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 130: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 131: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 132: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        //don't let them back
+                        knowsOfChurch = 0;
                     }
                     break;
 
                 case 133: //
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: The crashes echo throughout the entire kingdom. It would have been impossible to locate the source of the noise without the Inn Keeper's help.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 134: 
+                    {
+                        //output
+                        outputLabel.Text = $"There are members of the Church stationed on the grounds. How will {player} get inside?";
+
+                        //button settings
+                        optionOneButton.Text = "Ask to go inside";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Climb in through a broken side panel";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 134: //
+                case 135: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} is not allowed inside of the Church.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2853,20 +2917,46 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 136: //scene black
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The members of the Church grow suspicious of {player}. They take them into their custody.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 137: //scene inside church enterence
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The members welcome {player} inside. From inside, {player} can hear the crashing of explosives from beneath them ";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Ask about noise";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Sneak towards noise";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 135: //
+                case 138: //male church icon
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "Male church member: OH YEAH BABY!!! WE ARE BLOWING HOLES THROUGH THE EARTH!!!!";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
@@ -2876,21 +2966,63 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+
+                        //status update
+                        knowsOfTunnels = 1;
+                    }
+                    break;
+
+                case 139: //female church icon
+                    {
+                        //output
+                        outputLabel.Text = "Female church member: HEY DON'T SAY THAT, THEY ARE AN OUTSIDER.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 140: //icon church lead, scene church lead
+                    {
+                        //output
+                        outputLabel.Text = "Church lead: It is okay to tell this one. As long as our opinions on the ruling of this Kingdom align...";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+
+                        //status update
+                        knowsOfCastle = 1;
+                    }
+                    break;
+
+                case 141: 
+                    {
+                        //output
+                        outputLabel.Text = "Church Lead: Would you be willing to help us overthrow the Kingdom and release it from its unworthy rule?";
+
+                        //button settings
+                        optionOneButton.Text = "Sure, nothing better to do...";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Nah";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 136: //
+                case 142: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Church Lead: WONDERFUL WONDERFUL WONDERFUL WONDERFUL....";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2898,22 +3030,70 @@ namespace Choose_Your_Own_Adventure_Game
                         optionOneButton.Enabled = false;
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionTwoButton.Enabled = false;;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 143: 
+                    {
+                        //output
+                        outputLabel.Text = "Church Lead: We welcome you here. We will need you.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 144: //female church icon, scene church enterance
+                    {
+                        //output
+                        outputLabel.Text = "female church member: Forgive me for speaking out, but I fail no see how a random person off the streets will help us.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 145: //chrch lead icon, church lead scene
+                    {
+                        //output
+                        outputLabel.Text = "Church Lead: This one can make decisions, I can tell. It will be those decisions that decide who wins the up coming battle!!!!";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 146: 
+                    {
+                        //output
+                        outputLabel.Text = "Church Lead: Time for your most important decision! Will you:";
+
+                        //button settings
+                        optionOneButton.Text = "Charge headfirst into battle";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Sell your soul for power";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 137: //
+                case 147: //scene church lead crazed
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Church Lead: Not exactly the choice I wanted of you. NOT AT ALL, NOT AT ALL, NOT AT ALL, NO NO NO NONONON...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2922,412 +3102,132 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 138: //
+                case 148: //scene church lead sad
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Church Lead: p - please make you-your way down to the basement.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+
                     }
                     break;
 
-                case 139: //
+                case 149: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Church Lead: you will find the tunnels... just follow everyone else i guess.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 140: //
+                case 150: //default icon, scene church hallways
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} makes their way down the various hallways of the Church. They descend the stairs and join a group of armed Church members.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 141: //
+                case 151: //scene tunnles
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: It is time for everyone to move out. The tunnels lead to both outside of the Kingdom walls and to the Castle itself. The assault begins.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 142: //
+                case 152: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: The tunnels seemingly change as {player} runs through them.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 143: //
+                case 153: //scene black
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: The walls seem to close in on {player}...";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 144: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 145: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 146: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 147: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 148: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 149: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 150: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 151: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 152: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 153: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
                 case 154: //
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} makes it to a sharp incline in the tunnel. Members of the Church begin to climb upwards.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 155: //castle courtyard
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} makes it to a sharp incline in the tunnel. Members of the Church begin to climb upwards.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 156: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} feels an ominous presence watching them from afar.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 157: //scene battle field courtyard
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The battlefield grows tense.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Get inside castle";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Fight";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 155: //
+                case 158: //scene castle door
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} rushes for the entrance of the Castle, a large door which was rammed down by those who had invaded with them.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3336,21 +3236,36 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 159: //scene inside castle
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The inside of the Castle suddenly goes silent.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Call ou for anyone";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Head up staircase";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 156: //
+                case 160: //scene up staircase
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: As {player} runs over to the staircase, they cannot shake the feeling that something is watching them.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3359,20 +3274,53 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 161: 
+                    {
+                        //output
+                        outputLabel.Text = "Display: They trip on the first step. They try to get up...";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 162: //scene frozen hand
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player}'s hands have frozen to the floor of the Castle.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 163: //scene frozen down on one knee 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} freezes solid in the now snowing Castle.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 157: //
+                case 164: //player icon
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "Player: HEY! WHERE DID EVERYONE GO?";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
@@ -3381,22 +3329,50 @@ namespace Choose_Your_Own_Adventure_Game
                         optionOneButton.Enabled = false;
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionTwoButton.Enabled = false;;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 165: ////default icon
+                    {
+                        //output
+                        outputLabel.Text = $"Display: No response.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 166: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player}'s breath freezes in the air as they breathe. The entire Castle is silent.";
+
+                        //button settings
+                        optionOneButton.Text = "Head outsude";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Find something to warm up";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
+                        optionThreeButton.Text = "Head up staircase";
+                        optionThreeBlocked.Visible = false;
+                        optionThreeButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 158: //
+                case 167: //scene endless garden
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} steps outside and is met by an endless, empty garden. Besides the flowers, there is no other life except for them.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3408,18 +3384,34 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 168: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} does not feel alone, eyes watch from afar.";
+
+                        //button settings
+                        optionOneButton.Text = $"Search from whatever is looking at {player}";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Head back inside";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 159: //
+                case 169: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: The Castle has vanished behind {player}.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3428,21 +3420,60 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 170: 
+                    {
+                        //output
+                        outputLabel.Text = "Display: {player} searches for whatever seems to be watching them.";
+
+                        //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 171: //scene flower beds garden
+                    {
+                        //output
+                        outputLabel.Text = $"Display: Everything feels hopeless, and a deep loneliness takes over {player}. There is nothing here but flowers.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 172: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} is alone. Trapped in a seemingly endless prison of flowers. Those watching eyes depart, disappointed. This is {player}'s punishment for their decisions.";
+
+                        //button settings
+                        optionOneButton.Text = "END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 160: //
+                case 173: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Display: There is nothing around any of the rooms.  No blankets, fires or clothes.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3454,18 +3485,34 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 174: //scene frozen solid
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} freezes solid in the now snowing Castle.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 161: //
+                case 175: ///scene punching sword man (gif?)
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} throws a punch at a man with a sword.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3474,21 +3521,33 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 176: //scene fillet
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} is immediately filleted by the cold tip of the sword.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 162: //
+                case 177: //scene church lead crazed
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Church Lead: YES! EXCELLENT CHOICE!";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3497,19 +3556,200 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 178: 
+                    {
+                        //output
+                        outputLabel.Text = "Church Lead: A TRULY WONDERFUL, EXCEPTIONAL, DIVINE CHOICE!";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 179: //default icon, scene church entrance
+                    {
+                        //output
+                        outputLabel.Text = $"display: {player} begins to feel dizzy. They begin to loose their footing and sway in the drafty wind of the entrance hallway.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 180: //icon church lead, scene church lead crazed
+                    {
+                        //output
+                        outputLabel.Text = $"Church Lead: FOLLOW ME CHILD! THE PATH TO YOUR ENLIGHTENMENT LIES AHEAD!";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 181: //scene church stairs, default icon
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} follows the Church Lead up multiple flights of stairs. At some point, they realize they are actually being carried by many members of the Church.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 182:
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player}'s vision becomes blurred. The walls circle around them as they ascend upwards towards the top level of the Church.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 183: //scene birds roof top church
+                    {
+                        //output
+                        outputLabel.Text = $"Display: You have lost all control over {player}. They can barely make out the silhouette of some dark clouds. White birds begin to gather around {player}.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 184: //church lead icon, make text fill screen
+                    {
+                        //output
+                        outputLabel.Text = "Church Lead: ! ^ &^$@#$&^$*(DYD(#&D&#Y#*&#*(";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 185: //default icon, light hitting church
+                    {
+                        //output
+                        outputLabel.Text = "Display: The world shakes, but this time it isn't the explosives below the Church. The dark sky opens up. A single ray of light illuminates the Church.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 186: //scene Jon dead on pedistal white birds top down angle
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The members of the Church gather around {player}. {player} lays on a stone pedestal, their body cold and dead.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 187: //scene birds melting
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The birds begin to melt into {player}'s body.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 188: //icon church lead, scene church lead crazed
+                    {
+                        //output
+                        outputLabel.Text = "Church Lead: IT IS PERFECT.ALL MY YEARS, MY LIFE, MY HEART, MY SOUL, MY LOVE, MY - MY - M...";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 189: ////scene birds melting, default icon
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The Church Lead stutters like a mad lunatic at the sight of {player}'s disformed body.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 190: //scene growing puddle of birds
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player}'s body screams as the muscles, bones and skin contorts. Feathers coat the entire form, talons appear from the stubs where the feet once were.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 191: //scene dark glowig silhoutte
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The crowd cheers from atop the Church as their deity awakens from {player}'s body.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 192: //scene Bird God, Wrangler of the Crazed
+                    {
+                        //output
+                        outputLabel.Text = $"Display: Their God of the Clouds stands before them, ready to guide them into battle. {player}'s sacrifice will always be remembered.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 193: //leads to special ending
+                    {
+                        //output
+                        outputLabel.Text = $"Display: This is what must happen. There is no other meaning in {player}'s life. They would die a thousand times until they reach this conclusion.";
+
+                        //button settings
+                        optionOneButton.Text = "THE END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 163: //
+                case 194: //scene black, icon default
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"display: Obviously they are not going to let {player} leave after they leak so much private information...";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -3520,21 +3760,66 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 195: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} has been taken into the Church's custody.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 196: //scene inside church hallway
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} has gained access to the Church. If caught, the members will not tolerate their presence.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 197: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} can hear the crashing of explosives from beneath them ";
+
+                        //button settings
+                        optionOneButton.Text = "Sneak into basement";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Steal a disguise from someone";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 164: //
+                case 198: //scene black screen
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} was caught immediately. They are not stealthy at all.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3543,21 +3828,34 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 199: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} spots a man at the end of a hallway. How do they steal the clothes?";
+
+                        //button settings
+                        optionOneButton.Text = "Knock him out";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Seduce him";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 165: //
+                case 200: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} successfully knocks the man out.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3566,67 +3864,39 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 166: //
+                case 201: //scene caught stealing clothes
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: As {player} removes the Church member's clothes, another member catches you in the act.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 167: //
+                case 202: //scene black
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: She is disgusted with {player}'s actions, and they are taken into the Church's custody.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 168: //
+                case 203: //scene in front of seduced man
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} approaches the man and attempts to seduce him.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3635,941 +3905,91 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 169: //
+                case 204: //icon male church member
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "male church member: Sorry, I don't swing that way...";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 170: //
+                case 205: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "male church member: HEY, WAIT! YOU SHOULDN'T BE HERE TO BEGIN WITH!";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 171: //
+                case 206: //icon default, scene black
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: Ouch... rejected and taken into the Church's custody.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Just my way with people, they can't resist me";
                     }
                     break;
 
-                case 172: //
+                case 207: //icon male church member
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "male church member: You must be a blessing from The One, given straight to me as a sign of my good faith.";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 173: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 174: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 175: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 176: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 177: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 178: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 179: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 180: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 181: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 182: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 183: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 184: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 185: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 186: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 187: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 188: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 189: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 190: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 191: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 192: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 193: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 194: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 195: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 196: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 197: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 198: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 199: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 200: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 201: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 202: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 203: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 204: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 205: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 206: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 207: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
                 case 208: //
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "male church member: I will happily join you in a private room where we won't be interrupted.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 209: //icon default, scene church man knocked out
+                    {
+                        //output
+                        outputLabel.Text = $"Display: Once alone with him, {player} knocks the man out and steals his clothes. They look just like a member of the Church now.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "Openly travel towards noise";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Sneak towards noise";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 209: //
+                case 210: //scene hallway basement stairs
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} walks straight down to the basement. No one cares as they walk by.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4578,101 +3998,51 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 210: //
+                case 211: //scene tunnels
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} is now in the basement where tunnels are being blown out of the Earth.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+
+                        //status update
+                        knowsOfTunnels = 1;
                     }
                     break;
 
-                case 211: //
+                case 212: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Display: The tunnels seem to go on forever in any direction.  They are well lit despite there being no visible light source.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+
+                        //status update
+                        knowsOfCastle = 1;
                     }
                     break;
 
-                case 212: //
+                case 213: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Display: There is a certain magic to these tunnels...";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 213: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "Leave the Church";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Explore the tunnels";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
@@ -4682,9 +4052,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 214: //
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} exits the Church";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4693,21 +4061,17 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 215: //
+                case 215: //scene dark tunnel
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} travels through the long, winding tunnel. The tunnel seems to darken with every step.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4716,44 +4080,68 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 216: //
+                case 216: //scene black
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player}'s footsteps echo through the tunnel. The walls seem to darken and close in on them.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
                 case 217: //
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: The walls seal {player} in. What once was a muddy tunnel is now a concrete cage.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 218: //scene player crouching in hall
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} crouches down and sneaks towards the basement. They look stupid as they crouch and attract attention to themselves.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 219: //scene black
+                    {
+                        //output
+                        outputLabel.Text = $"Display: Maybe if {player} didn't look so stupid crouching down a hallway, they may have gotten to the noise.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 220: //scene inn outside
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} has decided to stake-out the Inn in an attempt to bust the criminal.";
+                        mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4765,18 +4153,35 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 221: //scene inn outside night w/ moon
+                    {
+                        //output
+                        outputLabel.Text = $"Display: As the moon rises, {player} watches a man begin to scale the outside of the Inn.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Climb the building to chase him";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Go inside through the front door";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 218: //
+                case 222: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: As {player} scales the building, their hand slips on a smooth sandy brick.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4785,44 +4190,121 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 223: //scene black
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} falls from the Inn and slams their head off the concrete.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 224: 
+                    {
+                        //output
+                        outputLabel.Text = "The door is locked.";
+
+                        //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 225: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} hears the howling of hungry wolves.";
+
+                        //button settings
+                        optionOneButton.Text = "Pick the lock";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 219: //
+                case 226: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} is unable to pick lock due to their broken arm.";
 
                         //button settings
                         optionOneButton.Text = "";
                         optionOneBlocked.Visible = true;
                         optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 227: //scene wolfs eating
+                    {
+                        //output
+                        outputLabel.Text = $"Display: A pack of wolves has caught up to {player}, and devour them alive.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 228: //scene inside inn night
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} has successfully unlocked the door. They enter the Inn.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 229: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} hears the man rustling around upstairs.";
+
+                        //button settings
+                        optionOneButton.Text = "Head upstairs";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Find a weapon";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 220: //
+                case 230: //scene inn keepers desk night
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} searches the Inn Keeper's reception desk for a weapon.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4831,21 +4313,70 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 231: //scene knife found
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} arms themselves with a sharp knife, found in an old drawer.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+
+                        //status update
+                        hasKnife = 1;
+                    }
+                    break;
+
+                case 232: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} is ready to confront the thief.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 233: //scene inn staircase
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} heads upstairs.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 234: //scene thief stealing
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The thief, dressed in a sharp black suit, rummages through bins just steps away.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Rush him";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Threaten him";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 221: //
+                case 235: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} sprints towards the villain.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4854,479 +4385,86 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 236: //scene player soaring out window
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} runs straight out a window.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 237: //scene skewered
+                    {
+                        //output
+                        outputLabel.Text = "Display: Skewered on a pole...";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 222: //
+                case 238: //scene stabbing thief
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} stabs the man from behind until they die.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 223: //
+                case 239: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} killed a man for robbery. Nowadays this would be seen as horrible, but this is set in a medieval fantasy land.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 224: //
+                case 240: //scene spooning thief
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} spoons the man until he dies.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 225: //
+                case 241: //scene bloody spoon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: The spoon is a grossly effective murder weapon.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 226: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 227: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 228: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 229: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 230: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 231: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 232: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 233: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 234: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 235: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 236: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 237: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 238: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 239: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 240: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 241: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
                 case 242: //
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Player: Hey buster... pal... little guy. Get out of here, or I'll hurt you.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -5337,43 +4475,208 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 243: //icon thief
+                    {
+                        //output
+                        outputLabel.Text = "Thief: Ah very scary, okay I will leave.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 244: //icon default, scene thief flee out door
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The thief scampers away, promising to never return. This was easier to do than {player} thought it would be.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 245: //scene opening window
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} gets tired and decides to sleep in one of the unlocked rooms.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "SLEEP WELL";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 243: //
+                case 246: //default icon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"{player} suffers from severe stutters and fails to intimidate.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 247: //icon thief
+                    {
+                        //output
+                        outputLabel.Text = "Thief: Nah I am staying, feel free to leave.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 248: //default icon, black scene
+                    {
+                        //output
+                        outputLabel.Text = $"Display: His words are so powerful and chadly that {player} gives up on everything in life. They will now buy a house and raise a family of cats, all because of this thief.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "GIVE UP";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 244: //
+                case 249: //scene spoon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} arms themselves with a spoon...  certainly that'll be effective.";
                         mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+
+                        //status update
+                        hasSpoon = 1;
+                    }
+                    break;
+
+                case 250: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} is interested in meeting the Court Jester. They take a cart out to the Castle and pay the cart fee with what little money they have.";
+
+                        //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionThreeButton.Text = "";
+                        optionThreeBlocked.Visible = true;
+                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+
+                        //status update
+                        knowsOfCastle = 0;
+                    }
+                    break;
+
+                case 251: //scene castle exterior
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} is amazed by the marble walls and the scale of the Castle.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 252: //icon castle guard
+                    {
+                        //output
+                        outputLabel.Text = "Castle guard: Slow down pal. Not anyone can enter at a time like this...";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        if (antiSocial == 1)
+                        {
+                            optionOneButton.Text = "";
+                            optionOneBlocked.Visible = true;
+                            optionOneButton.Enabled = false;
+                            optionTwoButton.Text = "";
+                            optionTwoBlocked.Visible = true;
+                            optionTwoButton.Enabled = false;
+                            optionThreeButton.Text = "";
+                            optionThreeBlocked.Visible = true;
+                            optionThreeButton.Enabled = false;
+                            optionFourButton.Text = $"{player} is anti-social";
+                            optionFourBlocked.Visible = false;
+                            optionFourButton.Enabled = true;
+                        }
+                        else
+                        {
+                            optionOneButton.Text = "'I would like to meet the Court Jester.";
+                            optionOneBlocked.Visible = false;
+                            optionOneButton.Enabled = true;
+                            optionTwoButton.Text = "(Lie) 'I am here to tend to the garden.'";
+                            optionTwoBlocked.Visible = true;
+                            optionTwoButton.Enabled = false;
+                            if (knowsOfTunnels == 1)
+                            {
+                                optionThreeButton.Text = "'The Church is tunneling underground.'";
+                                optionThreeBlocked.Visible = false;
+                                optionThreeButton.Enabled = true;
+                            }
+                            optionFourButton.Text = "";
+                            optionFourBlocked.Visible = true;
+                            optionFourButton.Enabled = false;
+                        }
+                    }
+                    break;
+
+                case 253: //icon default
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player}, having the social capacity of a screwdriver, freezes up upon trying to figure out how to respond.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 254: //scene outside Inn
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} flees back to the Inn. The Inn is at least slightly familiar in this unknown kingdom.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 255: //icon castle gaurd
+                    {
+                        //output
+                        outputLabel.Text = "Castle guard: Sorry pal, we have no time to waste on outside affairs.";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
@@ -5386,18 +4689,80 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 256: //default icon, scene outside Inn
+                    {
+                        //output
+                        outputLabel.Text = $"Display: With nowhere else to go, {player} heads back to the Inn.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 257: 
+                    {
+                        //output
+                        outputLabel.Text = "Castle guard: Of course, Hero. Our Mistress, the Court Jester, has been waiting for you.";
+
+                        //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionThreeButton.Text = "";
+                        optionThreeBlocked.Visible = true;
+                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 258: //default icon
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The guard showed {player} a strangely high level of respect, even bowing their head and calling them 'Hero' with no hesitation.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 259: //inside castle courtyard scene
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} is motioned toward where the garden is, but they notice the Castle doors are wide open.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Go to garden";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Head inside Castle";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 245: //
+                case 1230: //scene garden
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: Eyes pierce the flesh of {player}. Those eyes follow them everywhere they go whilst in the Castle.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5406,21 +4771,35 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 1231: //
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} is surrounded by red, blue, and purple flowers of all shapes and sizes.";
+
+                        //button settings
+                        optionOneButton.Text = "Stop to smell the flowers";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Trample the flowers";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 246: //
+                case 1232: //scene rose
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: The scent is hypnotizing. {player} had forgotten so much of their life before. They'll never be free to live safely with her omnipresent glare. Always waking in the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5429,21 +4808,32 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 1233: // RESET THINGS HERE OR EARLIER
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The silhouette of the Jester briefly flashes before player's eyes. They forget everything.";
+
+                        //button settings
+                        optionOneButton.Text = "FORGOTTEN";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 247: //
+                case 1234: //scene crying flower
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: The flowers shed their tears.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5452,19 +4842,45 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 1235: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The air is cold. The tears of the swaying flowers still flow, but {player}'s breath freezes before it can escape.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1236: //scene bloody crying rose
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} chokes on ice as they attempt to cough the bloody ice shards out.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 248: //
+                case 1237: //scene inside castle, icon mysterious voice
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Mysterious Voice: I see you are both dishonest and untrustworthy. When I give my guidence out, I expect it to be followed.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -5475,19 +4891,46 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 1238: //default icon
+                    {
+                        //output
+                        outputLabel.Text = $"Display: A familiar feminine voice echoes into {player}'s ears. It speaks in a calm yet degrading tone.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1239: //scene castle doors
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} stands on the steps before the grand white doors.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Step inside";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Head back to garden";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 249: //
+                case 1240: //inside castle scene, mys icon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Mysterious voice: You exist for my benefit. I need you, my Hero...";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -5498,21 +4941,87 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 1241: //default icon
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player}'s foot sways through the entrance.  As it makes contact with the polished inside floor, {player} feels as if their head is slammed back by an unknown force.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1242: //scene player on one knee
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The whiplash caused is enough to knock {player} to their knees.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1243: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: All of the stationed guards do not react at the sight of {player} collapsing down onto their knees.  They remain as if frozen, like statues.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1244: //mys icon, freezing on knees as flowers grow upwards
+                    {
+                        //output
+                        outputLabel.Text = "Mysterious Voice: I want you to go the Church next time. I would love you to birth their God.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1245: //default icon
+                    {
+                        //output
+                        outputLabel.Text = $"Display: Ice grows up {player}'s arms and legs as they begin to fade out of consciousness.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1246: //scene jester (basially just colours, nothing clear should be made out)  RESET THINGS
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The face of the Woman briefly flashes before {player}'s eyes. They forget everything. It seems the world itself was rewritten...";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "FORGOTTEN";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 250: //
+                case 1247: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Castle guard: Thanks for the information, but we are well aware of that situation.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5524,18 +5033,34 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 1248: 
+                    {
+                        //output
+                        outputLabel.Text = "Castle guard: Our Mistress the Court Jester has been watching them closely.  She has ordered us to make no moves against them.";
+
+                        //button settings
+                        optionOneButton.Text = "'Why don't you attack'?";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "'Watching?'";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 251: //
+                case 1249: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Castle guard: Two reasons. The biggest is public appearance. It doesn't look good when you attack a Church.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5544,21 +5069,41 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 1250: 
+                    {
+                        //output
+                        outputLabel.Text = "Castle guard: And the second reason? They pose no threat to Her.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1251: 
+                    {
+                        //output
+                        outputLabel.Text = "Castle guard: 'Been fun chatting with you, but you best be leaving now.";
+
+                        //button settings
+                        optionOneButton.Text = "Return to Inn";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 252: //
+                case 1252: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Castle guard: She has a kind of omnipresent talent. I don't know how, but She can watch over us all.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5567,21 +5112,57 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 1253: 
+                    {
+                        //output
+                        outputLabel.Text = "Castle guard: I asked Her about it myself one time, but I've sadly forgotten what She said to me...";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1254: 
+                    {
+                        //output
+                        outputLabel.Text = "Castle guard: 'Let's forget our memories together...'  That's what she told me...";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1255: 
+                    {
+                        //output
+                        outputLabel.Text = "Castle guard: Been fun chatting with you, but you best be leaving now.";
+
+                        //button settings
+                        optionOneButton.Text = "Return to Inn";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 253: //
+                case 1256: //scene flattened player, icon player
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Player:  ^ ^&^RG &% AARRRR RRRRGGGGGGG * ^^R %% ";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = Properties.Resources.speechIcons; //Jon
+                        if (character == 2)
+                        {
+                            iconBox.Image = Properties.Resources.speechIcons; //shimshon
+                        }
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5593,18 +5174,46 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 1257: //icon default
+                    {
+                        //output
+                        outputLabel.Text = $"Display: Nobody cares that {player} is bleeding out.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 1258: 
+                    {
+                        //output
+                        outputLabel.Text = "Display: Their loud screams go unnoticed, or maybe the people are just too busy to care.";
+
+                        //button settings
+                        optionOneButton.Text = "Scream again, but louder";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Roll towards help";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 254: //
+                case 1259: //scene scream face
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} screams again, a shockingly disturbed scream of horror. Still, no one reacts.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5613,21 +5222,33 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 260: //scene dried out face
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} exerted all their remaining energy screaming.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 255: //
+                case 261: //scene the immortal horse
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} tries to roll towards help, but instead rolls directly into an immortal horse...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5636,21 +5257,32 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 262: //scene zoomed out horse next to carnival
+                    {
+                        //output
+                        outputLabel.Text = $"Display: Or at least the man running the carnival claims it is immortal. Much unlike {player}, who is dead now.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 256: //
+                case 263: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} has decided to stay nearby the Inn, due to their strange trust towards the Inn Keeper.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5662,16 +5294,35 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 264: //scene inn ouside night
+                    {
+                        //output
+                        outputLabel.Text = $"Display: As the night falls, {player} watches a man begin to scale the outside of the Inn.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Tell him to stop";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Chase him";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 257: //
+                case 265: //scene man clibing building looking down in fear, icon player
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Player: SWOG FLOBBA!";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -5682,19 +5333,57 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 266: //icon thief
+                    {
+                        //output
+                        outputLabel.Text = "Thief: Oy! You are a foul smelling thing, aren't ya?";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 267: //icon default, scene no more thief - same wall
+                    {
+                        //output
+                        outputLabel.Text = "Display: The man swings over a window sill, and into the second floor of the Inn.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 268: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The man shuts the window behind him. The next open window is on the third floor...";
+
+                        //button settings
+                        optionOneButton.Text = "Climb to third floor";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Scream";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 258: //
+                case 269: //player icon, scene outside inn night
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Player: @*&*&^@@@&@!!!";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -5705,21 +5394,56 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 270: //default icon
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The ear piercing scream is more than enough to catch the attention of everyone nearby, including everyone inside the Inn.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 271: //scene thief no pants running
+                    {
+                        //output
+                        outputLabel.Text = "Display: A loud thud can be heard from inside the Inn, followed by the thief scampering out the front door with no pants.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 272: //scene outside inn
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} has successfully saved the Inn from the thief. They now rest in the Inn, satisfied with their adventure.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionOneButton.Text = "END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 259: //
+                case 273: //scene player jumping up window
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} leaps up to the third floor with no effort. The silently enter the building due to their sneaky bunny slippers.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5728,21 +5452,36 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 274: //scene inside inn second third floor, bunny slippers
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The man can be heard rummaging through containers from the floor beneath {player}...";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Sneak downstairs";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Leap out window";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 260: //
+                case 275: //scene black
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: Wow, you really just chose that option. What do you think will happen?";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5751,21 +5490,43 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 276: //scene skewered in the night
+                    {
+                        //output
+                        outputLabel.Text = $"Display: '{player} flies out the window like a bird.'  NOT! They fall to their death.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 277: 
+                    {
+                        //output
+                        outputLabel.Text = "You're sick. And not in a 'sick bro, totally wicked' kind of way. You're dastardly, too.";
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 261: //
+                case 278: //scene thief stealing
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} sneaks down stairs. They stare at the villain whilst he steals out of cupboards.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5774,21 +5535,35 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 279: 
+                    {
+                        //output
+                        outputLabel.Text = "Display: What is the plan of action?";
+
+                        //button settings
+                        optionOneButton.Text = "Scare the thief away";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Alert the Inn Keeper";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 262: //
+                case 280: //scene sneak up on thief
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} creeps up behind the thief.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5797,21 +5572,43 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 281: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} proceeds to jump up in front of him and yell 'BOO!'";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 282: //scene black
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} is immediately struck by a frying pan in retaliation. {player} lies unconscious until the next day when they wake up in bed.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "THE END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 263: //
+                case 283: //scene doors being knocked (maybe)
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} begins running down the hallways, knocking on every door with a loud pound against the wood.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5820,21 +5617,44 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 284: //scene thief no pants flee
+                    {
+                        //output
+                        outputLabel.Text = "Display: This action is enough to wake everyone up. The Inn Keeper swiftly charges the thief out of the Inn.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 285: //scene black
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} has successfully saved the Inn from the thief. They now rest, satisfied.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "THE END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 264: //
+                case 286: //scene running upwards
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} begins to chase the thief, and runs upwards--perpendicular to the walls.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5843,21 +5663,55 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 287: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player}'s terrifying power to defy gravity is enough to shock the thief into speeding up the climb.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 288: //scene splat
+                    {
+                        //output
+                        outputLabel.Text = "Display: The thief loses his footing and falls from off the wall.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 289: //scene black
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} has successfully saved the Inn from the thief. They now rest, satisfied.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "THE END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 265: //
+                case 290: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} is hungry for blood...";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5869,41 +5723,51 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 291: //scene reflection window
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} sees a tall, green looking person in pink bunny slippers through a window.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Sprint at it";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = $"...It stole {player}'s entire look";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 266: //
+                case 292: //shattered glass bleed out scene
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} shatters through the reflective glass window. They scrape their face off the glass shards and die.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 267: //
+                case 293: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} is peeved that the person looks just like them.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5912,619 +5776,35 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 268: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 269: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 270: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 271: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 272: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 273: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 274: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 275: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 276: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 278: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 279: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 280: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 281: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 282: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 283: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 284: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 285: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 286: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 287: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 288: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 289: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 290: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 291: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 292: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 293: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
                 case 294: //
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} wants to kill... but....";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "Sprint at it (KILL)";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "...It is kind of cute...";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 295: //
+                case 295: //scene window but with added hearts
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: The thing in the reflection of the window is exactly {player}'s type. Those long, gangly arms could probably give the most comforting hugs.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6533,21 +5813,35 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 296: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} wants to make a move on its new crush...";
+
+                        //button settings
+                        optionOneButton.Text = "SPRINT AT IT (KILL KILL KILL)";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Propose!";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 296: //
+                case 297: //scene propose to reflection
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: The thing in the reflection of the window proposes at the same time as {player}!";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6556,21 +5850,32 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 298: //scene heart
+                    {
+                        //output
+                        outputLabel.Text = "Display: The two of them were made for each other! They'll definitely live happily together.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "THE END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 297: //
+                case 299: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: The person who witnessed {player}'s crime stands before them.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6582,39 +5887,39 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 298: //
+                case 1300: //mys voice icon, scene jester colour smear
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Mysterious Voice: I don't often leave the Castle, but I wanted to see my Hero wake in person. You are not them, though.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionOneButton.Text = "KILL";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "KILL";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
+                        optionThreeButton.Text = "KILL";
+                        optionThreeBlocked.Visible = false;
+                        optionThreeButton.Enabled = true;
+                        optionFourButton.Text = "KILL";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 299: //
+                case 300: //default icon, scene attempt decap
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} attempts to decapitate the target and use their skull as a soccer ball.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -6628,16 +5933,16 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 300: //
+                case 301: //default icon, scene arm rip
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} attempts to rip the target's arms off and use them to slam the target into the ground.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -6651,16 +5956,16 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 301: //
+                case 302: //default icon, scene roundhouse
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} roundhouse kicks the target with enough force to level a village.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -6674,16 +5979,16 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 302: //
+                case 303: //default icon, scene stomach rip
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} uses their boney hands in an attempt to rip open the target's stomach.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -6697,85 +6002,56 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 303: //
+                case 304: //scene no damage
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} fails to leave any damage to the target.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 304: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
                 case 305: //
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = $"Display: The Woman stands indifferent to {player}'s attempts to kill, and continues to speak calmly.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 306: //icon mys voice
+                    {
+                        //output
+                        outputLabel.Text = "Mysterious Voice: I truly did not expect to see something like you.";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "kill";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "give up";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 306: //
+                case 307: //icon default, scene attacking
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} desperately claws at the impervious flesh of the target.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -6786,88 +6062,45 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 307: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
                 case 308: //
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Display: The target calmly speaks:";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 309: //
+                case 309: //icon mys voice
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "Mysterious Voice: You didn't happen to see my Hero in there, did you? There is someone who must join the Church for me.";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "co-operate";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "give up";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 310: //
+                case 310: //icon player, scene standing 
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Player: Globey Slog bLu. Ai floop.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -6878,65 +6111,54 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 311: //
+                case 311: //icon mys
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "Mysterious Voice: I see... not here then.";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 312: //
+                case 312: //scene white, icon default
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: The world goes silent. The birds freeze in the air, the trees no longer breathe in the wind, and the sun's light blots out the darkness.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 313: 
+                    {
+                        //output
+                        outputLabel.Text = "Display: No one, not even the Jester Herself, will remember what She did here. But it was necessary if she wants to kill the God of the Clouds.";
+
+                        //button settings
+                        optionOneButton.Text = "RESET";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 313: //
+                case 314: //icon default, scene give up
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player}'s mind has been broken by facing something that it could not over come.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -6947,42 +6169,28 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 314: //
+                case 315: //scene black
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Mysterious Voice: Please do not suffer, I will allow you to forget this tragedy. When you wake up, you'll forget what happened here...";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 315: //
+                case 316: //default icon, scene outside inn
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} wants to burn down the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -6996,41 +6204,46 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 316: //
+                case 317: 
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: They do not have a lighter, or any other fire starter.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 318: //scene man walking
+                    {
+                        //output
+                        outputLabel.Text = "Display: A man walks by. Maybe he has a lighter on him...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "Pick pocket";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Kill the man";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 317: //
+                case 319: //scene steal from pocket
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} attempts to take the lighter from the man's pocket.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7039,44 +6252,36 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 318: //
+                case 320: //scene lighter
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: Player is successful.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "Light the Inn on fire";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = $"Light {player} on fire";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 319: //
+                case 321: //scene flaming Inn
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"{player} enters the Inn and proceeds to light it on fire.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7085,44 +6290,33 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 320: //
+                case 322: //scene flaming Inn fireworks
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} burns alive inside the building.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 321: //
+                case 323: //scene flaming shimshon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Fire hot, fire burns.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7131,21 +6325,27 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 322: //
+                case 324: //scene kingdom on fire
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} gallops through the Kingdom, while on fire. The whole kingdom is lit up as they burn.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 325: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} attempts to take the lighter from the man's pocket.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7154,67 +6354,55 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 323: //
+                case 326: 
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player}'s broken arm dangles into the mans leg as {player} attempts to take the lighter.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 327: //scene futuristic man pointing gun towards character (possibly framed at viewer)
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The man feels {player}'s arm brush against them. The man instantly pulls out a gun and shoots {player}.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 324: //
+                case 328: //scene default black
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: Maybe don't steal from a time traveler next time.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 325: //
+                case 329: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} attempts to rob the man, but their bloodlust quickly takes over.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7223,21 +6411,17 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 326: //
+                case 330: //lighter scene
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} looms over the man. From behind, {player} can see a lighter in the man's pocket.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7246,88 +6430,54 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 327: //
+                case 331: //scene throwing man through window
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} grabs the man by the legs and helicopter throws him into the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 328: //
+                case 332: //scene flaming Inn
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "The Inn catches fire.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 329: //
+                case 333: //scene flaming Inn with firworks
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player}'s leg hairs are singed. They die from the pain.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 330: //
+                case 334: //default icon, kingdom gate scene
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} has spotted a large kingdom gate nearby the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -7341,683 +6491,47 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 331: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 332: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 333: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 334: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 335: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 336: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 337: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 338: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 339: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 340: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 341: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 342: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 343: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 344: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 345: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 346: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 347: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 348: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 349: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 350: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 351: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 352: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 353: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 354: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 355: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 356: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 357: //
+                case 335: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Display: They want to leave the kingdom.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
-
-                case 358: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 359: //
+                case 336: //scene kingdom gate with guard, icon gate guard
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Border guard: Sorry, no one in, no one out. That is Her orders.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "Ask politely to leave";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Be aggressive";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 360: //
+                case 337: //scene leap at walls guard, icon default
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} leaps at the guard, grabbing at the guard's arms.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -8028,67 +6542,49 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 361: //
+                case 338: //scene gauntlets covered in blood
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} removes the iron-plated gauntlets of the guard and rams them into his thick neck.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 362: //
+                case 339: //player silhoutte leaving kingdom, over hill
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} leaves the Kingdom, off to live happily ever after.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "THE END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 363: //
+                case 340: //player icon, remove "{player}" similar to "display"
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"{player}: Uuug.Mep.er ah... Mep...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = Properties.Resources.speechIcons; //Jon's icon
+                        if (character == 2)
+                        {
+                            iconBox.Image = Properties.Resources.speechIcons;  //shimshon's icon
+                        }
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8097,62 +6593,34 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 364: //
+                case 341: //icon wall guard
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "Border guard: Ummm....Hey look. If you got an important package to deliver, some of us have been letting couriers through.";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
-
-                case 365: //
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                case 342: 
+                    {
+                        //output
+                        outputLabel.Text = "Border guard: But you are not a courier. Sorry friend, with I could help you out.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 366: //
+                case 343: //NOTHING HERE
                     {
                         //output
                         outputLabel.Text = "";
@@ -8175,7 +6643,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 367: //
+                case 344: //NOTHING HERE
                     {
                         //output
                         outputLabel.Text = "";
@@ -8198,35 +6666,31 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 368: //
+                case 345: //scene wall no guard, icon default
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} is unable to leave through lawful means.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "Climb the wall";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Punch a hole in the wall";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 369: //
+                case 346: //player flat on ground scene
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} falls immediately, doesn't even get an inch up the wall.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8235,19 +6699,32 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 347: //scene black default
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} has died from head trauma.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 370: //
+                case 348: //scene "the THE", icon THE
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: The THE (inside joke, you wouldn't get it)";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -8258,89 +6735,86 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "THE";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 371: //
+                case 349: //black scene, default icon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} has died from their broken fist.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "THE THE (DEAD)";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 372: //
+                case 350: //scene cube
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Border guard: I see you have that weird cube. Those things are dangerous, I'll let you take it out with you.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 351: //scene leaving kingdom, default icon
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} is allowed to leave the Kingdom because the guard thinks they are delivering a package elsewhere.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 352: 
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} leaves the Kingdom. Dissatisfied eyes watch, plotting {player}'s next demise.";
+
+                        //button settings
+                        optionOneButton.Text = "THE END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 373: //
+                case 353: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} leaves the Kingdom, off to live happily ever after.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "THE END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 374: //
+                case 354: //jon player icon
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "Player: Can I get an exception, I don't actually know how I got here.";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
@@ -8350,42 +6824,44 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 375: //
+                case 355: //guard icon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Border Guard: Yeah sure, why not. We've been letting merchants and the such though anyways.";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 356: //default icon, scene leaving kingdom
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} leaves the Kingdom. Dissatisfied eyes watch, plotting {player}'s next demise.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "THE END";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 376: //
+                case 357: //default icon, menacing fist shake
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} shakes their fist at the guard menacingly.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -8396,19 +6872,43 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 358: //player skewered by sword scene
+                    {
+                        //output
+                        outputLabel.Text = $"Display: The guard has none of that, he skewers {player} immediately.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 359: //black default scene
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} bleeds out.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 377: //
+                case 363: //scene looking through cage at dirty grassy overgrown hallway, default icon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} wakes up in a small room. A metal gate stands between them and a bright corridor.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -8422,41 +6922,49 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 364: 
+                    {
+                        //output
+                        outputLabel.Text = "The cold gate is locked.";
+
+                        //button settings
+                        optionOneButton.Text = "Stay inside";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Pick lock";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 378: //
+                case 365: //default scene
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} chooses to rot in the cage.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 379: //
+                case 366: //scene white or maybe a grassy hallway exit
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} is free to leave the Church.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8465,42 +6973,29 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 380: //
+                case 367: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} is unable to pick locks, and is trapped in the cell.";
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 381: //
+                case 368: ///ANIMATION NEEDED///  //default icon, opening dating scene
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} wakes up in a small room. The concrete walls are ice cold to the touch.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -8514,18 +7009,50 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+
+                        //status update
+                        insideDateSim = 1;
+                        movedOnChance += 1;
+                    }
+                    break;
+
+                case 1368: //scene crying face
+                    {
+                        //output
+                        outputLabel.Text = $"With every passing day your love moves onwards. But not you. You'll never quit.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 369: //scene hallway empty
+                    {
+                        //output
+                        outputLabel.Text = "Display: The most beautiful voice calls your name from the dark of a hallway.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Go towards it";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Call out its name";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 382: //
+                case 370: 
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Display: {player} makes their way through the hallway.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8534,21 +7061,36 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 371: //hallway light hitting black void
+                    {
+                        //output
+                        outputLabel.Text = "Display: Light peers through a crack in the walls. It shines down on the figure.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "Reach out your hand";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Admit your love";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 383: //
+                case 372: //scene empty hallway
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "You'll never reach your love. It is impossible.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8557,21 +7099,33 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 373: //scene heart drop gif
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} cries their heart out.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 384: //
+                case 374: //scene smiling void
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: It feels the same way about you.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8580,19 +7134,56 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 375: 
+                    {
+                        //output
+                        outputLabel.Text = "Display: The smell of roses begins to overtake the room. You are absorbed into its beautiful black pupils.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 376: 
+                    {
+                        //output
+                        outputLabel.Text = "You've always loved those eyes...";
+
+                        //button settings
+                        optionOneButton.Text = "Ask it out on a date";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Apologize";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 385: //
+                case 377: //jon player icon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Player: We should go somewhere... maybe we can: ";
+                        iconBox.Image = Properties.Resources.speechIcons;
+
+                        //button settings
+                        optionOneButton.Text = "walk around the lakeside together";
+                        optionTwoButton.Text = "go to the theatre";
+                    }
+                    break;
+
+                case 378: //scene smiling crying void, default icon
+                    {
+                        //output
+                        outputLabel.Text = "Display: It is ecstatic! It wanted to go walk around with you for as long as it can remember!";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -8603,19 +7194,43 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
+                    }
+                    break;
+
+                case 379: //scene default black
+                    {
+                        //output
+                        outputLabel.Text = "It cannot go with you. Maybe it never really loved you....";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 380: //scene heart drop gif
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} has never been so hurt.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 386: //
+                case 381: //scene smiling crying void, default icon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: It is ecstatic! It wanted to go to the theatre with you for as long as it can remember!";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -8626,65 +7241,43 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 387: //
+                case 382: //scene black
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "It cannot go with you. You'll never know its favourite play.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 388: //
+                case 383: //scene heart drop gif
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} has died of heartbreak.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 389: //
+                case 384: //jon icon, black scene
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Player: I cannot do enough for you.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -8695,44 +7288,37 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 390: //
+                case 385: //default icon, smiling void scene
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: It loves you all the same, despite your inadequacies.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "Ask why it loves you";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Tell it how much it means to you";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 391: //
+                case 386: //scene neutral void
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "You will never get that answer.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8741,66 +7327,43 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 392: //
+                case 387: //scene black default
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "You'll always fear that it fell out of love with you.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 393: //
+                case 388: //scene heart drop
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = $"Display: {player} has died of overthinking.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 394: //
+                case 389: //jon icon
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "----------------";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
@@ -8810,43 +7373,36 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 395: //
+                case 390: //scene bigger void smile, default icon
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: It gives you a smile.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "'I love you'";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Kiss it";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 396: //
+                case 391: //It icon
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "It: I love you too!";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
@@ -8856,44 +7412,46 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 397: //
+                case 392: //default icon
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = $"You feel incredibly warm. This is the happiest {player} has ever been.";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 393: 
+                    {
+                        //output
+                        outputLabel.Text = "You shake in fear.";
+
+                        //button settings
+                        optionOneButton.Text = "Offer everything to it";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Kiss it";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 398: //
+                case 394: //scene frowning void
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "You give away everything. Your life is no longer yours. You'd sell your very soul if you knew where to find it";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8902,44 +7460,36 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 399: //
+                case 395: //scene crying frowning void
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "You cry.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "Hold its hand";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionTwoButton.Text = "Kiss it";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 400: //
+                case 396: //scene black default
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "The tears never end. The feelings never fade.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8948,44 +7498,43 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 401: //
+                case 397: 
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "You gave away all you are, all you can offer. And yet, you got no closer to reaching your love.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 398: //scene heart drop gif
+                    {
+                        //output
+                        outputLabel.Text = $"{player} is left heartbroken. There is no way to reach your dreams.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 402: //
+                case 399: //scene black
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "You cannot reach it. Every time you get close, it becomes impossibly far away.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8994,44 +7543,43 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 403: //
+                case 400: 
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Display: You are berated with apologies. In the end, you are too passive to fight against its will.";
+
+                        //button settings
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 401: //heart drop gif scene
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} wishes everything was just slightly different.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 404: //
+                case 402: //scene frowning void crying
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Every action you take to get closer to it is working against you.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -9040,65 +7588,43 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 405: //
+                case 403: //scene black
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "You cannot reach it. You never will. Your love isn't wrong, but it isn't seen as right.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
-                case 406: //
+                case 404: //heart drop gif scene
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "These things—feelings—just happen sometimes.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
                     }
                     break;
 
-                case 407: //
+                case 405: //jon player icon, scene black
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "--------------!";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -9109,32 +7635,33 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 408: //
+                case 406: //default icon
                     {
                         //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "Your voice is not heard. Your love is left unexpressed.";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                    }
+                    break;
+
+                case 407: //scene heart drop gif
+                    {
+                        //output
+                        outputLabel.Text = $"Display: {player} has died of heartbreak.";
+                        mainMenuBox.Image = Properties.Resources.scene;
+
+                        //button settings
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
@@ -9284,24 +7811,30 @@ namespace Choose_Your_Own_Adventure_Game
 
                 case 1000: //Goodbye page
                     {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        //output off
+                        outputLabel.Visible = false;
+                        iconBox.Visible = false;
 
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        //buttons off
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Visible = false;
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Visible = false;
+                        optionThreeBlocked.Visible = false;
+                        optionThreeButton.Visible = false;
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Visible = false;
+                        playStartButton.Visible = false;
+                        closeStartButon.Visible = false;
+
+
+                        //goodbye message
+                        mainUiBox.Visible = true;
+                        goodbyeMessageBack.Visible = true;
+                        goodbyeMessageText.Visible = true;
+                        Refresh();
+                        Thread.Sleep(3000);
+                        this.Close();
                     }
                     break;
 

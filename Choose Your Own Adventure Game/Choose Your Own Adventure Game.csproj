@@ -98,5 +98,11 @@
   <ItemGroup>
     <None Include="Resources\speechIcons.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Death_Anim.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\endPage.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

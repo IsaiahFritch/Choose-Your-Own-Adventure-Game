@@ -51,6 +51,9 @@
             this.playerNameTextTip = new System.Windows.Forms.Label();
             this.playerNameTextJon = new System.Windows.Forms.Label();
             this.playerNameTextShimshon = new System.Windows.Forms.Label();
+            this.pageNumberLabel = new System.Windows.Forms.Label();
+            this.goodbyeMessageText = new System.Windows.Forms.Label();
+            this.goodbyeMessageBack = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconFadeInBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainUiBox)).BeginInit();
@@ -326,12 +329,50 @@
             this.playerNameTextShimshon.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.playerNameTextShimshon.Visible = false;
             // 
+            // pageNumberLabel
+            // 
+            this.pageNumberLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.pageNumberLabel.Location = new System.Drawing.Point(688, 9);
+            this.pageNumberLabel.Name = "pageNumberLabel";
+            this.pageNumberLabel.Size = new System.Drawing.Size(68, 24);
+            this.pageNumberLabel.TabIndex = 26;
+            this.pageNumberLabel.Text = "Page:";
+            this.pageNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // goodbyeMessageText
+            // 
+            this.goodbyeMessageText.BackColor = System.Drawing.Color.Black;
+            this.goodbyeMessageText.Font = new System.Drawing.Font("Monotype Corsiva", 26.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goodbyeMessageText.ForeColor = System.Drawing.Color.White;
+            this.goodbyeMessageText.Location = new System.Drawing.Point(101, 177);
+            this.goodbyeMessageText.Name = "goodbyeMessageText";
+            this.goodbyeMessageText.Size = new System.Drawing.Size(546, 113);
+            this.goodbyeMessageText.TabIndex = 27;
+            this.goodbyeMessageText.Text = "Thank you for playing";
+            this.goodbyeMessageText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.goodbyeMessageText.Visible = false;
+            // 
+            // goodbyeMessageBack
+            // 
+            this.goodbyeMessageBack.BackColor = System.Drawing.Color.Black;
+            this.goodbyeMessageBack.Font = new System.Drawing.Font("Monotype Corsiva", 26.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goodbyeMessageBack.ForeColor = System.Drawing.Color.White;
+            this.goodbyeMessageBack.Location = new System.Drawing.Point(0, 0);
+            this.goodbyeMessageBack.Name = "goodbyeMessageBack";
+            this.goodbyeMessageBack.Size = new System.Drawing.Size(781, 886);
+            this.goodbyeMessageBack.TabIndex = 28;
+            this.goodbyeMessageBack.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.goodbyeMessageBack.Visible = false;
+            // 
             // AdventureGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(768, 883);
+            this.Controls.Add(this.goodbyeMessageBack);
+            this.Controls.Add(this.goodbyeMessageText);
+            this.Controls.Add(this.pageNumberLabel);
             this.Controls.Add(this.playerNameTextShimshon);
             this.Controls.Add(this.playerNameTextJon);
             this.Controls.Add(this.playerNameTextTip);
@@ -390,6 +431,9 @@
         private System.Windows.Forms.Label playerNameTextTip;
         private System.Windows.Forms.Label playerNameTextJon;
         private System.Windows.Forms.Label playerNameTextShimshon;
+        private System.Windows.Forms.Label pageNumberLabel;
+        private System.Windows.Forms.Label goodbyeMessageText;
+        private System.Windows.Forms.Label goodbyeMessageBack;
     }
 }
 
