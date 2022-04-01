@@ -15,7 +15,7 @@ namespace Choose_Your_Own_Adventure_Game
     {
         //global variables
         int page = 1;
-        int animTiming = 5;
+        int animTiming = 1;
         Random ranGen = new Random();
         int chance = 1;
 
@@ -53,6 +53,14 @@ namespace Choose_Your_Own_Adventure_Game
 
             //Main UI
             pageNumberLabel.Parent = mainUiBox;
+            playAgainButton.Parent = endScreenBox;
+            playAgainButton.Location = new Point(234, 195);
+            endGameButton.Parent = endScreenBox;
+            endGameButton.Location = new Point(234, 556);
+            endScreenBox.Parent = mainUiBox;
+            endScreenBox.Location = new Point(0, 0);
+            deathAnimBox.Parent = mainUiBox;
+            deathAnimBox.Location = new Point(0, 0);
             goodbyeMessageText.Parent = goodbyeMessageBack;
             goodbyeMessageText.Location = new Point(101, 177);
             goodbyeMessageBack.Parent = mainUiBox;
@@ -94,20 +102,12 @@ namespace Choose_Your_Own_Adventure_Game
             iconBox.Visible = false;
             iconFadeInBox.Parent = mainUiBox;
             iconFadeInBox.Visible = false;     
-
-            //date sim transition
-
-            //death animation
-
-            //win animation
-
-            //end screen
         }
 
 
         private void playStartButton_Click(object sender, EventArgs e) //main menu
         {
-           //start game
+            //start game
             page = 2;
             DisplayPage();
         }
@@ -123,7 +123,11 @@ namespace Choose_Your_Own_Adventure_Game
         private void optionOneButton_Click(object sender, EventArgs e)
         {
             //select next page
-            if (page == 2)
+            if (page == 2)//testing
+            {
+                page = 999;
+            }
+            else if (page == 2)
             {
                 page = 3;
             }
@@ -743,6 +747,10 @@ namespace Choose_Your_Own_Adventure_Game
                                 Refresh();
                                 Thread.Sleep(animTiming);
                                 Refresh();
+                                Thread.Sleep(animTiming);
+                                Refresh();
+                                Thread.Sleep(animTiming);
+                                Refresh();
                             }
 
                             //Ui established
@@ -752,17 +760,22 @@ namespace Choose_Your_Own_Adventure_Game
                             //icon animation
                             iconFadeInBox.Visible = true;
                             Refresh();
-                            {
-                                Thread.Sleep(animTiming);
-                                Refresh();
-                                Thread.Sleep(animTiming);
-                                Refresh();
-                            }
-                            iconBox.Visible = true;
+                            Thread.Sleep(animTiming);
                             Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            //iconBox.Visible = true;
+                            //Refresh();
                             startAnimBox.Visible = false;
                             iconFadeInBox.Visible = false;
-                            Refresh();
+                            //Refresh();
                         }
 
                         //output
@@ -778,6 +791,7 @@ namespace Choose_Your_Own_Adventure_Game
                         optionThreeButton.Enabled = false;
                         optionFourBlocked.Visible = true;
                         optionFourButton.Enabled = false;
+                        iconBox.Visible = true;
                     }
                     break;
 
@@ -1790,12 +1804,12 @@ namespace Choose_Your_Own_Adventure_Game
                 case 64: /// icon mys
                     {
                         //output
-                        outputLabel.Text = "";
+                        outputLabel.Text = "Mysterious Voice: Don't just grunt at me, you filthy barbarian!";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "Mysterious Voice: Don't just grunt at me, you filthy barbarian!";
+                        optionOneButton.Text = "";
                         optionOneBlocked.Visible = true;
                         optionOneButton.Enabled = false;
                         optionTwoButton.Text = "";
@@ -7763,49 +7777,93 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 998: //WIN (proper ending)
-                    {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                //case 998: //WIN (proper ending) Too lazy to code for right now
+                //    {
+                //        //output
+                //        outputLabel.Text = "";
+                //        mainMenuBox.Image = Properties.Resources.scene;
+                //        iconBox.Image = Properties.Resources.speechIcons;
 
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
-                    }
-                    break;
+                //        //button settings
+                //        optionOneButton.Text = "";
+                //        optionOneBlocked.Visible = true;
+                //        optionOneButton.Enabled = false;
+                //        optionTwoButton.Text = "";
+                //        optionTwoBlocked.Visible = true;
+                //        optionTwoButton.Enabled = false;
+                //        optionThreeButton.Text = "";
+                //        optionThreeBlocked.Visible = true;
+                //        optionThreeButton.Enabled = false;
+                //        optionFourButton.Text = "";
+                //        optionFourBlocked.Visible = true;
+                //        optionFourButton.Enabled = false;
+                //    }
+                //    break;
 
                 case 999: //DEAD 
                     {
-                        //output
-                        outputLabel.Text = "";
-                        mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-
-                        //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
-                        optionTwoButton.Text = "";
-                        optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
+                        //hide things
+                        iconBox.Visible = false;
+                        optionOneBlocked.Visible = false;
+                        optionTwoBlocked.Visible = false;
                         optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
                         optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+
+                        //animation
+                        deathAnimBox.Visible = true;
+                        Refresh();
+                        {
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                            Thread.Sleep(animTiming);
+                            Refresh();
+                        }
+                        endScreenBox.Visible = true;
+                        Refresh();
+                        deathAnimBox.Visible = false;
+
+                        //reset game
+                        character = 0; //1 is Jon, 2 is Shimshon
+                        saidNo = 0;
+                        brokenArms = 0;
+                        shoesTied = 0;
+                        antiSocial = 0;
+                        brokenLegs = 0;
+                        knowsOfThief = 0;
+                        hasCube = 0;
+                        knowsOfCastle = 0;
+                        knowsOfChurch = 0;
+                        trustInnKeeper = 0;
+                        bloodlust = 0;
+                        caughtMurder = 0;
+                        beenHere = 0;
+                        knowsOfTunnels = 0;
+                        hasKnife = 0;
+                        hasSpoon = 0;
+                        insideDateSim = 0;
+                        mainUiBox.Image = Properties.Resources.Ui;
+
+                        //buttons
+                        playAgainButton.Visible = true;
+                        endGameButton.Visible = true;
                     }
                     break;
 
@@ -7826,6 +7884,9 @@ namespace Choose_Your_Own_Adventure_Game
                         optionFourButton.Visible = false;
                         playStartButton.Visible = false;
                         closeStartButon.Visible = false;
+                        playAgainButton.Visible = false;
+                        endGameButton.Visible = false;
+                        endScreenBox.Visible = false;
 
 
                         //goodbye message
@@ -7843,6 +7904,27 @@ namespace Choose_Your_Own_Adventure_Game
                     break;
 
             }
+        }
+
+        private void playAgainButton_Click(object sender, EventArgs e)
+        {
+            page = 2;
+            
+            //hide page
+            playAgainButton.Visible = false;
+            endGameButton.Visible = false;
+            endScreenBox.Visible = false;
+            mainUiBox.Visible = false;
+            mainMenuBox.Image = null;
+            mainMenuBox.BackgroundImage = Properties.Resources.endPage;
+
+            DisplayPage();
+        }
+
+        private void endGameButton_Click(object sender, EventArgs e)
+        {
+            page = 1000;
+            DisplayPage();
         }
     }
 

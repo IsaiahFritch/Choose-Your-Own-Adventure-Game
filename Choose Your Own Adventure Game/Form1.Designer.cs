@@ -33,11 +33,6 @@
             this.closeStartButon = new System.Windows.Forms.Button();
             this.shakeLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.iconBox = new System.Windows.Forms.PictureBox();
-            this.iconFadeInBox = new System.Windows.Forms.PictureBox();
-            this.mainUiBox = new System.Windows.Forms.PictureBox();
-            this.startAnimBox = new System.Windows.Forms.PictureBox();
-            this.mainMenuBox = new System.Windows.Forms.PictureBox();
             this.outputLabel = new System.Windows.Forms.Label();
             this.optionOneButton = new System.Windows.Forms.Button();
             this.optionTwoButton = new System.Windows.Forms.Button();
@@ -54,6 +49,17 @@
             this.pageNumberLabel = new System.Windows.Forms.Label();
             this.goodbyeMessageText = new System.Windows.Forms.Label();
             this.goodbyeMessageBack = new System.Windows.Forms.Label();
+            this.endScreenBox = new System.Windows.Forms.PictureBox();
+            this.deathAnimBox = new System.Windows.Forms.PictureBox();
+            this.iconBox = new System.Windows.Forms.PictureBox();
+            this.iconFadeInBox = new System.Windows.Forms.PictureBox();
+            this.mainUiBox = new System.Windows.Forms.PictureBox();
+            this.startAnimBox = new System.Windows.Forms.PictureBox();
+            this.mainMenuBox = new System.Windows.Forms.PictureBox();
+            this.playAgainButton = new System.Windows.Forms.Button();
+            this.endGameButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.endScreenBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deathAnimBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconFadeInBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainUiBox)).BeginInit();
@@ -106,65 +112,6 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 4;
-            // 
-            // iconBox
-            // 
-            this.iconBox.BackColor = System.Drawing.Color.Transparent;
-            this.iconBox.BackgroundImage = global::Choose_Your_Own_Adventure_Game.Properties.Resources.speechIcons;
-            this.iconBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.iconBox.Image = global::Choose_Your_Own_Adventure_Game.Properties.Resources.speechIcons;
-            this.iconBox.Location = new System.Drawing.Point(0, 0);
-            this.iconBox.Name = "iconBox";
-            this.iconBox.Size = new System.Drawing.Size(781, 886);
-            this.iconBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.iconBox.TabIndex = 8;
-            this.iconBox.TabStop = false;
-            // 
-            // iconFadeInBox
-            // 
-            this.iconFadeInBox.BackColor = System.Drawing.Color.Transparent;
-            this.iconFadeInBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.iconFadeInBox.Image = global::Choose_Your_Own_Adventure_Game.Properties.Resources.Icons_Fade_In;
-            this.iconFadeInBox.Location = new System.Drawing.Point(0, 0);
-            this.iconFadeInBox.Name = "iconFadeInBox";
-            this.iconFadeInBox.Size = new System.Drawing.Size(781, 886);
-            this.iconFadeInBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.iconFadeInBox.TabIndex = 7;
-            this.iconFadeInBox.TabStop = false;
-            // 
-            // mainUiBox
-            // 
-            this.mainUiBox.BackColor = System.Drawing.Color.Transparent;
-            this.mainUiBox.BackgroundImage = global::Choose_Your_Own_Adventure_Game.Properties.Resources.Ui;
-            this.mainUiBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.mainUiBox.Location = new System.Drawing.Point(0, 0);
-            this.mainUiBox.Name = "mainUiBox";
-            this.mainUiBox.Size = new System.Drawing.Size(781, 886);
-            this.mainUiBox.TabIndex = 6;
-            this.mainUiBox.TabStop = false;
-            // 
-            // startAnimBox
-            // 
-            this.startAnimBox.BackColor = System.Drawing.Color.Transparent;
-            this.startAnimBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.startAnimBox.Image = global::Choose_Your_Own_Adventure_Game.Properties.Resources.Start_Anim;
-            this.startAnimBox.Location = new System.Drawing.Point(0, 0);
-            this.startAnimBox.Name = "startAnimBox";
-            this.startAnimBox.Size = new System.Drawing.Size(781, 886);
-            this.startAnimBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.startAnimBox.TabIndex = 5;
-            this.startAnimBox.TabStop = false;
-            // 
-            // mainMenuBox
-            // 
-            this.mainMenuBox.BackgroundImage = global::Choose_Your_Own_Adventure_Game.Properties.Resources.titlePage;
-            this.mainMenuBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.mainMenuBox.Location = new System.Drawing.Point(0, 0);
-            this.mainMenuBox.Name = "mainMenuBox";
-            this.mainMenuBox.Size = new System.Drawing.Size(781, 886);
-            this.mainMenuBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mainMenuBox.TabIndex = 0;
-            this.mainMenuBox.TabStop = false;
             // 
             // outputLabel
             // 
@@ -364,12 +311,129 @@
             this.goodbyeMessageBack.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.goodbyeMessageBack.Visible = false;
             // 
+            // endScreenBox
+            // 
+            this.endScreenBox.BackColor = System.Drawing.Color.Transparent;
+            this.endScreenBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.endScreenBox.Image = global::Choose_Your_Own_Adventure_Game.Properties.Resources.endPage;
+            this.endScreenBox.Location = new System.Drawing.Point(0, 0);
+            this.endScreenBox.Name = "endScreenBox";
+            this.endScreenBox.Size = new System.Drawing.Size(781, 886);
+            this.endScreenBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.endScreenBox.TabIndex = 30;
+            this.endScreenBox.TabStop = false;
+            this.endScreenBox.Visible = false;
+            // 
+            // deathAnimBox
+            // 
+            this.deathAnimBox.BackColor = System.Drawing.Color.Transparent;
+            this.deathAnimBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.deathAnimBox.Image = global::Choose_Your_Own_Adventure_Game.Properties.Resources.Death_Anim;
+            this.deathAnimBox.Location = new System.Drawing.Point(0, 0);
+            this.deathAnimBox.Name = "deathAnimBox";
+            this.deathAnimBox.Size = new System.Drawing.Size(781, 886);
+            this.deathAnimBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.deathAnimBox.TabIndex = 29;
+            this.deathAnimBox.TabStop = false;
+            this.deathAnimBox.Visible = false;
+            // 
+            // iconBox
+            // 
+            this.iconBox.BackColor = System.Drawing.Color.Transparent;
+            this.iconBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.iconBox.Image = global::Choose_Your_Own_Adventure_Game.Properties.Resources.DefaultIcon1;
+            this.iconBox.Location = new System.Drawing.Point(0, 0);
+            this.iconBox.Name = "iconBox";
+            this.iconBox.Size = new System.Drawing.Size(781, 886);
+            this.iconBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconBox.TabIndex = 8;
+            this.iconBox.TabStop = false;
+            // 
+            // iconFadeInBox
+            // 
+            this.iconFadeInBox.BackColor = System.Drawing.Color.Transparent;
+            this.iconFadeInBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.iconFadeInBox.Image = global::Choose_Your_Own_Adventure_Game.Properties.Resources.Icons_Fade_In__1_;
+            this.iconFadeInBox.Location = new System.Drawing.Point(0, 0);
+            this.iconFadeInBox.Name = "iconFadeInBox";
+            this.iconFadeInBox.Size = new System.Drawing.Size(781, 886);
+            this.iconFadeInBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconFadeInBox.TabIndex = 7;
+            this.iconFadeInBox.TabStop = false;
+            // 
+            // mainUiBox
+            // 
+            this.mainUiBox.BackColor = System.Drawing.Color.Transparent;
+            this.mainUiBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.mainUiBox.Image = global::Choose_Your_Own_Adventure_Game.Properties.Resources.Ui;
+            this.mainUiBox.Location = new System.Drawing.Point(0, 0);
+            this.mainUiBox.Name = "mainUiBox";
+            this.mainUiBox.Size = new System.Drawing.Size(781, 886);
+            this.mainUiBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.mainUiBox.TabIndex = 6;
+            this.mainUiBox.TabStop = false;
+            // 
+            // startAnimBox
+            // 
+            this.startAnimBox.BackColor = System.Drawing.Color.Transparent;
+            this.startAnimBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.startAnimBox.Image = global::Choose_Your_Own_Adventure_Game.Properties.Resources.Start_Anim;
+            this.startAnimBox.Location = new System.Drawing.Point(0, 0);
+            this.startAnimBox.Name = "startAnimBox";
+            this.startAnimBox.Size = new System.Drawing.Size(781, 886);
+            this.startAnimBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.startAnimBox.TabIndex = 5;
+            this.startAnimBox.TabStop = false;
+            // 
+            // mainMenuBox
+            // 
+            this.mainMenuBox.BackgroundImage = global::Choose_Your_Own_Adventure_Game.Properties.Resources.titlePage;
+            this.mainMenuBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.mainMenuBox.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuBox.Name = "mainMenuBox";
+            this.mainMenuBox.Size = new System.Drawing.Size(781, 886);
+            this.mainMenuBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mainMenuBox.TabIndex = 0;
+            this.mainMenuBox.TabStop = false;
+            // 
+            // playAgainButton
+            // 
+            this.playAgainButton.BackColor = System.Drawing.Color.Transparent;
+            this.playAgainButton.FlatAppearance.BorderSize = 0;
+            this.playAgainButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.playAgainButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.playAgainButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.playAgainButton.Location = new System.Drawing.Point(234, 195);
+            this.playAgainButton.Name = "playAgainButton";
+            this.playAgainButton.Size = new System.Drawing.Size(309, 313);
+            this.playAgainButton.TabIndex = 31;
+            this.playAgainButton.UseVisualStyleBackColor = false;
+            this.playAgainButton.Click += new System.EventHandler(this.playAgainButton_Click);
+            // 
+            // endGameButton
+            // 
+            this.endGameButton.BackColor = System.Drawing.Color.Transparent;
+            this.endGameButton.FlatAppearance.BorderSize = 0;
+            this.endGameButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.endGameButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.endGameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.endGameButton.Location = new System.Drawing.Point(234, 556);
+            this.endGameButton.Name = "endGameButton";
+            this.endGameButton.Size = new System.Drawing.Size(309, 134);
+            this.endGameButton.TabIndex = 32;
+            this.endGameButton.UseVisualStyleBackColor = false;
+            this.endGameButton.Click += new System.EventHandler(this.endGameButton_Click);
+            // 
             // AdventureGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(768, 883);
+            this.ClientSize = new System.Drawing.Size(1382, 883);
+            this.Controls.Add(this.endGameButton);
+            this.Controls.Add(this.playAgainButton);
+            this.Controls.Add(this.endScreenBox);
+            this.Controls.Add(this.deathAnimBox);
             this.Controls.Add(this.goodbyeMessageBack);
             this.Controls.Add(this.goodbyeMessageText);
             this.Controls.Add(this.pageNumberLabel);
@@ -398,6 +462,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdventureGame";
             this.Text = "(Do not) Die In The Garden";
+            ((System.ComponentModel.ISupportInitialize)(this.endScreenBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deathAnimBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconFadeInBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainUiBox)).EndInit();
@@ -434,6 +500,10 @@
         private System.Windows.Forms.Label pageNumberLabel;
         private System.Windows.Forms.Label goodbyeMessageText;
         private System.Windows.Forms.Label goodbyeMessageBack;
+        private System.Windows.Forms.PictureBox deathAnimBox;
+        private System.Windows.Forms.PictureBox endScreenBox;
+        private System.Windows.Forms.Button playAgainButton;
+        private System.Windows.Forms.Button endGameButton;
     }
 }
 

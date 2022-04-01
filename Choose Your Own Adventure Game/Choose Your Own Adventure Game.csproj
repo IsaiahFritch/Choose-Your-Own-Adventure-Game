@@ -104,5 +104,29 @@
   <ItemGroup>
     <None Include="Resources\endPage.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dateSimUI.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Date_Sim_Trans_Anim.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Flowers.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons_Fade_In %281%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win_Condition_Ending_Tweak.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win_Condition_Ending.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -63,9 +63,49 @@ namespace Choose_Your_Own_Adventure_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Date_Sim_Trans_Anim {
+            get {
+                object obj = ResourceManager.GetObject("Date_Sim_Trans_Anim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dateSimUI {
+            get {
+                object obj = ResourceManager.GetObject("dateSimUI", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Death_Anim {
             get {
                 object obj = ResourceManager.GetObject("Death_Anim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DefaultIcon {
+            get {
+                object obj = ResourceManager.GetObject("DefaultIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DefaultIcon1 {
+            get {
+                object obj = ResourceManager.GetObject("DefaultIcon1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,6 +126,16 @@ namespace Choose_Your_Own_Adventure_Game.Properties {
         internal static System.Drawing.Bitmap Icons_Fade_In {
             get {
                 object obj = ResourceManager.GetObject("Icons_Fade_In", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icons_Fade_In__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Icons_Fade_In__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,6 +186,26 @@ namespace Choose_Your_Own_Adventure_Game.Properties {
         internal static System.Drawing.Bitmap Ui {
             get {
                 object obj = ResourceManager.GetObject("Ui", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Win_Condition_Ending {
+            get {
+                object obj = ResourceManager.GetObject("Win_Condition_Ending", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Win_Condition_Ending_Tweak {
+            get {
+                object obj = ResourceManager.GetObject("Win_Condition_Ending_Tweak", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
