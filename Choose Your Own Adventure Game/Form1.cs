@@ -101,7 +101,7 @@ namespace Choose_Your_Own_Adventure_Game
             iconBox.Parent = mainUiBox;
             iconBox.Visible = false;
             iconFadeInBox.Parent = mainUiBox;
-            iconFadeInBox.Visible = false;     
+            iconFadeInBox.Visible = false;
         }
 
 
@@ -137,7 +137,7 @@ namespace Choose_Your_Own_Adventure_Game
             if (page == 2)
             {
                 page = 3;
-            } 
+            }
             else if (page == 4)
             {
                 page = 7;
@@ -2660,7 +2660,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 9: 
+                case 9:
                     {
                         //output
                         outputLabel.Text = "Mysterious Voice: You can't stay in this room anymore.";
@@ -2703,7 +2703,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 12: 
+                case 12:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} sees what appears to be light from a window to their left.";
@@ -2721,7 +2721,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 13: 
+                case 13:
                     {
                         //output
                         outputLabel.Text = $"Display: It was easy to find the door, it was right behind {player}.  It took a moment of stumbling around in the dark, but they found it.";
@@ -2739,7 +2739,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 14: 
+                case 14:
                     {
                         //output
                         outputLabel.Text = $"Display: The door is locked, but {player} could pick it.";
@@ -2782,7 +2782,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 16: 
+                case 16:
                     {
                         //output
                         outputLabel.Text = "Display: Congratulations! {player} broke their arm and gained access to the hallways.";
@@ -2792,7 +2792,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 17: 
+                case 17:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} will no longer be able to lockpick.";
@@ -2805,7 +2805,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 18: 
+                case 18:
                     {
                         //output
                         outputLabel.Text = $"Display: The lock stood no chance against the wit of {player}!";
@@ -2826,7 +2826,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 19: 
+                case 19:
                     {
                         //output
                         outputLabel.Text = "Display: The door swings open, revealing the water-stained blue hallway.";
@@ -2837,7 +2837,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 20: 
+                case 20:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is met by a staircase at the end of the hallway, which weaves through a long and bendy corridor.";
@@ -2929,7 +2929,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 26: 
+                case 26:
                     {
                         //output
                         outputLabel.Text = $"Display: An older man with a well kept bushy beard waits for {player} at the front of the desk. In his hair is a small pink pin. The walls behind him are covered in menus and the artistic scribbles of his daughter.";
@@ -2939,7 +2939,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 27: 
+                case 27:
                     {
                         //output
                         outputLabel.Text = $"Display: As he stands there, he waves {player} over to him. He appears friendly, so they approach him.";
@@ -3067,7 +3067,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 35: 
+                case 35:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} dies of blood loss.";
@@ -3077,7 +3077,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 36: 
+                case 36:
                     {
                         //output
                         outputLabel.Text = $"Display: Sometimes, being polite will get you further in life. Not often, though.";
@@ -3111,7 +3111,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 38: 
+                case 38:
                     {
                         //output
                         outputLabel.Text = $"Display: The pain is blocked by the adrenaline rush that {player} receives.";
@@ -3135,7 +3135,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 40: 
+                case 40:
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: I may need you to be more specific, my friend. You checked in here last night, I don't believe we talked much at all.";
@@ -3156,7 +3156,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 41: 
+                case 41:
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: Do you mean to ask which kingdom you're in?";
@@ -3174,7 +3174,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 42: 
+                case 42:
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: My apologies for that, I was only looking out for your safety.";
@@ -3192,7 +3192,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 43: 
+                case 43:
                     {
                         //output
                         outputLabel.Text = $"There was a thief who was coming in through the ground floor windows, stealing from my customers in the night. So I started locking everything, even the bedroom doors.";
@@ -3205,7 +3205,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 44: 
+                case 44:
                     {
                         //output
                         outputLabel.Text = "I did plan to unlock it early in the morning... Actually I should go unlock the other doors now. Sorry for the trouble that caused you.";
@@ -3241,7 +3241,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 47: 
+                case 47:
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: I can't give a clear answer anymore, as things are falling apart around here. We were known as Lakefysh before the court Jester's new name for the city caught on with the locals.";
@@ -3259,7 +3259,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 48: 
+                case 48:
                     {
                         //output
                         outputLabel.Text = "The King's entire blood line supposedly died in their sleep, so here in the capital things have been... shaky to say the least.";
@@ -3277,7 +3277,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 49: 
+                case 49:
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: She renamed it to the 'Kingdom of Clay-Heads.'";
@@ -3308,7 +3308,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 51: 
+                case 51:
                     {
                         //output
                         outputLabel.Text = "At the current rate, she'll probably weasel her way to the peak of command in this kingdom.";
@@ -3318,7 +3318,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 52: 
+                case 52:
                     {
                         //output
                         outputLabel.Text = "The only things stopping her from ruling this country are global politics and the Church. I pray that fool doesn't succeed.";
@@ -3328,7 +3328,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 53: 
+                case 53:
                     {
                         //output
                         outputLabel.Text = "Oh dear, I need to unlock the bedroom doors. Safe travels, my friend.";
@@ -3349,7 +3349,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 55: 
+                case 55:
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: That would be the Church. No one really knows what they are doing in there, but their noises relentlessly beat into the city streets all day and all night.";
@@ -3383,7 +3383,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 57: 
+                case 57:
                     {
                         //output
                         outputLabel.Text = "Would you excuse me? I need to go unlock the bedroom doors. Safe travels, my friend.";
@@ -3561,7 +3561,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 65: 
+                case 65:
                     {
                         //output
                         outputLabel.Text = "Mysterious Voice: You can't stay in this room anymore.";
@@ -3571,7 +3571,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 66: 
+                case 66:
                     {
                         //output
                         outputLabel.Text = $"Display: The world rattles as the echoes of bombs ring in {player}'s' ears.";
@@ -3582,7 +3582,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 67: 
+                case 67:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} believes they are in a room of some kind.";
@@ -3611,7 +3611,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 69: 
+                case 69:
                     {
                         //output
                         outputLabel.Text = $"After searching for what seemed like ages to their tiny brain, {player} successfully found the door.";
@@ -3629,7 +3629,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 70: 
+                case 70:
                     {
                         //output
                         outputLabel.Text = $"Display: The door is locked, what would {player} like to do?";
@@ -3666,7 +3666,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 72: 
+                case 72:
                     {
                         //output
                         outputLabel.Text = $"Display: Congratulations! {player} broke their arm and gained access to the hallways.";
@@ -3676,7 +3676,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 73: 
+                case 73:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} will no longer be able to pickpocket.";
@@ -3689,13 +3689,13 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 74: 
+                case 74:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is met by a staircase at the end of the hallway, which weaves through a long and bendy corridor.";
 
                         //button settings
-                       optionFourButton.Text = "Next";
+                        optionFourButton.Text = "Next";
                     }
                     break;
 
@@ -3721,7 +3721,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 77: 
+                case 77:
                     {
                         //output
                         outputLabel.Text = $"{player} wonders why it stands there...";
@@ -3793,7 +3793,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 81: 
+                case 81:
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: I don't really understand you, and I bet with speech like that will turn away my customers.";
@@ -3803,7 +3803,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 82: 
+                case 82:
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: I hope you get what I am saying...";
@@ -3851,7 +3851,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 85: 
+                case 85:
                     {
                         //output
                         outputLabel.Text = "Display: 'It' chuckles slightly in an attempt to hide its fear.";
@@ -3869,7 +3869,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 86: 
+                case 86:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} can smell the bitter scent of its fear.";
@@ -3887,7 +3887,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 87: 
+                case 87:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} attempts to eat 'The Thing That Stands,' however fails to do so.";
@@ -3908,7 +3908,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 89: 
+                case 89:
                     {
                         //output
                         outputLabel.Text = "Display: 'It' thanks the guards outside. Another moment and 'It' knew it would have lost its life.";
@@ -3918,7 +3918,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 90: 
+                case 90:
                     {
                         //output
                         outputLabel.Text = "Display: It is wrong to try to eat someone while they are talking to you.";
@@ -3933,7 +3933,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 91: 
+                case 91:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} slowly approaches 'The Thing That Stands' reception desk.";
@@ -3951,7 +3951,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 92: 
+                case 92:
                     {
                         //output
                         outputLabel.Text = $"Display: The desk is covered in strange oddities, all of which are unknown to {player}.";
@@ -3961,7 +3961,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 93: 
+                case 93:
                     {
                         //output
                         outputLabel.Text = $"Display: Player begins knocking objects off of the table in quick, cat-like motions. As objects rain down from the table, 'The Thing That Stands' shouts from behind:";
@@ -3982,7 +3982,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 95: 
+                case 95:
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: GET OUT!";
@@ -4004,7 +4004,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 97: 
+                case 97:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} spots something shiny outside, and leaves.";
@@ -4055,7 +4055,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 101: 
+                case 101:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} does not fully understand anything that has happened, or why they are being given a big square...";
@@ -4068,7 +4068,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 102: 
+                case 102:
                     {
                         //output
                         outputLabel.Text = $"Display: Still, they feel a strange new trust towards the Inn Keeper as they head outside.";
@@ -4078,7 +4078,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 103: 
+                case 103:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} feels unwanted.";
@@ -4096,7 +4096,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 104: 
+                case 104:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} leaves the building. From the outside, even the small brain of {player} can figure out that this building is an Inn";
@@ -4106,7 +4106,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 105: 
+                case 105:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} leaves the building. From the outside, even the small brain of {player} can figure out that this building is an Inn";
@@ -4149,7 +4149,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 107: 
+                case 107:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} stares into the eyes of 'The Thing That Stands' as they make contact with their upper body.";
@@ -4181,7 +4181,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 110: 
+                case 110:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} has decapitated the Inn Keeper.";
@@ -4245,7 +4245,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 114: 
+                case 114:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} combs through every pocket on the body.";
@@ -4277,7 +4277,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 116: 
+                case 116:
                     {
                         //output
                         outputLabel.Text = "Display: They stash away the cube on their person.";
@@ -4357,7 +4357,7 @@ namespace Choose_Your_Own_Adventure_Game
                         {
                             if (beenHere == 0)
                             {
-                                optionTwoButton.Text = "Follow suspicious man down hallway";
+                                optionTwoButton.Text = "Follow suspicious man down alleyway";
                                 optionTwoBlocked.Visible = false;
                                 optionTwoButton.Enabled = true;
                             }
@@ -4407,14 +4407,11 @@ namespace Choose_Your_Own_Adventure_Game
                                 optionTwoButton.Enabled = true;
                             }
                         }
-                        if (brokenLegs == 1)
+                        if (brokenLegs == 0)
                         {
                             optionFourButton.Text = "Leave the kingdom";
                             optionFourBlocked.Visible = false;
                             optionFourButton.Enabled = true;
-                            optionFourButton.Text = "";
-                            optionFourBlocked.Visible = true;
-                            optionFourButton.Enabled = false;
                         }
                     }
                     break;
@@ -4441,7 +4438,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 121: 
+                case 121:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is 10 steps back from the suspicious target.";
@@ -4462,10 +4459,10 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 122: 
+                case 122:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} watches an bends over something just out of sight.";
+                        outputLabel.Text = $"Display: {player} watches the man bend over something just out of sight.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4483,7 +4480,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 123: 
+                case 123:
                     {
                         //output
                         outputLabel.Text = $"{player} thinks the man is looting a dead body off the street...";
@@ -4520,7 +4517,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 125: 
+                case 125:
                     {
                         //output
                         outputLabel.Text = "Display: A creature scampers off behind a trash bin during the confrontation.";
@@ -4580,7 +4577,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 129: 
+                case 129:
                     {
                         //output
                         outputLabel.Text = "Display: The man does not resist.";
@@ -4657,7 +4654,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 134: 
+                case 134:
                     {
                         //output
                         outputLabel.Text = $"There are members of the Church stationed on the grounds. How will {player} get inside?";
@@ -4675,7 +4672,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 135: 
+                case 135:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is not allowed inside of the Church.";
@@ -4771,7 +4768,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 141: 
+                case 141:
                     {
                         //output
                         outputLabel.Text = "Church Lead: Would you be willing to help us overthrow the Kingdom and release it from its unworthy rule?";
@@ -4789,7 +4786,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 142: 
+                case 142:
                     {
                         //output
                         outputLabel.Text = "Church Lead: WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL....";
@@ -4800,14 +4797,14 @@ namespace Choose_Your_Own_Adventure_Game
                         optionOneButton.Enabled = false;
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;;
+                        optionTwoButton.Enabled = false; ;
                         optionFourButton.Text = "Next";
                         optionFourBlocked.Visible = false;
                         optionFourButton.Enabled = true;
                     }
                     break;
 
-                case 143: 
+                case 143:
                     {
                         //output
                         outputLabel.Text = "Church Lead: We welcome you here. We will need you.";
@@ -4841,7 +4838,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 146: 
+                case 146:
                     {
                         //output
                         outputLabel.Text = "Church Lead: Time for your most important decision! Will you:";
@@ -4890,7 +4887,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 149: 
+                case 149:
                     {
                         //output
                         outputLabel.Text = "Church Lead: you will find the tunnels... just follow everyone else i guess.";
@@ -4923,7 +4920,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 152: 
+                case 152:
                     {
                         //output
                         outputLabel.Text = $"Display: The tunnels seemingly change as {player} runs through them.";
@@ -4964,7 +4961,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 156: 
+                case 156:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} feels an ominous presence watching them from afar.";
@@ -5050,7 +5047,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 161: 
+                case 161:
                     {
                         //output
                         outputLabel.Text = "Display: They trip on the first step. They try to get up...";
@@ -5099,7 +5096,7 @@ namespace Choose_Your_Own_Adventure_Game
                         optionOneButton.Enabled = false;
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
-                        optionTwoButton.Enabled = false;;
+                        optionTwoButton.Enabled = false; ;
                         optionFourButton.Text = "Next";
                         optionFourBlocked.Visible = false;
                         optionFourButton.Enabled = true;
@@ -5117,7 +5114,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 166: 
+                case 166:
                     {
                         //output
                         outputLabel.Text = $"Display: {player}'s breath freezes in the air as they breathe. The entire Castle is silent.";
@@ -5160,7 +5157,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 168: 
+                case 168:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} does not feel alone, eyes watch from afar.";
@@ -5178,7 +5175,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 169: 
+                case 169:
                     {
                         //output
                         outputLabel.Text = $"Display: The Castle has vanished behind {player}.";
@@ -5196,7 +5193,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 170: 
+                case 170:
                     {
                         //output
                         outputLabel.Text = "Display: {player} searches for whatever seems to be watching them.";
@@ -5225,7 +5222,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 172: 
+                case 172:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is alone. Trapped in a seemingly endless prison of flowers. Those watching eyes depart, disappointed. This is {player}'s punishment for their decisions.";
@@ -5240,7 +5237,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 173: 
+                case 173:
                     {
                         //output
                         outputLabel.Text = "Display: There is nothing around any of the rooms.  No blankets, fires or clothes.";
@@ -5332,7 +5329,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 178: 
+                case 178:
                     {
                         //output
                         outputLabel.Text = "Church Lead: A TRULY WONDERFUL, EXCEPTIONAL, DIVINE CHOICE!";
@@ -5536,7 +5533,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 195: 
+                case 195:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} has been taken into the Church's custody.";
@@ -5567,7 +5564,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 197: 
+                case 197:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} can hear the crashing of explosives from beneath them ";
@@ -5604,7 +5601,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 199: 
+                case 199:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} spots a man at the end of a hallway. How do they steal the clothes?";
@@ -5622,7 +5619,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 200: 
+                case 200:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} successfully knocks the man out.";
@@ -5692,7 +5689,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 205: 
+                case 205:
                     {
                         //output
                         outputLabel.Text = "male church member: HEY, WAIT! YOU SHOULDN'T BE HERE TO BEGIN WITH!";
@@ -5788,7 +5785,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 212: 
+                case 212:
                     {
                         //output
                         outputLabel.Text = "Display: The tunnels seem to go on forever in any direction.  They are well lit despite there being no visible light source.";
@@ -5801,7 +5798,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 213: 
+                case 213:
                     {
                         //output
                         outputLabel.Text = "Display: There is a certain magic to these tunnels...";
@@ -5948,7 +5945,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 222: 
+                case 222:
                     {
                         //output
                         outputLabel.Text = $"Display: As {player} scales the building, their hand slips on a smooth sandy brick.";
@@ -5977,7 +5974,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 224: 
+                case 224:
                     {
                         //output
                         outputLabel.Text = "The door is locked.";
@@ -5995,7 +5992,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 225: 
+                case 225:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} hears the howling of hungry wolves.";
@@ -6010,7 +6007,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 226: 
+                case 226:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is unable to pick lock due to their broken arm.";
@@ -6052,7 +6049,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 229: 
+                case 229:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} hears the man rustling around upstairs.";
@@ -6103,7 +6100,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 232: 
+                case 232:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is ready to confront the thief.";
@@ -6143,7 +6140,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 235: 
+                case 235:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} sprints towards the villain.";
@@ -6199,7 +6196,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 239: 
+                case 239:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} killed a man for robbery. Nowadays this would be seen as horrible, but this is set in a medieval fantasy land.";
@@ -6343,7 +6340,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 250: 
+                case 250:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is interested in meeting the Court Jester. They take a cart out to the Castle and pay the cart fee with what little money they have.";
@@ -6477,7 +6474,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 257: 
+                case 257:
                     {
                         //output
                         outputLabel.Text = "Castle guard: Of course, Hero. Our Mistress, the Court Jester, has been waiting for you.";
@@ -6618,7 +6615,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1235: 
+                case 1235:
                     {
                         //output
                         outputLabel.Text = $"Display: The air is cold. The tears of the swaying flowers still flow, but {player}'s breath freezes before it can escape.";
@@ -6739,7 +6736,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1243: 
+                case 1243:
                     {
                         //output
                         outputLabel.Text = $"Display: All of the stationed guards do not react at the sight of {player} collapsing down onto their knees.  They remain as if frozen, like statues.";
@@ -6788,7 +6785,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1247: 
+                case 1247:
                     {
                         //output
                         outputLabel.Text = "Castle guard: Thanks for the information, but we are well aware of that situation.";
@@ -6809,7 +6806,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1248: 
+                case 1248:
                     {
                         //output
                         outputLabel.Text = "Castle guard: Our Mistress the Court Jester has been watching them closely.  She has ordered us to make no moves against them.";
@@ -6827,7 +6824,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1249: 
+                case 1249:
                     {
                         //output
                         outputLabel.Text = "Castle guard: Two reasons. The biggest is public appearance. It doesn't look good when you attack a Church.";
@@ -6845,7 +6842,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1250: 
+                case 1250:
                     {
                         //output
                         outputLabel.Text = "Castle guard: And the second reason? They pose no threat to Her.";
@@ -6855,7 +6852,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1251: 
+                case 1251:
                     {
                         //output
                         outputLabel.Text = "Castle guard: 'Been fun chatting with you, but you best be leaving now.";
@@ -6870,7 +6867,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1252: 
+                case 1252:
                     {
                         //output
                         outputLabel.Text = "Castle guard: She has a kind of omnipresent talent. I don't know how, but She can watch over us all.";
@@ -6888,7 +6885,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1253: 
+                case 1253:
                     {
                         //output
                         outputLabel.Text = "Castle guard: I asked Her about it myself one time, but I've sadly forgotten what She said to me...";
@@ -6898,7 +6895,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1254: 
+                case 1254:
                     {
                         //output
                         outputLabel.Text = "Castle guard: 'Let's forget our memories together...'  That's what she told me...";
@@ -6908,7 +6905,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1255: 
+                case 1255:
                     {
                         //output
                         outputLabel.Text = "Castle guard: Been fun chatting with you, but you best be leaving now.";
@@ -6961,7 +6958,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 1258: 
+                case 1258:
                     {
                         //output
                         outputLabel.Text = "Display: Their loud screams go unnoticed, or maybe the people are just too busy to care.";
@@ -7049,7 +7046,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 263: 
+                case 263:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} has decided to stay nearby the Inn, due to their strange trust towards the Inn Keeper.";
@@ -7132,7 +7129,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 268: 
+                case 268:
                     {
                         //output
                         outputLabel.Text = $"Display: The man shuts the window behind him. The next open window is on the third floor...";
@@ -7277,7 +7274,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 277: 
+                case 277:
                     {
                         //output
                         outputLabel.Text = "You're sick. And not in a 'sick bro, totally wicked' kind of way. You're dastardly, too.";
@@ -7311,7 +7308,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 279: 
+                case 279:
                     {
                         //output
                         outputLabel.Text = "Display: What is the plan of action?";
@@ -7348,7 +7345,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 281: 
+                case 281:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} proceeds to jump up in front of him and yell 'BOO!'";
@@ -7439,7 +7436,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 287: 
+                case 287:
                     {
                         //output
                         outputLabel.Text = $"Display: {player}'s terrifying power to defy gravity is enough to shock the thief into speeding up the climb.";
@@ -7478,7 +7475,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 290: 
+                case 290:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is hungry for blood...";
@@ -7534,7 +7531,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 293: 
+                case 293:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is peeved that the person looks just like them.";
@@ -7589,7 +7586,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 296: 
+                case 296:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} wants to make a move on its new crush...";
@@ -7642,7 +7639,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 299: 
+                case 299:
                     {
                         //output
                         outputLabel.Text = $"Display: The person who witnessed {player}'s crime stands before them.";
@@ -7910,7 +7907,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 313: 
+                case 313:
                     {
                         //output
                         outputLabel.Text = "Display: No one, not even the Jester Herself, will remember what She did here. But it was necessary if she wants to kill the God of the Clouds.";
@@ -7985,7 +7982,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 317: 
+                case 317:
                     {
                         //output
                         outputLabel.Text = "Display: They do not have a lighter, or any other fire starter.";
@@ -8117,7 +8114,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 325: 
+                case 325:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} attempts to take the lighter from the man's pocket.";
@@ -8135,7 +8132,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 326: 
+                case 326:
                     {
                         //output
                         outputLabel.Text = $"Display: {player}'s broken arm dangles into the mans leg as {player} attempts to take the lighter.";
@@ -8174,7 +8171,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 329: 
+                case 329:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} attempts to rob the man, but their bloodlust quickly takes over.";
@@ -8252,7 +8249,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 334: //default icon, kingdom gate scene
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has spotted a large kingdom gate nearby the Inn.";
+                        outputLabel.Text = $"Display: {player} has spotted a large Kingdom gate nearby the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -8272,7 +8269,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 335: 
+                case 335:
                     {
                         //output
                         outputLabel.Text = "Display: They want to leave the kingdom.";
@@ -8385,7 +8382,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 342: 
+                case 342:
                     {
                         //output
                         outputLabel.Text = "Border guard: But you are not a courier. Sorry friend, with I could help you out.";
@@ -8556,7 +8553,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 352: 
+                case 352:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} leaves the Kingdom. Dissatisfied eyes watch, plotting {player}'s next demise.";
@@ -8571,7 +8568,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 353: 
+                case 353:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} leaves the Kingdom, off to live happily ever after.";
@@ -8703,7 +8700,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 364: 
+                case 364:
                     {
                         //output
                         outputLabel.Text = "The cold gate is locked.";
@@ -8754,7 +8751,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 367: 
+                case 367:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} is unable to pick locks, and is trapped in the cell.";
@@ -8837,7 +8834,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 370: 
+                case 370:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} makes their way through the hallway.";
@@ -8893,7 +8890,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 373: 
+                case 373:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} cries their heart out.";
@@ -8928,7 +8925,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 375: 
+                case 375:
                     {
                         //output
                         outputLabel.Text = "Display: The smell of roses begins to overtake the room. You are absorbed into its beautiful black pupils.";
@@ -8938,7 +8935,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 376: 
+                case 376:
                     {
                         //output
                         outputLabel.Text = "You've always loved those eyes...";
@@ -8999,7 +8996,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 380: 
+                case 380:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} has never been so hurt.";
@@ -9046,7 +9043,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 383: 
+                case 383:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} has died of heartbreak.";
@@ -9217,7 +9214,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 393: 
+                case 393:
                     {
                         //output
                         outputLabel.Text = "You shake in fear.";
@@ -9292,7 +9289,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 397: 
+                case 397:
                     {
                         //output
                         outputLabel.Text = "You gave away all you are, all you can offer. And yet, you got no closer to reaching your love.";
@@ -9302,7 +9299,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 398: 
+                case 398:
                     {
                         //output
                         outputLabel.Text = $"{player} is left heartbroken. There is no way to reach your dreams.";
@@ -9337,7 +9334,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 400: 
+                case 400:
                     {
                         //output
                         outputLabel.Text = "Display: You are berated with apologies. In the end, you are too passive to fight against its will.";
@@ -9347,7 +9344,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 401: 
+                case 401:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} wishes everything was just slightly different.";
@@ -9393,7 +9390,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 404: 
+                case 404:
                     {
                         //output
                         outputLabel.Text = "These things—feelings—just happen sometimes.";
@@ -9440,7 +9437,7 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 407: 
+                case 407:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} has died of heartbreak.";
@@ -9684,7 +9681,7 @@ namespace Choose_Your_Own_Adventure_Game
         private void playAgainButton_Click(object sender, EventArgs e)
         {
             page = 2;
-            
+
             //hide page
             playAgainButton.Visible = false;
             endGameButton.Visible = false;
@@ -9692,7 +9689,7 @@ namespace Choose_Your_Own_Adventure_Game
             mainUiBox.Visible = false;
             mainMenuBox.Image = null;
             mainMenuBox.BackgroundImage = Properties.Resources.endPage;
-           
+
             fullReset();
             DisplayPage();
         }
@@ -9781,5 +9778,4 @@ namespace Choose_Your_Own_Adventure_Game
 
         }
     }
-
 }
