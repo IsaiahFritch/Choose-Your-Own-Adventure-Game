@@ -429,7 +429,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1382, 883);
+            this.ClientSize = new System.Drawing.Size(779, 883);
             this.Controls.Add(this.endGameButton);
             this.Controls.Add(this.playAgainButton);
             this.Controls.Add(this.endScreenBox);

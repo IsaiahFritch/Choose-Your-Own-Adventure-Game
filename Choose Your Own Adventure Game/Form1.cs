@@ -51,7 +51,7 @@ namespace Choose_Your_Own_Adventure_Game
             closeStartButon.Parent = mainMenuBox;
             closeStartButon.Location = new Point(260, 736);
 
-            //Main UI
+            //Parenting
             pageNumberLabel.Parent = mainUiBox;
             playAgainButton.Parent = endScreenBox;
             playAgainButton.Location = new Point(234, 195);
@@ -123,11 +123,18 @@ namespace Choose_Your_Own_Adventure_Game
         private void optionOneButton_Click(object sender, EventArgs e)
         {
             //select next page
-            if (page == 2)//testing
-            {
-                page = 999;
-            }
-            else if (page == 2)
+
+            //if (page == 2)//testing death
+            //{
+            //    page = 999;
+            //}
+
+            //if (page == 2)//testing date
+            //{
+            //    page = 368;
+            //}
+
+            if (page == 2)
             {
                 page = 3;
             }
@@ -151,13 +158,9 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 40;
             }
-            else if (page == 41)
+            else if (page == 30)
             {
-                page = 42;
-            }
-            else if (page == 48)
-            {
-                page = 49;
+                page = 368;
             }
             else if (page == 32)
             {
@@ -169,6 +172,19 @@ namespace Choose_Your_Own_Adventure_Game
                 {
                     page = 37;
                 }
+            }
+
+            else if (page == 36)
+            {
+                page = 999;
+            }
+            else if (page == 41)
+            {
+                page = 42;
+            }
+            else if (page == 48)
+            {
+                page = 49;
             }
             else if (page == 60)
             {
@@ -194,6 +210,10 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 98;
             }
+            else if (page == 90)
+            {
+                page = 999;
+            }
             else if (page == 85)
             {
                 page = 103;
@@ -201,6 +221,33 @@ namespace Choose_Your_Own_Adventure_Game
             else if (page == 112)
             {
                 page = 113;
+            }
+            else if (page == 119) //This is the big page
+            {
+                if (knowsOfChurch == 1)
+                {
+                    page = 132;
+                }
+                else if (knowsOfThief == 1)
+                {
+                    page = 220;
+                }
+                else if (knowsOfCastle == 1)
+                {
+                    page = 250;
+                }
+                else if (brokenLegs == 1)
+                {
+                    page = 1256;
+                }
+                else if (trustInnKeeper == 1)
+                {
+                    page = 263;
+                }
+                else if (bloodlust == 1)
+                {
+                    page = 290;
+                }
             }
             else if (page == 121)
             {
@@ -221,12 +268,372 @@ namespace Choose_Your_Own_Adventure_Game
                 else
                     page = 137;
             }
+            else if (page == 137)
+            {
+                page = 198;
+            }
             else if (page == 141)
             {
                 page = 142;
             }
-
-
+            else if (page == 146)
+            {
+                page = 147;
+            }
+            else if (page == 157)
+            {
+                page = 158;
+            }
+            else if (page == 159)
+            {
+                page = 164;
+            }
+            else if (page == 163)
+            {
+                page = 999;
+            }
+            else if (page == 166)
+            {
+                page = 167;
+            }
+            else if (page == 174)
+            {
+                page = 999;
+            }
+            else if (page == 168)
+            {
+                page = 170;
+            }
+            else if (page == 172)
+            {
+                page = 999;
+            }
+            else if (page == 193)
+            {
+                page = 999;
+            }
+            else if (page == 199)
+            {
+                page = 200;
+            }
+            else if (page == 197)
+            {
+                page = 198;
+            }
+            else if (page == 209)
+            {
+                page = 210;
+            }
+            else if (page == 213)
+            {
+                page = 214;
+            }
+            else if (page == 221)
+            {
+                page = 222;
+            }
+            else if (page == 225)
+            {
+                if (brokenArms == 1)
+                {
+                    page = 226;
+                }
+                else
+                {
+                    page = 228;
+                }
+            }
+            else if (page == 227)
+            {
+                page = 999;
+            }
+            else if (page == 229)
+            {
+                page = 233;
+            }
+            else if (page == 234)
+            {
+                page = 235;
+            }
+            else if (page == 237)
+            {
+                page = 999;
+            }
+            else if (page == 245)
+            {
+                page = 999;
+            }
+            else if (page == 248)
+            {
+                page = 999;
+            }
+            else if (page == 252)
+            {
+                page = 255;
+            }
+            else if (page == 259)
+            {
+                page = 1230;
+            }
+            else if (page == 1231)
+            {
+                page = 1232;
+            }
+            else if (page == 1233)
+            {
+                page = 4;
+            }
+            else if (page == 1236)
+            {
+                page = 999;
+            }
+            else if (page == 1239)
+            {
+                page = 1240;
+            }
+            else if (page == 1246)
+            {
+                page = 4;
+            }
+            else if (page == 1248)
+            {
+                page = 1249;
+            }
+            else if (page == 1258)
+            {
+                page = 1259;
+            }
+            else if (page == 260)
+            {
+                page = 999;
+            }
+            else if (page == 262)
+            {
+                page = 999;
+            }
+            else if (page == 264)
+            {
+                page = 265;
+            }
+            else if (page == 268)
+            {
+                page = 273;
+            }
+            else if (page == 272)
+            {
+                page = 999;
+            }
+            else if (page == 277)
+            {
+                page = 999;
+            }
+            else if (page == 274)
+            {
+                page = 278;
+            }
+            else if (page == 279)
+            {
+                page = 280;
+            }
+            else if (page == 282)
+            {
+                page = 999;
+            }
+            else if (page == 285)
+            {
+                page = 999;
+            }
+            else if (page == 291)
+            {
+                page = 292;
+            }
+            else if (page == 292)
+            {
+                page = 999;
+            }
+            else if (page == 294)
+            {
+                page = 292;
+            }
+            else if (page == 296)
+            {
+                page = 292;
+            }
+            else if (page == 298)
+            {
+                page = 999;
+            }
+            else if (page == 1300)
+            {
+                page = 300;
+            }
+            else if (page == 306)
+            {
+                page = 307;
+            }
+            else if (page == 309)
+            {
+                page = 310;
+            }
+            else if (page == 313)
+            {
+                page = 60;
+            }
+            else if (page == 315)
+            {
+                page = 60;
+            }
+            else if (page == 318)
+            {
+                if (bloodlust == 1)
+                    page = 329;
+                else
+                {
+                    if (brokenArms == 1)
+                    {
+                        page = 325;
+                    }
+                    else
+                    {
+                        page = 319;
+                    }
+                }
+            }
+            else if (page == 320)
+            {
+                page = 321;
+            }
+            else if (page == 322)
+            {
+                page = 999;
+            }
+            else if (page == 324)
+            {
+                page = 999;
+            }
+            else if (page == 328)
+            {
+                page = 999;
+            }
+            else if (page == 333)
+            {
+                page = 999;
+            }
+            else if (page == 336)
+            {
+                if (bloodlust == 1)
+                {
+                    page = 337;
+                }
+                else if (character == 2 || antiSocial == 1)
+                {
+                    page = 340;
+                }
+                else
+                {
+                    page = 354;
+                }
+            }
+            else if (page == 339)
+            {
+                page = 999;
+            }
+            else if (page == 345)
+            {
+                page = 346;
+            }
+            else if (page == 347)
+            {
+                page = 999;
+            }
+            else if (page == 349)
+            {
+                page = 999;
+            }
+            else if (page == 352)
+            {
+                page = 999;
+            }
+            else if (page == 353)
+            {
+                page = 999;
+            }
+            else if (page == 356)
+            {
+                page = 999;
+            }
+            else if (page == 359)
+            {
+                page = 999;
+            }
+            else if (page == 364)
+            {
+                page = 365;
+            }
+            else if (page == 369)
+            {
+                page = 370;
+            }
+            else if (page == 371)
+            {
+                page = 372;
+            }
+            else if (page == 373)
+            {
+                page = 999;
+            }
+            else if (page == 376)
+            {
+                page = 377;
+            }
+            else if (page == 377)
+            {
+                page = 378;
+            }
+            else if (page == 380)
+            {
+                page = 999;
+            }
+            else if (page == 383)
+            {
+                page = 999;
+            }
+            else if (page == 385)
+            {
+                page = 386;
+            }
+            else if (page == 388)
+            {
+                page = 999;
+            }
+            else if (page == 390)
+            {
+                page = 391;
+            }
+            else if (page == 393)
+            {
+                page = 394;
+            }
+            else if (page == 395)
+            {
+                page = 396;
+            }
+            else if (page == 398)
+            {
+                page = 999;
+            }
+            else if (page == 401)
+            {
+                page = 999;
+            }
+            else if (page == 404)
+            {
+                page = 999;
+            }
+            else if (page == 407)
+            {
+                page = 999;
+            }
 
             //perform the actions on that page
             DisplayPage();
@@ -247,13 +654,13 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 32;
             }
-            else if (page == 21)
-            {
-                page = 24;
-            }
             else if (page == 14)
             {
                 page = 11;
+            }
+            else if (page == 21)
+            {
+                page = 24;
             }
             else if (page == 32)
             {
@@ -263,6 +670,10 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 55;
             }
+            else if (page == 41)
+            {
+                page = 47;
+            }
             else if (page == 48)
             {
                 page = 55;
@@ -270,10 +681,6 @@ namespace Choose_Your_Own_Adventure_Game
             else if (page == 60)
             {
                 page = 61;
-            }
-            else if (page == 2)
-            {
-                page = 59;
             }
             else if (page == 68)
             {
@@ -312,6 +719,195 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 114;
             }
+            else if (page == 119)
+            {
+                if (character == 1)
+                {
+                    page = 120;
+                }
+                else if (character == 2)
+                {
+                    page = 316;
+                }
+            }
+            else if (page == 121)
+            {
+                page = 124;
+            }
+            else if (page == 123)
+            {
+                page = 124;
+            }
+            else if (page == 125)
+            {
+                page = 126;
+            }
+            else if (page == 134)
+            {
+                page = 196;
+            }
+            else if (page == 137)
+            {
+                page = 138;
+            }
+            else if (page == 141)
+            {
+                page = 194;
+            }
+            else if (page == 146)
+            {
+                page = 177;
+            }
+            else if (page == 157)
+            {
+                page = 175;
+            }
+            else if (page == 159)
+            {
+                page = 160;
+            }
+            else if (page == 166)
+            {
+                page = 173;
+            }
+            else if (page == 168)
+            {
+                page = 169;
+            }
+            else if (page == 221)
+            {
+                page = 224;
+            }
+            else if (page == 229)
+            {
+                page = 230;
+            }
+            else if (page == 234)
+            {
+                page = 242;
+            }
+            else if (page == 252)
+            {
+                page = 257;
+            }
+            else if (page == 259)
+            {
+                page = 1237;
+            }
+            else if (page == 1231)
+            {
+                page = 1234;
+            }
+            else if (page == 1239)
+            {
+                page = 1230;
+            }
+            else if (page == 1248)
+            {
+                page = 1252;
+            }
+            else if (page == 1258)
+            {
+                page = 261;
+            }
+            else if (page == 264)
+            {
+                page = 286;
+            }
+            else if (page == 268)
+            {
+                page = 269;
+            }
+            else if (page == 274)
+            {
+                page = 275;
+            }
+            else if (page == 279)
+            {
+                page = 283;
+            }
+            else if (page == 291)
+            {
+                page = 293;
+            }
+            else if (page == 294)
+            {
+                page = 295;
+            }
+            else if (page == 296)
+            {
+                page = 297;
+            }
+            else if (page == 1300)
+            {
+                page = 301;
+            }
+            else if (page == 306)
+            {
+                page = 314;
+            }
+            else if (page == 309)
+            {
+                page = 314;
+            }
+            else if (page == 318)
+            {
+                page = 330;
+            }
+            else if (page == 336)
+            {
+                if (bloodlust == 1)
+                {
+                    page = 337;
+                }
+                else
+                {
+                    page = 357;
+                }
+            }
+            else if (page == 364)
+            {
+                if (brokenArms == 1)
+                {
+                    page = 367;
+                }
+                else
+                {
+                    page = 366;
+                }
+            }
+            else if (page == 369)
+            {
+                page = 405;
+            }
+            else if (page == 371)
+            {
+                page = 374;
+            }
+            else if (page == 376)
+            {
+                page = 384;
+            }
+            else if (page == 377)
+            {
+                page = 381;
+            }
+            else if (page == 385)
+            {
+                page = 389;
+            }
+            else if (page == 390)
+            {
+                page = 402;
+            }
+            else if (page == 393)
+            {
+                page = 399;
+            }
+            else if (page == 395)
+            {
+                page = 396;
+            }
 
             //perform the actions on that page
             DisplayPage();
@@ -324,13 +920,9 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 15;
             }
-            else if (page == 77)
-            {
-                page = 106;
-            }
             else if (page == 28)
             {
-                if (shoesTied == 0)
+                if (shoesTied == 1)
                 {
                     page = 31;
                 }
@@ -338,6 +930,43 @@ namespace Choose_Your_Own_Adventure_Game
                 {
                     page = 29;
                 }
+            }
+            else if (page == 77)
+            {
+                page = 106;
+            }
+            else if (page == 28)
+            {
+                if (shoesTied == 1)
+                {
+                    page = 31;
+                }
+                else
+                {
+                    page = 29;
+                }
+            }
+            else if (page == 119)
+            {
+                if (caughtMurder == 1)
+                {
+                    page = 299;
+                }
+            }
+            else if (page == 166)
+            {
+                page = 160;
+            }
+            else if (page == 252)
+            {
+                if (knowsOfTunnels == 1)
+                {
+                    page = 1247;
+                }
+            }
+            else if (page == 1300)
+            {
+                page = 302;
             }
 
             //perform the actions on that page
@@ -435,6 +1064,34 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 30;
             }
+            else if (page == 31)
+            {
+                page = 119;
+            }
+            else if (page == 34)
+            {
+                page = 35;
+            }
+            else if (page == 35)
+            {
+                page = 36;
+            }
+            else if (page == 29)
+            {
+                page = 30;
+            }
+            else if (page == 38)
+            {
+                page = 38;
+            }
+            else if (page == 38)
+            {
+                page = 39;
+            }
+            else if (page == 39)
+            {
+                page = 119;
+            }
             else if (page == 40)
             {
                 page = 41;
@@ -457,6 +1114,10 @@ namespace Choose_Your_Own_Adventure_Game
             else if (page == 45)
             {
                 page = 46;
+            }
+            else if (page == 46)
+            {
+                page = 119;
             }
             else if (page == 47)
             {
@@ -482,6 +1143,10 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 54;
             }
+            else if (page == 54)
+            {
+                page = 119;
+            }
             else if (page == 55)
             {
                 page = 56;
@@ -493,6 +1158,10 @@ namespace Choose_Your_Own_Adventure_Game
             else if (page == 57)
             {
                 page = 58;
+            }
+            else if (page == 58)
+            {
+                page = 119;
             }
             else if (page == 59)
             {
@@ -590,10 +1259,6 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 90;
             }
-            else if (page == 103)
-            {
-                page = 104;
-            }
             else if (page == 91)
             {
                 page = 92;
@@ -618,6 +1283,10 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 97;
             }
+            else if (page == 97)
+            {
+                page = 119;
+            }
             else if (page == 98)
             {
                 page = 99;
@@ -634,9 +1303,21 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 102;
             }
+            else if (page == 102)
+            {
+                page = 119;
+            }
             else if (page == 103)
             {
                 page = 104;
+            }
+            else if (page == 104)
+            {
+                page = 119;
+            }
+            else if (page == 105)
+            {
+                page = 119;
             }
             else if (page == 106)
             {
@@ -662,6 +1343,10 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 112;
             }
+            else if (page == 113)
+            {
+                page = 119;
+            }
             else if (page == 114)
             {
                 page = 115;
@@ -678,6 +1363,1046 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 118;
             }
+            else if (page == 118)
+            {
+                page = 119;
+            }
+            else if (page == 119)
+            {
+                page = 334;
+            }
+            else if (page == 120)
+            {
+                page = 121;
+            }
+            else if (page == 122)
+            {
+                page = 123;
+            }
+            else if (page == 123)
+            {
+                page = 119;
+            }
+            else if (page == 124)
+            {
+                page = 125;
+            }
+            else if (page == 126)
+            {
+                page = 127;
+            }
+            else if (page == 127)
+            {
+                page = 128;
+            }
+            else if (page == 128)
+            {
+                page = 119;
+            }
+            else if (page == 129)
+            {
+                page = 130;
+            }
+            else if (page == 130)
+            {
+                page = 131;
+            }
+            else if (page == 131)
+            {
+                page = 368;
+            }
+            else if (page == 132)
+            {
+                page = 133;
+            }
+            else if (page == 133)
+            {
+                page = 134;
+            }
+            else if (page == 135)
+            {
+                page = 136;
+            }
+            else if (page == 136)
+            {
+                page = 363;
+            }
+            else if (page == 138)
+            {
+                page = 139;
+            }
+            else if (page == 139)
+            {
+                page = 140;
+            }
+            else if (page == 140)
+            {
+                page = 141;
+            }
+            else if (page == 142)
+            {
+                page = 143;
+            }
+            else if (page == 143)
+            {
+                page = 144;
+            }
+            else if (page == 144)
+            {
+                page = 145;
+            }
+            else if (page == 145)
+            {
+                page = 146;
+            }
+            else if (page == 147)
+            {
+                page = 148;
+            }
+            else if (page == 148)
+            {
+                page = 149;
+            }
+            else if (page == 149)
+            {
+                page = 150;
+            }
+            else if (page == 150)
+            {
+                page = 151;
+            }
+            else if (page == 151) //TEXT RANDOM
+            {
+                chance = ranGen.Next(1, 11);
+                if (chance == 10)
+                {
+                    page = 152;
+                }
+                else
+                {
+                    page = 154;
+                }
+            }
+            else if (page == 152)
+            {
+                page = 153;
+            }
+            else if (page == 153)
+            {
+                page = 368;
+            }
+            else if (page == 154)
+            {
+                page = 155;
+            }
+            else if (page == 155)
+            {
+                page = 156;
+            }
+            else if (page == 156)
+            {
+                page = 157;
+            }
+            else if (page == 158)
+            {
+                page = 159;
+            }
+            else if (page == 160)
+            {
+                page = 161;
+            }
+            else if (page == 161)
+            {
+                page = 162;
+            }
+            else if (page == 162)
+            {
+                page = 163;
+            }
+            else if (page == 164)
+            {
+                page = 165;
+            }
+            else if (page == 165)
+            {
+                page = 166;
+            }
+            else if (page == 167)
+            {
+                page = 168;
+            }
+            else if (page == 169)
+            {
+                page = 171;
+            }
+            else if (page == 170)
+            {
+                page = 171;
+            }
+            else if (page == 171)
+            {
+                page = 172;
+            }
+            else if (page == 173)
+            {
+                page = 174;
+            }
+            else if (page == 175)
+            {
+                page = 176;
+            }
+            else if (page == 177)
+            {
+                page = 178;
+            }
+            else if (page == 178)
+            {
+                page = 179;
+            }
+            else if (page == 179)
+            {
+                page = 180;
+            }
+            else if (page == 180)
+            {
+                page = 181;
+            }
+            else if (page == 181)
+            {
+                page = 182;
+            }
+            else if (page == 182)
+            {
+                page = 183;
+            }
+            else if (page == 183)
+            {
+                page = 184;
+            }
+            else if (page == 184)
+            {
+                page = 185;
+            }
+            else if (page == 185)
+            {
+                page = 186;
+            }
+            else if (page == 186)
+            {
+                page = 187;
+            }
+            else if (page == 187)
+            {
+                page = 188;
+            }
+            else if (page == 188)
+            {
+                page = 189;
+            }
+            else if (page == 189)
+            {
+                page = 190;
+            }
+            else if (page == 191)
+            {
+                page = 192;
+            }
+            else if (page == 192)
+            {
+                page = 193;
+            }
+            else if (page == 194)
+            {
+                page = 195;
+            }
+            else if (page == 195)
+            {
+                page = 363;
+            }
+            else if (page == 196)
+            {
+                page = 197;
+            }
+            else if (page == 198)
+            {
+                page = 363;
+            }
+            else if (page == 200)
+            {
+                page = 201;
+            }
+            else if (page == 201)
+            {
+                page = 202;
+            }
+            else if (page == 202)
+            {
+                page = 363;
+            }
+            else if (page == 203) //TEST RANDOM + VARIABLE TRACKING
+            {
+                chance = ranGen.Next(1, 6);
+                if (chance == 5)
+                {
+                    page = 204;
+                }
+                else
+                {
+                    if (antiSocial == 1)
+                    {
+                        page = 204;
+                    }
+                    else
+                    {
+                        page = 207;
+                    }
+                }
+            }
+            else if (page == 204)
+            {
+                page = 205;
+            }
+            else if (page == 205)
+            {
+                page = 206;
+            }
+            else if (page == 206)
+            {
+                page = 368;
+            }
+            else if (page == 207)
+            {
+                page = 208;
+            }
+            else if (page == 208)
+            {
+                page = 209;
+            }
+            else if (page == 210)
+            {
+                page = 211;
+            }
+            else if (page == 211)
+            {
+                page = 212;
+            }
+            else if (page == 212)
+            {
+                page = 213;
+            }
+            else if (page == 214)
+            {
+                page = 119;
+            }
+            else if (page == 215)
+            {
+                page = 216;
+            }
+            else if (page == 216)
+            {
+                page = 217;
+            }
+            else if (page == 217)
+            {
+                page = 368;
+            }
+            else if (page == 218)
+            {
+                page = 219;
+            }
+            else if (page == 219)
+            {
+                page = 363;
+            }
+            else if (page == 220)
+            {
+                page = 221;
+            }
+            else if (page == 222)
+            {
+                page = 223;
+            }
+            else if (page == 223)
+            {
+                page = 368;
+            }
+            else if (page == 224)
+            {
+                page = 225;
+            }
+            else if (page == 225)
+            {
+                if (brokenArms == 1)
+                {
+                    page = 226;
+                }
+                else
+                {
+                    page = 228;
+                }
+            }
+            else if (page == 226)
+            {
+                page = 227;
+            }
+            else if (page == 228)
+            {
+                page = 229;
+            }
+            else if (page == 230) //RANDOM CHANCE TEST
+            {
+                chance = ranGen.Next(1, 6);
+                if (chance <= 2)
+                {
+                    page = 249;
+                }
+                else
+                {
+                    page = 231;
+                }
+
+            }
+            else if (page == 231)
+            {
+                page = 232;
+            }
+            else if (page == 232)
+            {
+                page = 233;
+            }
+            else if (page == 233)
+            {
+                page = 234;
+            }
+            else if (page == 235)
+            {
+                if (hasSpoon == 1)
+                {
+                    page = 240;
+                }
+                else if (hasKnife == 1)
+                {
+                    page = 238;
+                }
+                else
+                {
+                    page = 236;
+                }
+            }
+            else if (page == 236)
+            {
+                page = 237;
+            }
+            else if (page == 238)
+            {
+                page = 239;
+            }
+            else if (page == 239)
+            {
+                page = 245;
+            }
+            else if (page == 240)
+            {
+                page = 241;
+            }
+            else if (page == 241)
+            {
+                page = 245;
+            }
+            else if (page == 242)
+            {
+                if (antiSocial == 1)
+                {
+                    page = 246;
+                }
+                else if (hasKnife == 1 || hasSpoon == 1)
+                {
+                    page = 243;
+                }
+                else
+                {
+                    page = 247;
+                }
+            }
+            else if (page == 243)
+            {
+                page = 244;
+            }
+            else if (page == 244)
+            {
+                page = 245;
+            }
+            else if (page == 246)
+            {
+                page = 247;
+            }
+            else if (page == 247)
+            {
+                page = 248;
+            }
+            else if (page == 249)
+            {
+                page = 232;
+            }
+            else if (page == 250)
+            {
+                page = 251;
+            }
+            else if (page == 251) //REMEMBER TO EDIT PAGE 253 TO FIT THE IDEA THAT PLAYER IS ANTI SOCIAL
+            {
+                if (antiSocial == 1)
+                {
+                    page = 253;
+                }
+                else
+                {
+                    page = 252;
+                }
+            }
+            else if (page == 253)
+            {
+                page = 254;
+            }
+            else if (page == 254)
+            {
+                page = 119;
+            }
+            else if (page == 255)
+            {
+                page = 256;
+            }
+            else if (page == 256)
+            {
+                page = 119;
+            }
+            else if (page == 257)
+            {
+                page = 258;
+            }
+            else if (page == 258)
+            {
+                page = 259;
+            }
+            else if (page == 1230)
+            {
+                page = 1231;
+            }
+            else if (page == 1232)
+            {
+                page = 1233;
+            }
+            else if (page == 1233)
+            {
+                page = 4;
+            }
+            else if (page == 1234)
+            {
+                page = 1235;
+            }
+            else if (page == 1235)
+            {
+                page = 1236;
+            }
+            else if (page == 1237)
+            {
+                page = 1238;
+            }
+            else if (page == 1238)
+            {
+                page = 1239;
+            }
+            else if (page == 1239)
+            {
+                page = 1240;
+            }
+            else if (page == 1240)
+            {
+                page = 1241;
+            }
+            else if (page == 1241)
+            {
+                page = 1242;
+            }
+            else if (page == 1242)
+            {
+                page = 1243;
+            }
+            else if (page == 1243)
+            {
+                page = 1244;
+            }
+            else if (page == 1244)
+            {
+                page = 1245;
+            }
+            else if (page == 1245)
+            {
+                page = 1246;
+            }
+            else if (page == 1246)
+            {
+                page = 4;
+            }
+            else if (page == 1247)
+            {
+                page = 1248;
+            }
+            else if (page == 1249)
+            {
+                page = 1250;
+            }
+            else if (page == 1250)
+            {
+                page = 1251;
+            }
+            else if (page == 1251)
+            {
+                page = 119;
+            }
+            else if (page == 1252)
+            {
+                page = 1253;
+            }
+            else if (page == 1253)
+            {
+                page = 1254;
+            }
+            else if (page == 1254)
+            {
+                page = 1255;
+            }
+            else if (page == 1255)
+            {
+                page = 119;
+            }
+            else if (page == 1256)
+            {
+                page = 1257;
+            }
+            else if (page == 1257)
+            {
+                page = 1258;
+            }
+            else if (page == 1259)
+            {
+                page = 260;
+            }
+            else if (page == 261)
+            {
+                page = 262;
+            }
+            else if (page == 263)
+            {
+                page = 264;
+            }
+            else if (page == 265)
+            {
+                page = 266;
+            }
+            else if (page == 266)
+            {
+                page = 267;
+            }
+            else if (page == 267)
+            {
+                page = 268;
+            }
+            else if (page == 269)
+            {
+                page = 270;
+            }
+            else if (page == 270)
+            {
+                page = 271;
+            }
+            else if (page == 271)
+            {
+                page = 272;
+            }
+            else if (page == 273)
+            {
+                page = 274;
+            }
+            else if (page == 275)
+            {
+                page = 276;
+            }
+            else if (page == 276)
+            {
+                page = 277;
+            }
+            else if (page == 278)
+            {
+                page = 279;
+            }
+            else if (page == 280)
+            {
+                page = 281;
+            }
+            else if (page == 281)
+            {
+                page = 282;
+            }
+            else if (page == 283)
+            {
+                page = 284;
+            }
+            else if (page == 284)
+            {
+                page = 285;
+            }
+            else if (page == 286)
+            {
+                page = 287;
+            }
+            else if (page == 287)
+            {
+                page = 288;
+            }
+            else if (page == 288)
+            {
+                page = 289;
+            }
+            else if (page == 290)
+            {
+                page = 291;
+            }
+            else if (page == 293)
+            {
+                page = 294;
+            }
+            else if (page == 295)
+            {
+                page = 296;
+            }
+            else if (page == 297)
+            {
+                page = 298;
+            }
+            else if (page == 299)
+            {
+                page = 1300;
+            }
+            else if (page == 304)
+            {
+                page = 305;
+            }
+            else if (page == 305)
+            {
+                page = 306;
+            }
+            else if (page == 306)
+            {
+                page = 307;
+            }
+            else if (page == 307)
+            {
+                page = 308;
+            }
+            else if (page == 308)
+            {
+                page = 309;
+            }
+            else if (page == 310)
+            {
+                page = 311;
+            }
+            else if (page == 311)
+            {
+                page = 312;
+            }
+            else if (page == 312)
+            {
+                page = 313;
+            }
+            else if (page == 314)
+            {
+                page = 315;
+            }
+            else if (page == 315)
+            {
+                page = 60;
+            }
+            else if (page == 316)
+            {
+                page = 317;
+            }
+            else if (page == 317)
+            {
+                page = 318;
+            }
+            else if (page == 319)
+            {
+                page = 320;
+            }
+            else if (page == 321)
+            {
+                page = 322;
+            }
+            else if (page == 323)
+            {
+                page = 324;
+            }
+            else if (page == 325)
+            {
+                page = 326;
+            }
+            else if (page == 326)
+            {
+                page = 327;
+            }
+            else if (page == 327)
+            {
+                page = 328;
+            }
+            else if (page == 329)
+            {
+                page = 330;
+            }
+            else if (page == 330)
+            {
+                page = 331;
+            }
+            else if (page == 331)
+            {
+                page = 332;
+            }
+            else if (page == 332)
+            {
+                page = 333;
+            }
+            else if (page == 334)
+            {
+                page = 335;
+            }
+            else if (page == 335)
+            {
+                page = 336;
+            }
+            else if (page == 337)
+            {
+                page = 338;
+            }
+            else if (page == 338)
+            {
+                page = 339;
+            }
+            else if (page == 340)
+            {
+                page = 341;
+            }
+            else if (page == 341)
+            {
+                if (hasCube == 1)
+                {
+                    page = 350;
+                }
+                else
+                {
+                    page = 342;
+                }
+            }
+            else if (page == 342)
+            {
+                page = 345;
+            }
+            else if (page == 346)
+            {
+                page = 347;
+            }
+            else if (page == 348)
+            {
+                page = 349;
+            }
+            else if (page == 350)
+            {
+                page = 351;
+            }
+            else if (page == 351)
+            {
+                if (character == 1)
+                {
+                    page = 352;
+                }
+                else
+                {
+                    page = 353;
+                }
+            }
+            else if (page == 354)
+            {
+                page = 355;
+            }
+            else if (page == 355)
+            {
+                page = 356;
+            }
+            else if (page == 357)
+            {
+                page = 358;
+            }
+            else if (page == 358)
+            {
+                page = 359;
+            }
+            else if (page == 363)
+            {
+                page = 364;
+            }
+            else if (page == 366)
+            {
+                page = 119;
+            }
+            else if (page == 368) //Increasingly difficult to enter the date sim
+            {
+                //generate number and 
+                //make sure that the player will always make it the first time
+                chance = ranGen.Next(1, 11);
+                chance = chance + movedOnChance;
+
+                if (chance >= 10)
+                {
+                    page = 1368;
+                }
+                else
+                {
+                    page = 369;
+                }
+
+                //make it so the player has an increasingly small chance to get back into the date sim
+                movedOnChance += 1;
+
+                ///NOTE: never reset the value of movedOnChance, it'll reset when the player reloads the entire game
+            }
+            else if (page == 1368)
+            {
+                page = 407;
+            }
+            else if (page == 370)
+            {
+                page = 371;
+            }
+            else if (page == 372)
+            {
+                page = 373;
+            }
+            else if (page == 374)
+            {
+                page = 375;
+            }
+            else if (page == 375)
+            {
+                page = 376;
+            }
+            else if (page == 378)
+            {
+                page = 379;
+            }
+            else if (page == 379)
+            {
+                page = 380;
+            }
+            else if (page == 381)
+            {
+                page = 383;
+            }
+            else if (page == 382)
+            {
+                page = 383;
+            }
+            else if (page == 384)
+            {
+                page = 385;
+            }
+            else if (page == 386)
+            {
+                page = 387;
+            }
+            else if (page == 387)
+            {
+                page = 388;
+            }
+            else if (page == 389)
+            {
+                page = 390;
+            }
+            else if (page == 391)
+            {
+                page = 392;
+            }
+            else if (page == 392)
+            {
+                page = 393;
+            }
+            else if (page == 394)
+            {
+                page = 395;
+            }
+            else if (page == 396)
+            {
+                page = 397;
+            }
+            else if (page == 397)
+            {
+                page = 398;
+            }
+            else if (page == 399)
+            {
+                page = 400;
+            }
+            else if (page == 400)
+            {
+                page = 401;
+            }
+            else if (page == 402)
+            {
+                page = 403;
+            }
+            else if (page == 403)
+            {
+                page = 404;
+            }
+            else if (page == 405)
+            {
+                page = 406;
+            }
+            else if (page == 406)
+            {
+                page = 407;
+            }
+            else if (page == 409)
+            {
+                page = 410;
+            }
+            else if (page == 410)
+            {
+                page = 411;
+            }
+            else if (page == 411)
+            {
+                page = 415;
+            }
+            else if (page == 412)
+            {
+                page = 413;
+            }
+            else if (page == 413)
+            {
+                page = 414;
+            }
+            else if (page == 414)
+            {
+                page = 415;
+            }
+            else if (page == 415)
+            {
+                page = 119;
+            }
+
+
+
+
+
 
 
             //perform the actions on that page
@@ -686,7 +2411,7 @@ namespace Choose_Your_Own_Adventure_Game
 
         public void DisplayPage()
         {
-            //display page for fixin errors
+            //display page
             pageNumberLabel.Text = $"page: {page}";
 
             switch (page)
@@ -780,7 +2505,7 @@ namespace Choose_Your_Own_Adventure_Game
 
                         //output
                         outputLabel.Text = "Will you play as Jon or Shimshon?";
-                        ////mainMenuBoxImage = Properties.Resources.IMAGE
+                        mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
                         optionOneButton.Text = "Jon";
@@ -826,7 +2551,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //name input
                         player = playerNameText.Text;
-                        if(player == "")
+                        if (player == "")
                         {
                             player = "Jon";
                         }
@@ -835,11 +2560,13 @@ namespace Choose_Your_Own_Adventure_Game
                         playerNameTextTip.Visible = false;
                         playerNameTextJon.Visible = false;
 
+                        //memory wipe
+                        forgetReset();
+
                         //output
                         outputLabel.Text = "Mysterious Voice: Is anyone awake?";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
-                        ////reset everything except for name and character
 
                         //button settings
                         optionOneButton.Text = "Yes";
@@ -1187,7 +2914,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 25: ///scene bottom stairs
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} slowly descends down a squeaking stair case—being careful not to step on their laces--and makes their way to what appears to be a reception desk.";
+                        outputLabel.Text = $"Display: {player} slowly descends down a squeaking stair case—being careful not to step on their laces—and makes their way to what appears to be a reception desk.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -1709,6 +3436,9 @@ namespace Choose_Your_Own_Adventure_Game
                         playerNameText.Enabled = false;
                         playerNameTextTip.Visible = false;
                         playerNameTextShimshon.Visible = false;
+
+                        //momory wipe
+                        forgetReset();
 
                         //output
                         outputLabel.Text = "Mysterious Voice: Is anyone awake?";
@@ -2258,7 +3988,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 96: //icon default
                     {
                         //output
-                        outputLabel.Text = "Display: {player} did not understand much of what 'The Thing That Stands' said.";
+                        outputLabel.Text = $"Display: {player} did not understand much of what 'The Thing That Stands' said.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -2270,7 +4000,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 97: 
                     {
                         //output
-                        outputLabel.Text = "Display: {player} spots something shiny outside, and leaves.";
+                        outputLabel.Text = $"Display: {player} spots something shiny outside, and leaves.";
 
                         //button settings
                         optionFourButton.Text = "I love shiny things";
@@ -2397,7 +4127,18 @@ namespace Choose_Your_Own_Adventure_Game
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
+                        optionThreeButton.Text = "";
+                        optionThreeBlocked.Visible = true;
+                        optionThreeButton.Enabled = false;
                         optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
@@ -2955,10 +4696,10 @@ namespace Choose_Your_Own_Adventure_Game
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
-                        optionOneButton.Text = "Ask about noise";
+                        optionOneButton.Text = "Sneak towards noise";
                         optionOneBlocked.Visible = false;
                         optionOneButton.Enabled = true;
-                        optionTwoButton.Text = "Sneak towards noise";
+                        optionTwoButton.Text = "Ask about noise";
                         optionTwoBlocked.Visible = false;
                         optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
@@ -3263,7 +5004,7 @@ namespace Choose_Your_Own_Adventure_Game
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
-                        optionOneButton.Text = "Call ou for anyone";
+                        optionOneButton.Text = "Call out for anyone";
                         optionOneBlocked.Visible = false;
                         optionOneButton.Enabled = true;
                         optionTwoButton.Text = "Head up staircase";
@@ -4694,18 +6435,18 @@ namespace Choose_Your_Own_Adventure_Game
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionOneButton.Text = "";
-                        optionOneBlocked.Visible = true;
-                        optionOneButton.Enabled = false;
+                        optionOneButton.Text = "Pick the lock";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
                         optionThreeButton.Text = "";
                         optionThreeBlocked.Visible = true;
                         optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "Next";
-                        optionFourBlocked.Visible = false;
-                        optionFourButton.Enabled = true;
+                        optionFourButton.Text = "";
+                        optionFourBlocked.Visible = true;
+                        optionFourButton.Enabled = false;
                     }
                     break;
 
@@ -6160,7 +7901,7 @@ namespace Choose_Your_Own_Adventure_Game
                         outputLabel.Text = "Display: No one, not even the Jester Herself, will remember what She did here. But it was necessary if she wants to kill the God of the Clouds.";
 
                         //button settings
-                        optionOneButton.Text = "RESET";
+                        optionOneButton.Text = "FORGOTTEN";
                         optionOneBlocked.Visible = false;
                         optionOneButton.Enabled = true;
                         optionFourButton.Text = "";
@@ -6197,7 +7938,12 @@ namespace Choose_Your_Own_Adventure_Game
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
-                        optionFourButton.Text = "Next";
+                        optionOneButton.Text = "FORGOTTEN";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionFourButton.Text = "";
+                        optionFourBlocked.Visible = true;
+                        optionFourButton.Enabled = false;
                     }
                     break;
 
@@ -7006,8 +8752,22 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 368: ///ANIMATION NEEDED///  //default icon, opening dating scene
+                case 368: //default icon, opening dating scene
                     {
+                        //transition
+                        mainUiBox.Visible = false;
+                        startAnimBox.Visible = true;
+                        startAnimBox.Image = Properties.Resources.Date_Sim_Trans_Anim;
+                        Refresh();
+
+                        Thread.Sleep(animTiming);
+                        Refresh();
+                        Refresh();
+
+                        mainUiBox.Image = Properties.Resources.dateSimUI;
+                        mainUiBox.Visible = true;
+                        startAnimBox.Visible = false;
+
                         //output
                         outputLabel.Text = $"Display: {player} wakes up in a small room. The concrete walls are ice cold to the touch.";
                         mainMenuBox.Image = Properties.Resources.scene;
@@ -7029,7 +8789,6 @@ namespace Choose_Your_Own_Adventure_Game
 
                         //status update
                         insideDateSim = 1;
-                        movedOnChance += 1;
                     }
                     break;
 
@@ -7119,11 +8878,11 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 373: //scene heart drop gif
+                case 373: 
                     {
                         //output
                         outputLabel.Text = $"Display: {player} cries their heart out.";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -7225,11 +8984,11 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 380: //scene heart drop gif
+                case 380: 
                     {
                         //output
                         outputLabel.Text = $"Display: {player} has never been so hurt.";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -7272,11 +9031,11 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 383: //scene heart drop gif
+                case 383: 
                     {
                         //output
                         outputLabel.Text = $"Display: {player} has died of heartbreak.";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -7358,11 +9117,11 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 388: //scene heart drop
+                case 388:
                     {
                         //output
                         outputLabel.Text = $"Display: {player} has died of overthinking.";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -7528,11 +9287,11 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 398: //scene heart drop gif
+                case 398: 
                     {
                         //output
                         outputLabel.Text = $"{player} is left heartbroken. There is no way to reach your dreams.";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -7573,11 +9332,11 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 401: //heart drop gif scene
+                case 401: 
                     {
                         //output
                         outputLabel.Text = $"Display: {player} wishes everything was just slightly different.";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -7619,11 +9378,11 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 404: //heart drop gif scene
+                case 404: 
                     {
                         //output
                         outputLabel.Text = "These things—feelings—just happen sometimes.";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -7666,11 +9425,11 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 407: //scene heart drop gif
+                case 407: 
                     {
                         //output
                         outputLabel.Text = $"Display: {player} has died of heartbreak.";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -7821,6 +9580,7 @@ namespace Choose_Your_Own_Adventure_Game
                             Refresh();
                             Thread.Sleep(animTiming);
                             Refresh();
+                            mainMenuBox.Image = Properties.Resources.scene;
                             Thread.Sleep(animTiming);
                             Refresh();
                             Thread.Sleep(animTiming);
@@ -7917,7 +9677,8 @@ namespace Choose_Your_Own_Adventure_Game
             mainUiBox.Visible = false;
             mainMenuBox.Image = null;
             mainMenuBox.BackgroundImage = Properties.Resources.endPage;
-
+           
+            fullReset();
             DisplayPage();
         }
 
@@ -7925,6 +9686,84 @@ namespace Choose_Your_Own_Adventure_Game
         {
             page = 1000;
             DisplayPage();
+        }
+
+        public void fullReset()
+        {
+            //variables
+            character = 0;
+            saidNo = 0;
+            brokenArms = 0;
+            shoesTied = 0;
+            antiSocial = 0;
+            brokenLegs = 0;
+            knowsOfThief = 0;
+            hasCube = 0;
+            knowsOfCastle = 0;
+            knowsOfChurch = 0;
+            trustInnKeeper = 0;
+            bloodlust = 0;
+            caughtMurder = 0;
+            beenHere = 0;
+            knowsOfTunnels = 0;
+            hasKnife = 0;
+            hasSpoon = 0;
+            insideDateSim = 0;
+
+            string player = "name";
+
+            //display fixes if dating sim
+            startAnimBox.Image = Properties.Resources.Start_Anim;
+            mainUiBox.Image = Properties.Resources.Ui;
+
+            //clear any button text
+            optionOneButton.Text = "";
+            optionTwoButton.Text = "";
+            optionThreeButton.Text = "";
+            optionFourButton.Text = "";
+            optionOneBlocked.Visible = false;
+            optionTwoBlocked.Visible = false;
+            optionThreeBlocked.Visible = false;
+            optionFourBlocked.Visible = false;
+            outputLabel.Text = "";
+        }
+
+        public void forgetReset()
+        {
+            //variables
+            saidNo = 0;
+            brokenArms = 0;
+            shoesTied = 0;
+            antiSocial = 0;
+            brokenLegs = 0;
+            knowsOfThief = 0;
+            hasCube = 0;
+            knowsOfCastle = 0;
+            knowsOfChurch = 0;
+            trustInnKeeper = 0;
+            bloodlust = 0;
+            caughtMurder = 0;
+            beenHere = 0;
+            knowsOfTunnels = 0;
+            hasKnife = 0;
+            hasSpoon = 0;
+            insideDateSim = 0;
+
+            //display fixes if dating sim
+            startAnimBox.Image = Properties.Resources.Start_Anim;
+            mainUiBox.Image = Properties.Resources.Ui;
+
+            //clear any button text
+            optionOneButton.Text = "";
+            optionTwoButton.Text = "";
+            optionThreeButton.Text = "";
+            optionFourButton.Text = "";
+            optionOneBlocked.Visible = false;
+            optionTwoBlocked.Visible = false;
+            optionThreeBlocked.Visible = false;
+            optionFourBlocked.Visible = false;
+            outputLabel.Text = "";
+
         }
     }
 
