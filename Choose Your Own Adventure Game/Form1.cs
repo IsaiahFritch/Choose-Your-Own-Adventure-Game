@@ -224,7 +224,11 @@ namespace Choose_Your_Own_Adventure_Game
             }
             else if (page == 119) //This is the big page
             {
-                if (knowsOfChurch == 1)
+                if (brokenLegs == 1)
+                {
+                    page = 1256;
+                }
+                else if (knowsOfChurch == 1)
                 {
                     page = 132;
                 }
@@ -235,10 +239,6 @@ namespace Choose_Your_Own_Adventure_Game
                 else if (knowsOfCastle == 1)
                 {
                     page = 250;
-                }
-                else if (brokenLegs == 1)
-                {
-                    page = 1256;
                 }
                 else if (trustInnKeeper == 1)
                 {
@@ -252,6 +252,10 @@ namespace Choose_Your_Own_Adventure_Game
             else if (page == 121)
             {
                 page = 122;
+            }
+            else if (page == 123)
+            {
+                page = 119;
             }
             else if (page == 125)
             {
@@ -740,7 +744,7 @@ namespace Choose_Your_Own_Adventure_Game
             }
             else if (page == 125)
             {
-                page = 126;
+                page = 129;
             }
             else if (page == 134)
             {
@@ -1076,11 +1080,7 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 36;
             }
-            else if (page == 29)
-            {
-                page = 30;
-            }
-            else if (page == 38)
+            else if (page == 37)
             {
                 page = 38;
             }
@@ -1369,7 +1369,10 @@ namespace Choose_Your_Own_Adventure_Game
             }
             else if (page == 119)
             {
-                page = 334;
+                if (brokenLegs == 0)
+                {
+                    page = 334;
+                }
             }
             else if (page == 120)
             {
@@ -1602,6 +1605,10 @@ namespace Choose_Your_Own_Adventure_Game
             else if (page == 189)
             {
                 page = 190;
+            }
+            else if (page == 190)
+            {
+                page = 191;
             }
             else if (page == 191)
             {
@@ -2881,7 +2888,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 23: ///scene bottom stairs
                     {
                         //output
-                        outputLabel.Text = "Display: {player} slowly descends down a squeaking stair case, and makes their way to what appears to be a reception desk.";
+                        outputLabel.Text = $"Display: {player} slowly descends down a squeaking stair case, and makes their way to what appears to be a reception desk.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4337,7 +4344,6 @@ namespace Choose_Your_Own_Adventure_Game
                             brokenArms = 0;
                             shoesTied = 0;
                             antiSocial = 0;
-                            brokenLegs = 0;
                             knowsOfThief = 0;
                             hasCube = 0;
                             knowsOfCastle = 0;
@@ -4401,11 +4407,14 @@ namespace Choose_Your_Own_Adventure_Game
                                 optionTwoButton.Enabled = true;
                             }
                         }
-                        if (brokenLegs == 0)
+                        if (brokenLegs == 1)
                         {
                             optionFourButton.Text = "Leave the kingdom";
                             optionFourBlocked.Visible = false;
                             optionFourButton.Enabled = true;
+                            optionFourButton.Text = "";
+                            optionFourBlocked.Visible = true;
+                            optionFourButton.Enabled = false;
                         }
                     }
                     break;
@@ -4577,6 +4586,12 @@ namespace Choose_Your_Own_Adventure_Game
                         outputLabel.Text = "Display: The man does not resist.";
 
                         //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
                         optionFourButton.Text = "Next";
                         optionFourBlocked.Visible = false;
                         optionFourButton.Enabled = true;
@@ -4635,7 +4650,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 133: //
                     {
                         //output
-                        outputLabel.Text = $"Display: The crashes echo throughout the entire kingdom. It would have been impossible to locate the source of the noise without the Inn Keeper's help.";
+                        outputLabel.Text = $"Display: The crashes echo throughout the entire Kingdom. It would have been impossible to locate the source of the noise without the Inn Keeper's help.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4777,7 +4792,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 142: 
                     {
                         //output
-                        outputLabel.Text = "Church Lead: WONDERFUL WONDERFUL WONDERFUL WONDERFUL....";
+                        outputLabel.Text = "Church Lead: WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL WONDERFUL....";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5311,7 +5326,7 @@ namespace Choose_Your_Own_Adventure_Game
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionFourButton.Text = "";
+                        optionFourButton.Text = "Next";
                         optionFourBlocked.Visible = false;
                         optionFourButton.Enabled = true;
                     }
@@ -5387,7 +5402,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 184: //church lead icon, make text fill screen
                     {
                         //output
-                        outputLabel.Text = "Church Lead: ! ^ &^$@#$&^$*(DYD(#&D&#Y#*&#*(";
+                        outputLabel.Text = "Church Lead: ! ^&$&&*@^^^ &&^^@%^&@*)*()@ *@(@%^&@%&*@(*@(* *@&(@^^%@^&^@(*@*) *(&@%^&@^*(@*()@ *&@&%@^@^*(@*)(@& $^$%$#$% &^$@#$&^$*(DYD(#&D&#Y#*&#*(";
                         iconBox.Image = Properties.Resources.speechIcons;
 
                         //button settings
@@ -9529,7 +9544,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 415: //
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is outside of the Inn";
+                        outputLabel.Text = $"Display: {player} should not jump from windows.";
 
                         //button settings
                         optionFourButton.Text = "Next";
