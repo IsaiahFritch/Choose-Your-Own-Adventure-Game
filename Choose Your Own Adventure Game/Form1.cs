@@ -137,7 +137,7 @@ namespace Choose_Your_Own_Adventure_Game
             if (page == 2)
             {
                 page = 3;
-            }
+            } 
             else if (page == 4)
             {
                 page = 7;
