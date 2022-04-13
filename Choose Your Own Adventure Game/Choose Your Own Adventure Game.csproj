@@ -131,5 +131,53 @@
   <ItemGroup>
     <None Include="Resources\HeartDrop.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\19088__bloodshedder__clickl.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\564013__rlkhafi__heart-beat.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thief.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MysteriousVoice.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\InnKeeper.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomelessMan.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guard.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultIcon %281%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DateSimYou.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DateSimNoDio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DateSimIt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChurchLead.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChurchGirl.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChurchBoy.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CharacterShimshon.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CharacterJon.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

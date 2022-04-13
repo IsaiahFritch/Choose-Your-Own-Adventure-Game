@@ -61,6 +61,74 @@ namespace Choose_Your_Own_Adventure_Game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream _564013__rlkhafi__heart_beat {
+            get {
+                return ResourceManager.GetStream("_564013__rlkhafi__heart_beat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CharacterJon {
+            get {
+                object obj = ResourceManager.GetObject("CharacterJon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CharacterShimshon {
+            get {
+                object obj = ResourceManager.GetObject("CharacterShimshon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ChurchBoy {
+            get {
+                object obj = ResourceManager.GetObject("ChurchBoy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ChurchGirl {
+            get {
+                object obj = ResourceManager.GetObject("ChurchGirl", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ChurchLead {
+            get {
+                object obj = ResourceManager.GetObject("ChurchLead", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Click {
+            get {
+                return ResourceManager.GetStream("Click", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Date_Sim_Trans_Anim {
@@ -73,9 +141,39 @@ namespace Choose_Your_Own_Adventure_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DateSimIt {
+            get {
+                object obj = ResourceManager.GetObject("DateSimIt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DateSimNoDio {
+            get {
+                object obj = ResourceManager.GetObject("DateSimNoDio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dateSimUI {
             get {
                 object obj = ResourceManager.GetObject("dateSimUI", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DateSimYou {
+            get {
+                object obj = ResourceManager.GetObject("DateSimYou", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +221,29 @@ namespace Choose_Your_Own_Adventure_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Guard {
+            get {
+                object obj = ResourceManager.GetObject("Guard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HeartDrop {
             get {
                 object obj = ResourceManager.GetObject("HeartDrop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HomelessMan {
+            get {
+                object obj = ResourceManager.GetObject("HomelessMan", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +264,36 @@ namespace Choose_Your_Own_Adventure_Game.Properties {
         internal static System.Drawing.Bitmap Icons_Fade_In__1_ {
             get {
                 object obj = ResourceManager.GetObject("Icons_Fade_In__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap InnKeeper {
+            get {
+                object obj = ResourceManager.GetObject("InnKeeper", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MysteriousVoice {
+            get {
+                object obj = ResourceManager.GetObject("MysteriousVoice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RealDefaultIcon {
+            get {
+                object obj = ResourceManager.GetObject("RealDefaultIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -176,6 +324,16 @@ namespace Choose_Your_Own_Adventure_Game.Properties {
         internal static System.Drawing.Bitmap Start_Anim {
             get {
                 object obj = ResourceManager.GetObject("Start_Anim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Thief {
+            get {
+                object obj = ResourceManager.GetObject("Thief", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

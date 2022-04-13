@@ -8,11 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Media;
 
 namespace Choose_Your_Own_Adventure_Game
 {
     public partial class AdventureGame : Form
     {
+        //global sounds
+        SoundPlayer click = new SoundPlayer(Properties.Resources.Click);
+        SoundPlayer heartbeat = new SoundPlayer(Properties.Resources._564013__rlkhafi__heart_beat);
+
         //global variables
         int page = 1;
         int animTiming = 1;
@@ -41,6 +46,21 @@ namespace Choose_Your_Own_Adventure_Game
         int insideDateSim = 0;
         int movedOnChance = -1;
 
+        //speech icons
+        Image ICONdefaultIcon = Properties.Resources.RealDefaultIcon;
+        Image ICONcharacter = Properties.Resources.CharacterJon; // make sure to switch the photo for Shimshon
+        Image ICONchurchMan = Properties.Resources.ChurchBoy;
+        Image ICONchurchWoman = Properties.Resources.ChurchGirl;
+        Image ICONchurchLead = Properties.Resources.ChurchLead;
+        Image ICONinnKeeper = Properties.Resources.InnKeeper;
+        Image ICONthief = Properties.Resources.Thief;
+        Image ICONcastleGuard = Properties.Resources.Guard;
+        Image ICONmysteriousVoice = Properties.Resources.MysteriousVoice;
+        Image ICONhomelessMan = Properties.Resources.HomelessMan;
+        Image ICONIt = Properties.Resources.DateSimIt;
+        Image ICONDateSimNoDio = Properties.Resources.DateSimNoDio;
+        Image ICONYou = Properties.Resources.DateSimYou;
+
         public AdventureGame()
         {
             InitializeComponent();
@@ -51,7 +71,7 @@ namespace Choose_Your_Own_Adventure_Game
             closeStartButon.Parent = mainMenuBox;
             closeStartButon.Location = new Point(260, 736);
 
-            //Parenting
+            //parenting
             pageNumberLabel.Parent = mainUiBox;
             playAgainButton.Parent = endScreenBox;
             playAgainButton.Location = new Point(234, 195);
@@ -102,6 +122,7 @@ namespace Choose_Your_Own_Adventure_Game
             iconBox.Visible = false;
             iconFadeInBox.Parent = mainUiBox;
             iconFadeInBox.Visible = false;
+
         }
 
 
@@ -447,6 +468,10 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 999;
             }
+            if (page == 289)
+            {
+                page = 999;
+            }
             else if (page == 291)
             {
                 page = 292;
@@ -573,6 +598,14 @@ namespace Choose_Your_Own_Adventure_Game
             else if (page == 364)
             {
                 page = 365;
+            }
+            else if (page == 365)
+            {
+                page = 999;
+            }
+            else if (page == 367)
+            {
+                page = 999;
             }
             else if (page == 369)
             {
@@ -778,6 +811,18 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 169;
             }
+            else if (page == 197)
+            {
+                page = 199;
+            }
+            else if (page == 199)
+            {
+                page = 203;
+            }
+            else if (page == 213)
+            {
+                page = 215;
+            }
             else if (page == 221)
             {
                 page = 224;
@@ -879,6 +924,10 @@ namespace Choose_Your_Own_Adventure_Game
                 {
                     page = 366;
                 }
+            }
+            else if (page == 345)
+            {
+                page = 348;
             }
             else if (page == 369)
             {
@@ -2090,6 +2139,26 @@ namespace Choose_Your_Own_Adventure_Game
             {
                 page = 1300;
             }
+            else if (page == 1300)
+            {
+                page = 303;
+            }
+            else if (page == 300)
+            {
+                page = 304;
+            }
+            else if (page == 301)
+            {
+                page = 304;
+            }
+            else if (page == 302)
+            {
+                page = 304;
+            }
+            else if (page == 303)
+            {
+                page = 304;
+            }
             else if (page == 304)
             {
                 page = 305;
@@ -2418,6 +2487,17 @@ namespace Choose_Your_Own_Adventure_Game
 
         public void DisplayPage()
         {
+            //play button click
+            if (insideDateSim == 0)
+            {
+                //play default click
+                click.Play();
+            }
+            else
+            {
+                //play heart beat sound
+                heartbeat.Play();
+            }
             //display page
             pageNumberLabel.Text = $"page: {page}";
 
@@ -2513,6 +2593,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Will you play as Jon or Shimshon?";
                         mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "Jon";
@@ -2573,7 +2654,8 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Mysterious Voice: Is anyone awake?";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
+                        ICONcharacter = Properties.Resources.CharacterJon;
 
                         //button settings
                         optionOneButton.Text = "Yes";
@@ -2594,8 +2676,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 5: ///icon
                     {
                         //output
-                        outputLabel.Text = "No sir";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}: No sir";
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2617,7 +2699,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Mysterious Voice: Obviously if you can respond you are awake.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -2630,8 +2712,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 7: ///icon
                     {
                         //output
-                        outputLabel.Text = "Player: Of course, who could sleep through that noise?";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}: Of course, who could sleep through that noise?";
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2653,7 +2735,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Mysterious Voice: I'm just making sure you're alright.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -2673,8 +2755,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 10: ///icon
                     {
                         //output
-                        outputLabel.Text = $"Display: The world rattles as the echoes of bombs ring in {player}'s ears.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"The world rattles as the echoes of bombs ring in {player}'s ears.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -2684,7 +2766,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 11: ///scene window
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} believes they are in a room of some kind.";
+                        outputLabel.Text = $"{player} believes they are in a room of some kind.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -2706,7 +2788,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 12:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} sees what appears to be light from a window to their left.";
+                        outputLabel.Text = $"{player} sees what appears to be light from a window to their left.";
 
                         //button settings
                         optionOneButton.Text = "Search for a door";
@@ -2724,7 +2806,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 13:
                     {
                         //output
-                        outputLabel.Text = $"Display: It was easy to find the door, it was right behind {player}.  It took a moment of stumbling around in the dark, but they found it.";
+                        outputLabel.Text = $"It was easy to find the door, it was right behind {player}.  It took a moment of stumbling around in the dark, but they found it.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2742,7 +2824,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 14:
                     {
                         //output
-                        outputLabel.Text = $"Display: The door is locked, but {player} could pick it.";
+                        outputLabel.Text = $"The door is locked, but {player} could pick it.";
 
                         //button settings
                         optionOneButton.Text = "Pick the lock";
@@ -2763,7 +2845,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 15: ///scene hallway
                     {
                         //output
-                        outputLabel.Text = $"Display: The door stood no chance against the might of {player}, despite their weak fragile body.";
+                        outputLabel.Text = $"The door stood no chance against the might of {player}, despite their weak fragile body.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -2785,7 +2867,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 16:
                     {
                         //output
-                        outputLabel.Text = "Display: Congratulations! {player} broke their arm and gained access to the hallways.";
+                        outputLabel.Text = $"Congratulations! {player} broke their arm and gained access to the hallways.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -2795,7 +2877,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 17:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} will no longer be able to lockpick.";
+                        outputLabel.Text = $"{player} will no longer be able to lockpick.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -2808,7 +2890,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 18:
                     {
                         //output
-                        outputLabel.Text = $"Display: The lock stood no chance against the wit of {player}!";
+                        outputLabel.Text = $"The lock stood no chance against the wit of {player}!";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2829,7 +2911,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 19:
                     {
                         //output
-                        outputLabel.Text = "Display: The door swings open, revealing the water-stained blue hallway.";
+                        outputLabel.Text = "The door swings open, revealing the water-stained blue hallway.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -2840,7 +2922,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 20:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is met by a staircase at the end of the hallway, which weaves through a long and bendy corridor.";
+                        outputLabel.Text = $"{player} is met by a staircase at the end of the hallway, which weaves through a long and bendy corridor.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -2850,7 +2932,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 21: ///scene shoes
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s shoe's are untied. Do they tie them?";
+                        outputLabel.Text = $"{player}'s shoes are untied. Do they tie them?";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -2869,7 +2951,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 22: ///scene hallway
                     {
                         //output
-                        outputLabel.Text = $"Display: As {player} makes their way through the dewy hallway, the crashing of explosives continues nearby.";
+                        outputLabel.Text = $"As {player} makes their way through the dewy hallway, the crashing of explosives continues nearby.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -2888,7 +2970,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 23: ///scene bottom stairs
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} slowly descends down a squeaking stair case, and makes their way to what appears to be a reception desk.";
+                        outputLabel.Text = $"{player} slowly descends down a squeaking stair case, and makes their way to what appears to be a reception desk.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -2902,7 +2984,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 24: ///scene hallway
                     {
                         //output
-                        outputLabel.Text = $"Display: As {player} makes their way through the dewy hallway, the crashing of explosives continues nearby.";
+                        outputLabel.Text = $"As {player} makes their way through the dewy hallway, the crashing of explosives continues nearby.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -2921,7 +3003,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 25: ///scene bottom stairs
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} slowly descends down a squeaking stair case—being careful not to step on their laces—and makes their way to what appears to be a reception desk.";
+                        outputLabel.Text = $"{player} slowly descends down a squeaking stair case—being careful not to step on their laces—and makes their way to what appears to be a reception desk.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -2932,7 +3014,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 26:
                     {
                         //output
-                        outputLabel.Text = $"Display: An older man with a well kept bushy beard waits for {player} at the front of the desk. In his hair is a small pink pin. The walls behind him are covered in menus and the artistic scribbles of his daughter.";
+                        outputLabel.Text = $"An older man with a well kept bushy beard waits for {player} at the front of the desk. In his hair is a small pink pin. The walls behind him are covered in menus and the artistic scribbles of his daughter.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -2942,7 +3024,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 27:
                     {
                         //output
-                        outputLabel.Text = $"Display: As he stands there, he waves {player} over to him. He appears friendly, so they approach him.";
+                        outputLabel.Text = $"As he stands there, he waves {player} over to him. He appears friendly, so they approach him.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -2955,7 +3037,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Inn Keeper: Bumpy start to the day! Good morning to you, my friend. Can I help you with anything?";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONinnKeeper;
 
                         //button settings
                         optionOneButton.Text = "'Would you mind telling me where we are?'";
@@ -2976,8 +3058,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 29: ///icon
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is leaving for the door, but is caught by their shoe lace. They trip over and slam their head on the base of a solid metal standing coat-hanger.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player} is leaving for the door, but is caught by their shoe lace. They trip over and slam their head on the base of a solid metal standing coat-hanger.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -2998,7 +3080,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 30: ///scene
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} blacks out.";
+                        outputLabel.Text = $"{player} blacks out.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3014,8 +3096,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 31: ///icon
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} left the Inn.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player} left the Inn.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3039,7 +3121,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 32: ///scene look out window
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} approaches the window. They recognize that they are on the third story.";
+                        outputLabel.Text = $"{player} approaches the window. They recognize that they are on the third story.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3051,7 +3133,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 34: ///scene impaled
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} leaps through the window. As they soar majestically through the sky, they are impaled by a tall metal fence post.";
+                        outputLabel.Text = $"{player} leaps through the window. As they soar majestically through the sky, they are impaled by a tall metal fence post.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3070,7 +3152,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 35:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} dies of blood loss.";
+                        outputLabel.Text = $"{player} dies of blood loss.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3080,7 +3162,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 36:
                     {
                         //output
-                        outputLabel.Text = $"Display: Sometimes, being polite will get you further in life. Not often, though.";
+                        outputLabel.Text = $"Sometimes, being polite will get you further in life. Not often, though.";
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -3095,7 +3177,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 37: ///scene shattered legs
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} leaps through the window. As they land down below, they shatter both legs.";
+                        outputLabel.Text = $"{player} leaps through the window. As they land down below, they shatter both legs.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3114,7 +3196,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 38:
                     {
                         //output
-                        outputLabel.Text = $"Display: The pain is blocked by the adrenaline rush that {player} receives.";
+                        outputLabel.Text = $"The pain is blocked by the adrenaline rush that {player} receives.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3127,7 +3209,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 39: ///icon broken legs outside jon
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} can no longer move. Take the stairs next time.";
+                        outputLabel.Text = $"{player} can no longer move. Take the stairs next time.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3195,7 +3277,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 43:
                     {
                         //output
-                        outputLabel.Text = $"There was a thief who was coming in through the ground floor windows, stealing from my customers in the night. So I started locking everything, even the bedroom doors.";
+                        outputLabel.Text = $"Inn Keeper: There was a thief who was coming in through the ground floor windows, stealing from my customers in the night. So I started locking everything, even the bedroom doors.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3208,7 +3290,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 44:
                     {
                         //output
-                        outputLabel.Text = "I did plan to unlock it early in the morning... Actually I should go unlock the other doors now. Sorry for the trouble that caused you.";
+                        outputLabel.Text = "Inn Keeper: I did plan to unlock it early in the morning... Actually I should go unlock the other doors now. Sorry for the trouble that caused you.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3218,9 +3300,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 45: ///icon default, scene cube
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} received a 1kg cube of some kind of substance as an apology gift from the Inn Keeper.";
+                        outputLabel.Text = $"{player} received a 1kg cube of some kind of substance as an apology gift from the Inn Keeper.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3233,7 +3315,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 46: ///scene outside inn
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} heads outside.";
+                        outputLabel.Text = $"{player} heads outside.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3262,7 +3344,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 48:
                     {
                         //output
-                        outputLabel.Text = "The King's entire blood line supposedly died in their sleep, so here in the capital things have been... shaky to say the least.";
+                        outputLabel.Text = "Inn Keeper: The King's entire blood line supposedly died in their sleep, so here in the capital things have been... shaky to say the least.";
 
                         //button settings
                         optionOneButton.Text = "'Court Jester's new name?'";
@@ -3298,7 +3380,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 50: //
                     {
                         //output
-                        outputLabel.Text = "Surprisingly, she's gained quite the large following due to her cruel honesty and manipulative speech.";
+                        outputLabel.Text = "Inn Keeper: Surprisingly, she's gained quite the large following due to her cruel honesty and manipulative speech.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3311,7 +3393,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 51:
                     {
                         //output
-                        outputLabel.Text = "At the current rate, she'll probably weasel her way to the peak of command in this kingdom.";
+                        outputLabel.Text = "Inn Keeper: At the current rate, she'll probably weasel her way to the peak of command in this kingdom.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3321,7 +3403,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 52:
                     {
                         //output
-                        outputLabel.Text = "The only things stopping her from ruling this country are global politics and the Church. I pray that fool doesn't succeed.";
+                        outputLabel.Text = "Inn Keeper: The only things stopping her from ruling this country are global politics and the Church. I pray that fool doesn't succeed.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3331,7 +3413,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 53:
                     {
                         //output
-                        outputLabel.Text = "Oh dear, I need to unlock the bedroom doors. Safe travels, my friend.";
+                        outputLabel.Text = "Inn Keeper: Oh dear, I need to unlock the bedroom doors. Safe travels, my friend.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3341,8 +3423,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 54: //icon
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} heads outside.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player} heads outside.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3376,7 +3458,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 56: //
                     {
                         //output
-                        outputLabel.Text = "You get used to it after living here for a bit. It actually only started recently, after the King's death.";
+                        outputLabel.Text = "Inn Keeper: You get used to it after living here for a bit. It actually only started recently, after the King's death.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3386,7 +3468,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 57:
                     {
                         //output
-                        outputLabel.Text = "Would you excuse me? I need to go unlock the bedroom doors. Safe travels, my friend.";
+                        outputLabel.Text = "Inn Keeper: Would you excuse me? I need to go unlock the bedroom doors. Safe travels, my friend.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3396,8 +3478,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 58: ///icon default
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} heads outside.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player} heads outside.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3409,6 +3491,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Please write your player's name in the box.";
                         mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = ICONdefaultIcon;
                         playerNameText.Visible = true;
                         playerNameText.Enabled = true;
                         playerNameTextTip.Visible = true;
@@ -3450,8 +3533,8 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Mysterious Voice: Is anyone awake?";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
-                        ////reset everything except for name and character
+                        iconBox.Image = ICONmysteriousVoice;
+                        ICONcharacter = Properties.Resources.CharacterShimshon;
 
                         //button settings
                         optionOneButton.Text = "Yes";
@@ -3472,8 +3555,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 61: ///icon shim
                     {
                         //output
-                        outputLabel.Text = "Player: Awoga bog.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}: Awoga bog.";
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3498,7 +3581,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Mysterious Voice: Oh boy... you are certainly illiterate. Poor little guy... I'll take that as a yes.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3519,8 +3602,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 63: ///icon player
                     {
                         //output
-                        outputLabel.Text = "Player: * Grunts like a sexually frustrated whale";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}: * Grunts like a sexually frustrated whale";
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3543,7 +3626,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Mysterious Voice: Don't just grunt at me, you filthy barbarian!";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3574,8 +3657,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 66:
                     {
                         //output
-                        outputLabel.Text = $"Display: The world rattles as the echoes of bombs ring in {player}'s' ears.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"The world rattles as the echoes of bombs ring in {player}'s' ears.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3585,17 +3668,25 @@ namespace Choose_Your_Own_Adventure_Game
                 case 67:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} believes they are in a room of some kind.";
+                        outputLabel.Text = $"{player} believes they are in a room of some kind.";
 
                         //button settings
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
+                        optionTwoButton.Text = "";
+                        optionTwoBlocked.Visible = true;
+                        optionTwoButton.Enabled = false;
                         optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
                 case 68: /// scene window
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} sees what appears to be light from a window to their left.";
+                        outputLabel.Text = $"{player} sees what appears to be light from a window to their left.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3632,7 +3723,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 70:
                     {
                         //output
-                        outputLabel.Text = $"Display: The door is locked, what would {player} like to do?";
+                        outputLabel.Text = $"The door is locked, what would {player} like to do?";
 
                         //button settings
                         optionOneButton.Text = "Break down door";
@@ -3650,7 +3741,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 71: ///scene hallway
                     {
                         //output
-                        outputLabel.Text = $"Display: The door stood no chance against the might of {player}!";
+                        outputLabel.Text = $"The door stood no chance against the might of {player}!";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3669,7 +3760,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 72:
                     {
                         //output
-                        outputLabel.Text = $"Display: Congratulations! {player} broke their arm and gained access to the hallways.";
+                        outputLabel.Text = $"Congratulations! {player} broke their arm and gained access to the hallways.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3679,7 +3770,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 73:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} will no longer be able to pickpocket.";
+                        outputLabel.Text = $"{player} will no longer be able to pickpocket.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3692,7 +3783,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 74:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is met by a staircase at the end of the hallway, which weaves through a long and bendy corridor.";
+                        outputLabel.Text = $"{player} is met by a staircase at the end of the hallway, which weaves through a long and bendy corridor.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3702,7 +3793,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 75: //scene slippers
                     {
                         //output
-                        outputLabel.Text = $"Display: The steps of {player} are masked by their pink bunny slippers, slippers of which are worn to increase {player}'s sneakiness.";
+                        outputLabel.Text = $"The steps of {player} are masked by their pink bunny slippers, slippers of which are worn to increase {player}'s sneakiness.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3713,7 +3804,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 76: //scene bottom stairs
                     {
                         //output
-                        outputLabel.Text = $"Display: Once at the bottom, {player} sees something at what might possibly be a reception desk.";
+                        outputLabel.Text = $"Once at the bottom, {player} sees something at what might possibly be a reception desk.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3749,10 +3840,10 @@ namespace Choose_Your_Own_Adventure_Game
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
-                        optionOneButton.Text = "Talk to it";
+                        optionOneButton.Text = "Study it's behaviour";
                         optionOneBlocked.Visible = false;
                         optionOneButton.Enabled = true;
-                        optionTwoButton.Text = "Study it's behaviour";
+                        optionTwoButton.Text = "Talk to it";
                         optionTwoBlocked.Visible = false;
                         optionTwoButton.Enabled = true;
                         optionThreeButton.Text = "";
@@ -3764,8 +3855,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 79: //player icon
                     {
                         //output
-                        outputLabel.Text = "Player: & G#^ GROG *&*** SLAAAAAAAAAAA";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}: & G#^ GROG *&*** SLAAAAAAAAAAA";
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3784,7 +3875,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: Excuse me, friend...?";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONinnKeeper;
 
                         //button settings;
                         optionFourButton.Text = "Next";
@@ -3809,10 +3900,10 @@ namespace Choose_Your_Own_Adventure_Game
                         outputLabel.Text = "Inn Keeper: I hope you get what I am saying...";
 
                         //button settings
-                        optionOneButton.Text = "Tell a knock-knock joke";
+                        optionOneButton.Text = "'You want me to leave?'";
                         optionOneBlocked.Visible = false;
                         optionOneButton.Enabled = true;
-                        optionTwoButton.Text = "'You want me to leave?'";
+                        optionTwoButton.Text = "Tell a knock-knock joke";
                         optionTwoBlocked.Visible = false;
                         optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
@@ -3824,8 +3915,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 83: //icon shim
                     {
                         //output
-                        outputLabel.Text = "Player: NOK NOK! WHUS TGER? WIPPPPY!!!!";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}: NOK NOK! WHUS TGER? WIPPPPY!!!!";
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3843,8 +3934,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 84: //icon display
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} laughs manically while 'The Thing That Stands' begins to fear for its life.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player} laughs manically while 'The Thing That Stands' begins to fear for its life.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3854,13 +3945,13 @@ namespace Choose_Your_Own_Adventure_Game
                 case 85:
                     {
                         //output
-                        outputLabel.Text = "Display: 'It' chuckles slightly in an attempt to hide its fear.";
+                        outputLabel.Text = "'It' chuckles slightly in an attempt to hide its fear.";
 
                         //button settings
                         optionOneButton.Text = "Notice that the knock-knock joke was a flop";
                         optionOneBlocked.Visible = false;
                         optionOneButton.Enabled = true;
-                        optionTwoButton.Text = "It's fear excites {player}";
+                        optionTwoButton.Text = $"It's fear excites {player}";
                         optionTwoBlocked.Visible = false;
                         optionTwoButton.Enabled = true;
                         optionFourButton.Text = "";
@@ -3872,7 +3963,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 86:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} can smell the bitter scent of its fear.";
+                        outputLabel.Text = $"{player} can smell the bitter scent of its fear.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3890,7 +3981,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 87:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} attempts to eat 'The Thing That Stands,' however fails to do so.";
+                        outputLabel.Text = $"{player} attempts to eat 'The Thing That Stands,' however fails to do so.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3900,7 +3991,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 88: //scene dead on inn floor
                     {
                         //output
-                        outputLabel.Text = $"Display: As the body of {player} lies on the ground, 'The Thing That Stands' runs away through the door.";
+                        outputLabel.Text = $"As the body of {player} hits the ground, 'The Thing That Stands' runs away through the door.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -3911,7 +4002,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 89:
                     {
                         //output
-                        outputLabel.Text = "Display: 'It' thanks the guards outside. Another moment and 'It' knew it would have lost its life.";
+                        outputLabel.Text = "'It' thanks the guards outside. Another moment and 'It' knew it would have lost its life.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3921,7 +4012,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 90:
                     {
                         //output
-                        outputLabel.Text = "Display: It is wrong to try to eat someone while they are talking to you.";
+                        outputLabel.Text = "It is wrong to try to eat someone while they are talking to you.";
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -3936,7 +4027,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 91:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} slowly approaches 'The Thing That Stands' reception desk.";
+                        outputLabel.Text = $"{player} slowly approaches 'The Thing That Stands' reception desk.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -3954,7 +4045,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 92:
                     {
                         //output
-                        outputLabel.Text = $"Display: The desk is covered in strange oddities, all of which are unknown to {player}.";
+                        outputLabel.Text = $"The desk is covered in strange oddities, all of which are unknown to {player}.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3964,7 +4055,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 93:
                     {
                         //output
-                        outputLabel.Text = $"Display: Player begins knocking objects off of the table in quick, cat-like motions. As objects rain down from the table, 'The Thing That Stands' shouts from behind:";
+                        outputLabel.Text = $"{player} begins knocking objects off of the table in quick, cat-like motions. As objects rain down from the table, 'The Thing That Stands' shouts from behind:";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3975,7 +4066,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Inn Keeper: I have an Inn to run here buddy, I can't let you do that.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONinnKeeper;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -3995,9 +4086,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 96: //icon default
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} did not understand much of what 'The Thing That Stands' said.";
+                        outputLabel.Text = $"{player} did not understand much of what 'The Thing That Stands' said.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4007,7 +4098,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 97:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} spots something shiny outside, and leaves.";
+                        outputLabel.Text = $"{player} spots something shiny outside, and leaves.";
 
                         //button settings
                         optionFourButton.Text = "I love shiny things";
@@ -4017,8 +4108,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 98: //player icon
                     {
                         //output
-                        outputLabel.Text = "Player: rar tloo #&^& slab";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}: rar tloo #&^& slab";
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4036,8 +4127,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 99: //icon default
                     {
                         //output
-                        outputLabel.Text = $"Display: 'The Thing That Stands' does not understand {player}, but 'it' begins to pity {player}.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"'The Thing That Stands' does not understand {player}, but 'it' begins to pity {player}.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4047,7 +4138,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 100: //scene cube
                     {
                         //output
-                        outputLabel.Text = "Display: 'The Thing That Stands' introduces itself as the Inn Keeper, and offers you a 1kg cube of some kind of substance.";
+                        outputLabel.Text = "'The Thing That Stands' introduces itself as the Inn Keeper, and offers you a 1kg cube of some kind of substance.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4058,7 +4149,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 101:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} does not fully understand anything that has happened, or why they are being given a big square...";
+                        outputLabel.Text = $"{player} does not fully understand anything that has happened, or why they are being given a big square...";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4071,7 +4162,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 102:
                     {
                         //output
-                        outputLabel.Text = $"Display: Still, they feel a strange new trust towards the Inn Keeper as they head outside.";
+                        outputLabel.Text = $"Still, they feel a strange new trust towards the Inn Keeper as they head outside.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4081,7 +4172,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 103:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} feels unwanted.";
+                        outputLabel.Text = $"{player} feels unwanted.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4099,7 +4191,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 104:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} leaves the building. From the outside, even the small brain of {player} can figure out that this building is an Inn";
+                        outputLabel.Text = $"{player} leaves the building. From the outside, even the small brain of {player} can figure out that this building is an Inn";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4109,7 +4201,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 105:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} leaves the building. From the outside, even the small brain of {player} can figure out that this building is an Inn";
+                        outputLabel.Text = $"{player} leaves the building. From the outside, even the small brain of {player} can figure out that this building is an Inn";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4130,7 +4222,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 106: //scene flying towards
                     {
                         //output
-                        outputLabel.Text = $"Display: Before a single word is uttered from 'The Thing That Stands', {player} pushes themselves off of the stairs and leaps through the air.";
+                        outputLabel.Text = $"Before a single word is uttered from 'The Thing That Stands', {player} pushes themselves off of the stairs and leaps through the air.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4152,7 +4244,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 107:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} stares into the eyes of 'The Thing That Stands' as they make contact with their upper body.";
+                        outputLabel.Text = $"{player} stares into the eyes of 'The Thing That Stands' as they make contact with their upper body.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4162,7 +4254,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 108: //scene crouch atop
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} crouches atop the shoulders of 'It', and grabs its head.";
+                        outputLabel.Text = $"{player} crouches atop the shoulders of 'It', and grabs its head.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4173,7 +4265,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 109: //scene red room
                     {
                         //output
-                        outputLabel.Text = "Display: The room is painted red.";
+                        outputLabel.Text = "The room is painted red.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4184,7 +4276,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 110:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has decapitated the Inn Keeper.";
+                        outputLabel.Text = $"{player} has decapitated the Inn Keeper.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4194,7 +4286,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 111: //
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has been permanently blinded by their new found blood-lust.";
+                        outputLabel.Text = $"{player} has been permanently blinded by their new found blood-lust.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4207,7 +4299,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 112: //scene in front of body
                     {
                         //output
-                        outputLabel.Text = "Display: Player stands in front of the body.";
+                        outputLabel.Text = $"{player} stands in front of the body.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4229,7 +4321,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 113: //scene outside
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} heads outside in search of more victims.";
+                        outputLabel.Text = $"{player} heads outside in search of more victims.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4248,7 +4340,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 114:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} combs through every pocket on the body.";
+                        outputLabel.Text = $"{player} combs through every pocket on the body.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4266,7 +4358,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 115: //scene cube
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} grabs hold of a 1kg cube of some kind of substance.";
+                        outputLabel.Text = $"{player} grabs hold of a 1kg cube of some kind of substance.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4280,7 +4372,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 116:
                     {
                         //output
-                        outputLabel.Text = "Display: They stash away the cube on their person.";
+                        outputLabel.Text = "They stash away the cube on their person.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4290,7 +4382,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 117: //scene caught
                     {
                         //output
-                        outputLabel.Text = $"Display: Someone spots {player}'s crime through the window and begins to giggle.";
+                        outputLabel.Text = $"Someone spots {player}'s crime through the window and begins to giggle.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4304,7 +4396,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 118: //scene outside
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} heads outside to kill the witness to their crime.";
+                        outputLabel.Text = $"{player} heads outside to kill the witness to their crime.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4317,7 +4409,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = $"{player} is outside of the Inn";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings reset
                         optionOneButton.Text = "";
@@ -4419,7 +4511,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 120: ///new scene
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} spots a suspicious, slender man turn around an alleyway.";
+                        outputLabel.Text = $"{player} spots a suspicious, slender man turn around an alleyway.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4441,7 +4533,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 121:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is 10 steps back from the suspicious target.";
+                        outputLabel.Text = $"{player} is 10 steps back from the suspicious target.";
 
                         //button settings
                         optionOneButton.Text = "Watch";
@@ -4462,7 +4554,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 122:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} watches the man bend over something just out of sight.";
+                        outputLabel.Text = $"{player} watches the man bend over something just out of sight.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4501,7 +4593,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 124: ///display new scene closer to man
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} confronts the man in the alleyway.";
+                        outputLabel.Text = $"{player} confronts the man in the alleyway.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4520,7 +4612,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 125:
                     {
                         //output
-                        outputLabel.Text = "Display: A creature scampers off behind a trash bin during the confrontation.";
+                        outputLabel.Text = "A creature scampers off behind a trash bin during the confrontation.";
 
                         //button settings
                         optionOneButton.Text = "Find the creature";
@@ -4535,10 +4627,10 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 126: //scene puppy
+                case 126: //scene puppy - TEMPORARY KNOWS OF CASTLE (this is where he can join the cult in the future)
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} searches behind the trash bin and finds a small puppy.";
+                        outputLabel.Text = $"{player} searches behind the trash bin and finds a small puppy.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4551,6 +4643,9 @@ namespace Choose_Your_Own_Adventure_Game
                         optionFourButton.Text = "Next";
                         optionFourBlocked.Visible = false;
                         optionFourButton.Enabled = true;
+
+                        ////add knows of castle (TEMPORARY)
+                        //knowsOfCastle = 1;
                     }
                     break;
 
@@ -4559,7 +4654,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "The thin man: Please don't hurt her, I was just out here making sure she had something to eat.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONhomelessMan;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4569,8 +4664,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 128: //scene alleyway
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} feels embarrassed. They had assumed this man was out doing no good.";
+                        outputLabel.Text = $"{player} feels embarrassed. They had assumed this man was out doing no good.";
                         mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = $"{player} is so rude...";
@@ -4580,7 +4676,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 129:
                     {
                         //output
-                        outputLabel.Text = "Display: The man does not resist.";
+                        outputLabel.Text = "The man does not resist.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4598,7 +4694,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 130: // scene puppy
                     {
                         //output
-                        outputLabel.Text = "Display: A small puppy jumps out from behind the trash can.";
+                        outputLabel.Text = "A small puppy jumps out from behind the trash can.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4608,7 +4704,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 131: //scene blackout
                     {
                         //output
-                        outputLabel.Text = $"Display: The puppy knocks {player} down to the ground. {player} blacks out.";
+                        outputLabel.Text = $"The puppy knocks {player} down to the ground. {player} blacks out.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4621,9 +4717,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 132: //scene outside church, icon default
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} makes their way over to the Church.";
+                        outputLabel.Text = $"{player} makes their way over to the Church.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4647,7 +4743,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 133: //
                     {
                         //output
-                        outputLabel.Text = $"Display: The crashes echo throughout the entire Kingdom. It would have been impossible to locate the source of the noise without the Inn Keeper's help.";
+                        outputLabel.Text = $"The crashes echo throughout the entire Kingdom. It would have been impossible to locate the source of the noise without the Inn Keeper's help.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4675,7 +4771,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 135:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is not allowed inside of the Church.";
+                        outputLabel.Text = $"{player} is not allowed inside of the Church.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4693,7 +4789,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 136: //scene black
                     {
                         //output
-                        outputLabel.Text = $"Display: The members of the Church grow suspicious of {player}. They take them into their custody.";
+                        outputLabel.Text = $"The members of the Church grow suspicious of {player}. They take them into their custody.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4704,7 +4800,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 137: //scene inside church enterence
                     {
                         //output
-                        outputLabel.Text = $"Display: The members welcome {player} inside. From inside, {player} can hear the crashing of explosives from beneath them ";
+                        outputLabel.Text = $"The members welcome {player} inside. From inside, {player} can hear the crashing of explosives from beneath them ";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4723,8 +4819,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 138: //male church icon
                     {
                         //output
-                        outputLabel.Text = "Male church member: OH YEAH BABY!!! WE ARE BLOWING HOLES THROUGH THE EARTH!!!!";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Church Man: OH YEAH BABY!!! WE ARE BLOWING HOLES THROUGH THE EARTH!!!!";
+                        iconBox.Image = ICONchurchMan;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -4745,8 +4841,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 139: //female church icon
                     {
                         //output
-                        outputLabel.Text = "Female church member: HEY DON'T SAY THAT, THEY ARE AN OUTSIDER.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Church Woman: HEY DON'T SAY THAT, THEY ARE AN OUTSIDER.";
+                        iconBox.Image = ICONchurchWoman;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4756,9 +4852,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 140: //icon church lead, scene church lead
                     {
                         //output
-                        outputLabel.Text = "Church lead: It is okay to tell this one. As long as our opinions on the ruling of this Kingdom align...";
+                        outputLabel.Text = "Church Lead: It is okay to tell this one. As long as our opinions on the ruling of this Kingdom align...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONchurchLead;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4817,9 +4913,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 144: //female church icon, scene church enterance
                     {
                         //output
-                        outputLabel.Text = "female church member: Forgive me for speaking out, but I fail no see how a random person off the streets will help us.";
+                        outputLabel.Text = "Church Woman: Forgive me for speaking out, but I fail no see how a random person off the streets will help us.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONchurchWoman;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4831,7 +4927,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Church Lead: This one can make decisions, I can tell. It will be those decisions that decide who wins the up coming battle!!!!";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONchurchLead;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4900,9 +4996,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 150: //default icon, scene church hallways
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} makes their way down the various hallways of the Church. They descend the stairs and join a group of armed Church members.";
+                        outputLabel.Text = $"{player} makes their way down the various hallways of the Church. They descend the stairs and join a group of armed Church members.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4912,7 +5008,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 151: //scene tunnles
                     {
                         //output
-                        outputLabel.Text = $"Display: It is time for everyone to move out. The tunnels lead to both outside of the Kingdom walls and to the Castle itself. The assault begins.";
+                        outputLabel.Text = $"It is time for everyone to move out. The tunnels lead to both outside of the Kingdom walls and to the Castle itself. The assault begins.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4923,7 +5019,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 152:
                     {
                         //output
-                        outputLabel.Text = $"Display: The tunnels seemingly change as {player} runs through them.";
+                        outputLabel.Text = $"The tunnels seemingly change as {player} runs through them.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4933,7 +5029,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 153: //scene black
                     {
                         //output
-                        outputLabel.Text = $"Display: The walls seem to close in on {player}...";
+                        outputLabel.Text = $"The walls seem to close in on {player}...";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4943,7 +5039,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 154: //
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} makes it to a sharp incline in the tunnel. Members of the Church begin to climb upwards.";
+                        outputLabel.Text = $"{player} makes it to a sharp incline in the tunnel. Members of the Church begin to climb upwards.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4953,7 +5049,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 155: //castle courtyard
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} makes it to a sharp incline in the tunnel. Members of the Church begin to climb upwards.";
+                        outputLabel.Text = $"{player} makes it to a sharp incline in the tunnel. Members of the Church begin to climb upwards.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4964,7 +5060,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 156:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} feels an ominous presence watching them from afar.";
+                        outputLabel.Text = $"{player} feels an ominous presence watching them from afar.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -4974,7 +5070,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 157: //scene battle field courtyard
                     {
                         //output
-                        outputLabel.Text = $"Display: The battlefield grows tense.";
+                        outputLabel.Text = "The battlefield grows tense.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -4993,7 +5089,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 158: //scene castle door
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} rushes for the entrance of the Castle, a large door which was rammed down by those who had invaded with them.";
+                        outputLabel.Text = $"{player} rushes for the entrance of the Castle, a large door which was rammed down by those who had invaded with them.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5012,7 +5108,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 159: //scene inside castle
                     {
                         //output
-                        outputLabel.Text = $"Display: The inside of the Castle suddenly goes silent.";
+                        outputLabel.Text = "The inside of the Castle suddenly goes silent.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5031,7 +5127,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 160: //scene up staircase
                     {
                         //output
-                        outputLabel.Text = $"Display: As {player} runs over to the staircase, they cannot shake the feeling that something is watching them.";
+                        outputLabel.Text = $"As {player} runs over to the staircase, they cannot shake the feeling that something is watching them.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5050,7 +5146,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 161:
                     {
                         //output
-                        outputLabel.Text = "Display: They trip on the first step. They try to get up...";
+                        outputLabel.Text = "They trip on the first step. They try to get up...";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5060,7 +5156,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 162: //scene frozen hand
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s hands have frozen to the floor of the Castle.";
+                        outputLabel.Text = $"{player}'s hands have frozen to the floor of the Castle.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5071,7 +5167,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 163: //scene frozen down on one knee 
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} freezes solid in the now snowing Castle.";
+                        outputLabel.Text = $"{player} freezes solid in the now snowing Castle.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5087,8 +5183,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 164: //player icon
                     {
                         //output
-                        outputLabel.Text = "Player: HEY! WHERE DID EVERYONE GO?";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}: HEY! WHERE DID EVERYONE GO?";
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5106,8 +5202,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 165: ////default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: No response.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"No response.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5117,7 +5213,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 166:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s breath freezes in the air as they breathe. The entire Castle is silent.";
+                        outputLabel.Text = $"{player}'s breath freezes in the air as they breathe. The entire Castle is silent.";
 
                         //button settings
                         optionOneButton.Text = "Head outsude";
@@ -5138,7 +5234,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 167: //scene endless garden
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} steps outside and is met by an endless, empty garden. Besides the flowers, there is no other life except for them.";
+                        outputLabel.Text = $"{player} steps outside and is met by an endless, empty garden. Besides the flowers, there is no other life except for them.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5160,7 +5256,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 168:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} does not feel alone, eyes watch from afar.";
+                        outputLabel.Text = $"{player} does not feel alone, eyes watch from afar.";
 
                         //button settings
                         optionOneButton.Text = $"Search from whatever is looking at {player}";
@@ -5178,7 +5274,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 169:
                     {
                         //output
-                        outputLabel.Text = $"Display: The Castle has vanished behind {player}.";
+                        outputLabel.Text = $"The Castle has vanished behind {player}.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5196,7 +5292,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 170:
                     {
                         //output
-                        outputLabel.Text = "Display: {player} searches for whatever seems to be watching them.";
+                        outputLabel.Text = $"{player} searches for whatever seems to be watching them.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5214,7 +5310,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 171: //scene flower beds garden
                     {
                         //output
-                        outputLabel.Text = $"Display: Everything feels hopeless, and a deep loneliness takes over {player}. There is nothing here but flowers.";
+                        outputLabel.Text = $"Everything feels hopeless, and a deep loneliness takes over {player}. There is nothing here but flowers.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5225,7 +5321,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 172:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is alone. Trapped in a seemingly endless prison of flowers. Those watching eyes depart, disappointed. This is {player}'s punishment for their decisions.";
+                        outputLabel.Text = $"{player} is alone. Trapped in a seemingly endless prison of flowers. Those watching eyes depart, disappointed. This is {player}'s punishment for their decisions.";
 
                         //button settings
                         optionOneButton.Text = "END";
@@ -5240,7 +5336,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 173:
                     {
                         //output
-                        outputLabel.Text = "Display: There is nothing around any of the rooms.  No blankets, fires or clothes.";
+                        outputLabel.Text = "There is nothing around any of the rooms.  No blankets, fires or clothes.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5261,7 +5357,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 174: //scene frozen solid
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} freezes solid in the now snowing Castle.";
+                        outputLabel.Text = $"{player} freezes solid in the now snowing Castle.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -5278,7 +5374,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 175: ///scene punching sword man (gif?)
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} throws a punch at a man with a sword.";
+                        outputLabel.Text = $"{player} throws a punch at a man with a sword.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5297,7 +5393,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 176: //scene fillet
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is immediately filleted by the cold tip of the sword.";
+                        outputLabel.Text = $"{player} is immediately filleted by the cold tip of the sword.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5342,9 +5438,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 179: //default icon, scene church entrance
                     {
                         //output
-                        outputLabel.Text = $"display: {player} begins to feel dizzy. They begin to loose their footing and sway in the drafty wind of the entrance hallway.";
+                        outputLabel.Text = $"{player} begins to feel dizzy. They begin to loose their footing and sway in the drafty wind of the entrance hallway.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5356,7 +5452,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = $"Church Lead: FOLLOW ME CHILD! THE PATH TO YOUR ENLIGHTENMENT LIES AHEAD!";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONchurchLead;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5366,9 +5462,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 181: //scene church stairs, default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} follows the Church Lead up multiple flights of stairs. At some point, they realize they are actually being carried by many members of the Church.";
+                        outputLabel.Text = $"{player} follows the Church Lead up multiple flights of stairs. At some point, they realize they are actually being carried by many members of the Church.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5378,7 +5474,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 182:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s vision becomes blurred. The walls circle around them as they ascend upwards towards the top level of the Church.";
+                        outputLabel.Text = $"{player}'s vision becomes blurred. The walls circle around them as they ascend upwards towards the top level of the Church.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5388,7 +5484,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 183: //scene birds roof top church
                     {
                         //output
-                        outputLabel.Text = $"Display: You have lost all control over {player}. They can barely make out the silhouette of some dark clouds. White birds begin to gather around {player}.";
+                        outputLabel.Text = $"You have lost all control over {player}. They can barely make out the silhouette of some dark clouds. White birds begin to gather around {player}.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5400,7 +5496,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Church Lead: ! ^&$&&*@^^^ &&^^@%^&@*)*()@ *@(@%^&@%&*@(*@(* *@&(@^^%@^&^@(*@*) *(&@%^&@^*(@*()@ *&@&%@^@^*(@*)(@& $^$%$#$% &^$@#$&^$*(DYD(#&D&#Y#*&#*(";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONchurchLead;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5410,9 +5506,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 185: //default icon, light hitting church
                     {
                         //output
-                        outputLabel.Text = "Display: The world shakes, but this time it isn't the explosives below the Church. The dark sky opens up. A single ray of light illuminates the Church.";
+                        outputLabel.Text = "The world shakes, but this time it isn't the explosives below the Church. The dark sky opens up. A single ray of light illuminates the Church.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5422,7 +5518,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 186: //scene Jon dead on pedistal white birds top down angle
                     {
                         //output
-                        outputLabel.Text = $"Display: The members of the Church gather around {player}. {player} lays on a stone pedestal, their body cold and dead.";
+                        outputLabel.Text = $"The members of the Church gather around {player}. {player} lays on a stone pedestal, their body cold and dead.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5433,7 +5529,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 187: //scene birds melting
                     {
                         //output
-                        outputLabel.Text = $"Display: The birds begin to melt into {player}'s body.";
+                        outputLabel.Text = $"The birds begin to melt into {player}'s body.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5446,7 +5542,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Church Lead: IT IS PERFECT.ALL MY YEARS, MY LIFE, MY HEART, MY SOUL, MY LOVE, MY - MY - M...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONchurchLead;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5456,9 +5552,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 189: ////scene birds melting, default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: The Church Lead stutters like a mad lunatic at the sight of {player}'s disformed body.";
+                        outputLabel.Text = $"The Church Lead stutters like a mad lunatic at the sight of {player}'s disformed body.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5468,7 +5564,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 190: //scene growing puddle of birds
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s body screams as the muscles, bones and skin contorts. Feathers coat the entire form, talons appear from the stubs where the feet once were.";
+                        outputLabel.Text = $"{player}'s body screams as the muscles, bones and skin contorts. Feathers coat the entire form, talons appear from the stubs where the feet once were.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5479,7 +5575,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 191: //scene dark glowig silhoutte
                     {
                         //output
-                        outputLabel.Text = $"Display: The crowd cheers from atop the Church as their deity awakens from {player}'s body.";
+                        outputLabel.Text = $"The crowd cheers from atop the Church as their deity awakens from {player}'s body.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5490,7 +5586,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 192: //scene Bird God, Wrangler of the Crazed
                     {
                         //output
-                        outputLabel.Text = $"Display: Their God of the Clouds stands before them, ready to guide them into battle. {player}'s sacrifice will always be remembered.";
+                        outputLabel.Text = $"The God of the Clouds stands before them, ready to guide them into battle. {player}'s sacrifice will always be remembered.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5501,7 +5597,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 193: //leads to special ending
                     {
                         //output
-                        outputLabel.Text = $"Display: This is what must happen. There is no other meaning in {player}'s life. They would die a thousand times until they reach this conclusion.";
+                        outputLabel.Text = $"This is what must happen. There is no other meaning in {player}'s life. They would die a thousand times until they reach this conclusion.";
 
                         //button settings
                         optionOneButton.Text = "THE END";
@@ -5516,9 +5612,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 194: //scene black, icon default
                     {
                         //output
-                        outputLabel.Text = $"display: Obviously they are not going to let {player} leave after they leak so much private information...";
+                        outputLabel.Text = $"Obviously they are not going to let {player} leave after they leak so much private information...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5536,9 +5632,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 195:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has been taken into the Church's custody.";
+                        outputLabel.Text = $"{player} has been taken into the Church's custody.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5548,7 +5644,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 196: //scene inside church hallway
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has gained access to the Church. If caught, the members will not tolerate their presence.";
+                        outputLabel.Text = $"{player} has gained access to the Church. If caught, the members will not tolerate their presence.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5567,7 +5663,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 197:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} can hear the crashing of explosives from beneath them ";
+                        outputLabel.Text = $"{player} can hear the crashing of explosives from beneath them ";
 
                         //button settings
                         optionOneButton.Text = "Sneak into basement";
@@ -5585,7 +5681,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 198: //scene black screen
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} was caught immediately. They are not stealthy at all.";
+                        outputLabel.Text = $"{player} was caught immediately. They are not stealthy at all.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5604,7 +5700,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 199:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} spots a man at the end of a hallway. How do they steal the clothes?";
+                        outputLabel.Text = $"{player} spots a man at the end of a hallway. How do they steal the clothes?";
 
                         //button settings
                         optionOneButton.Text = "Knock him out";
@@ -5622,7 +5718,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 200:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} successfully knocks the man out.";
+                        outputLabel.Text = $"{player} successfully knocks the man out.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5640,7 +5736,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 201: //scene caught stealing clothes
                     {
                         //output
-                        outputLabel.Text = $"Display: As {player} removes the Church member's clothes, another member catches you in the act.";
+                        outputLabel.Text = $"As {player} removes the Church member's clothes, another member catches you in the act.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5651,7 +5747,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 202: //scene black
                     {
                         //output
-                        outputLabel.Text = $"Display: She is disgusted with {player}'s actions, and they are taken into the Church's custody.";
+                        outputLabel.Text = $"She is disgusted with {player}'s actions, and they are taken into the Church's custody.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5662,7 +5758,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 203: //scene in front of seduced man
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} approaches the man and attempts to seduce him.";
+                        outputLabel.Text = $"{player} approaches the man and attempts to seduce him.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5681,8 +5777,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 204: //icon male church member
                     {
                         //output
-                        outputLabel.Text = "male church member: Sorry, I don't swing that way...";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Church Man: Sorry, I don't swing that way...";
+                        iconBox.Image = ICONchurchMan;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5692,7 +5788,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 205:
                     {
                         //output
-                        outputLabel.Text = "male church member: HEY, WAIT! YOU SHOULDN'T BE HERE TO BEGIN WITH!";
+                        outputLabel.Text = "Church Man: HEY, WAIT! YOU SHOULDN'T BE HERE TO BEGIN WITH!";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5702,9 +5798,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 206: //icon default, scene black
                     {
                         //output
-                        outputLabel.Text = "Display: Ouch... rejected and taken into the Church's custody.";
+                        outputLabel.Text = "Ouch... rejected and taken into the Church's custody.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Just my way with people, they can't resist me";
@@ -5714,8 +5810,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 207: //icon male church member
                     {
                         //output
-                        outputLabel.Text = "male church member: You must be a blessing from The One, given straight to me as a sign of my good faith.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Church Man: You must be a blessing from The One, given straight to me as a sign of my good faith.";
+                        iconBox.Image = ICONchurchMan;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5725,7 +5821,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 208: //
                     {
                         //output
-                        outputLabel.Text = "male church member: I will happily join you in a private room where we won't be interrupted.";
+                        outputLabel.Text = "Church Man: I will happily join you in a private room where we won't be interrupted.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5735,9 +5831,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 209: //icon default, scene church man knocked out
                     {
                         //output
-                        outputLabel.Text = $"Display: Once alone with him, {player} knocks the man out and steals his clothes. They look just like a member of the Church now.";
+                        outputLabel.Text = $"Once alone with him, {player} knocks the man out and steals his clothes. They look just like a member of the Church now.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "Openly travel towards noise";
@@ -5755,7 +5851,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 210: //scene hallway basement stairs
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} walks straight down to the basement. No one cares as they walk by.";
+                        outputLabel.Text = $"{player} walks straight down to the basement. No one cares as they walk by.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5774,7 +5870,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 211: //scene tunnels
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is now in the basement where tunnels are being blown out of the Earth.";
+                        outputLabel.Text = $"{player} is now in the basement where tunnels are being blown out of the Earth.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5788,7 +5884,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 212:
                     {
                         //output
-                        outputLabel.Text = "Display: The tunnels seem to go on forever in any direction.  They are well lit despite there being no visible light source.";
+                        outputLabel.Text = "The tunnels seem to go on forever in any direction.  They are well lit despite there being no visible light source.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5801,7 +5897,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 213:
                     {
                         //output
-                        outputLabel.Text = "Display: There is a certain magic to these tunnels...";
+                        outputLabel.Text = "There is a certain magic to these tunnels...";
 
                         //button settings
                         optionOneButton.Text = "Leave the Church";
@@ -5819,7 +5915,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 214: //
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} exits the Church";
+                        outputLabel.Text = $"{player} exits the Church";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5837,7 +5933,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 215: //scene dark tunnel
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} travels through the long, winding tunnel. The tunnel seems to darken with every step.";
+                        outputLabel.Text = $"{player} travels through the long, winding tunnel. The tunnel seems to darken with every step.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5856,7 +5952,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 216: //scene black
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s footsteps echo through the tunnel. The walls seem to darken and close in on them.";
+                        outputLabel.Text = $"{player}'s footsteps echo through the tunnel. The walls seem to darken and close in on them.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5867,7 +5963,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 217: //
                     {
                         //output
-                        outputLabel.Text = $"Display: The walls seal {player} in. What once was a muddy tunnel is now a concrete cage.";
+                        outputLabel.Text = $"The walls seal {player} in. What once was a muddy tunnel is now a concrete cage.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -5877,7 +5973,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 218: //scene player crouching in hall
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} crouches down and sneaks towards the basement. They look stupid as they crouch and attract attention to themselves.";
+                        outputLabel.Text = $"{player} crouches down and sneaks towards the basement. They look stupid as they crouch and attract attention to themselves.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5896,7 +5992,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 219: //scene black
                     {
                         //output
-                        outputLabel.Text = $"Display: Maybe if {player} didn't look so stupid crouching down a hallway, they may have gotten to the noise.";
+                        outputLabel.Text = $"Maybe if {player} didn't look so stupid crouching down a hallway, they may have gotten to the noise.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5907,7 +6003,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 220: //scene inn outside
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has decided to stake-out the Inn in an attempt to bust the criminal.";
+                        outputLabel.Text = $"{player} has decided to stake-out the Inn in an attempt to bust the criminal.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5929,7 +6025,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 221: //scene inn outside night w/ moon
                     {
                         //output
-                        outputLabel.Text = $"Display: As the moon rises, {player} watches a man begin to scale the outside of the Inn.";
+                        outputLabel.Text = $"As the moon rises, {player} watches a man begin to scale the outside of the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5948,7 +6044,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 222:
                     {
                         //output
-                        outputLabel.Text = $"Display: As {player} scales the building, their hand slips on a smooth sandy brick.";
+                        outputLabel.Text = $"As {player} scales the building, their hand slips on a smooth sandy brick.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -5966,7 +6062,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 223: //scene black
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} falls from the Inn and slams their head off the concrete.";
+                        outputLabel.Text = $"{player} falls from the Inn and slams their head off the concrete.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -5995,7 +6091,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 225:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} hears the howling of hungry wolves.";
+                        outputLabel.Text = $"{player} hears the howling of hungry wolves.";
 
                         //button settings
                         optionOneButton.Text = "Pick the lock";
@@ -6010,7 +6106,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 226:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is unable to pick lock due to their broken arm.";
+                        outputLabel.Text = $"{player} is unable to pick lock due to their broken arm.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6025,18 +6121,23 @@ namespace Choose_Your_Own_Adventure_Game
                 case 227: //scene wolfs eating
                     {
                         //output
-                        outputLabel.Text = $"Display: A pack of wolves has caught up to {player}, and devour them alive.";
+                        outputLabel.Text = $"A pack of wolves has caught up to {player}, and devour them alive.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
-                        optionFourButton.Text = "Next";
+                        optionOneButton.Text = "DEAD";
+                        optionOneBlocked.Visible = false;
+                        optionOneButton.Enabled = true;
+                        optionFourButton.Text = "";
+                        optionFourBlocked.Visible = true;
+                        optionFourButton.Enabled = false;
                     }
                     break;
 
                 case 228: //scene inside inn night
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has successfully unlocked the door. They enter the Inn.";
+                        outputLabel.Text = $"{player} has successfully unlocked the door. They enter the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6052,7 +6153,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 229:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} hears the man rustling around upstairs.";
+                        outputLabel.Text = $"{player} hears the man rustling around upstairs.";
 
                         //button settings
                         optionOneButton.Text = "Head upstairs";
@@ -6070,7 +6171,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 230: //scene inn keepers desk night
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} searches the Inn Keeper's reception desk for a weapon.";
+                        outputLabel.Text = $"{player} searches the Inn Keeper's reception desk for a weapon.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6089,7 +6190,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 231: //scene knife found
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} arms themselves with a sharp knife, found in an old drawer.";
+                        outputLabel.Text = $"{player} arms themselves with a sharp knife, found in an old drawer.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6103,7 +6204,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 232:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is ready to confront the thief.";
+                        outputLabel.Text = $"{player} is ready to confront the thief.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6113,7 +6214,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 233: //scene inn staircase
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} heads upstairs.";
+                        outputLabel.Text = $"{player} heads upstairs.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6124,7 +6225,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 234: //scene thief stealing
                     {
                         //output
-                        outputLabel.Text = $"Display: The thief, dressed in a sharp black suit, rummages through bins just steps away.";
+                        outputLabel.Text = $"The thief, dressed in a sharp black suit, rummages through bins just steps away.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6143,7 +6244,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 235:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} sprints towards the villain.";
+                        outputLabel.Text = $"{player} sprints towards the villain.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6161,7 +6262,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 236: //scene player soaring out window
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} runs straight out a window.";
+                        outputLabel.Text = $"{player} runs straight out a window.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6172,7 +6273,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 237: //scene skewered
                     {
                         //output
-                        outputLabel.Text = "Display: Skewered on a pole...";
+                        outputLabel.Text = "Skewered on a pole...";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6188,7 +6289,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 238: //scene stabbing thief
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} stabs the man from behind until they die.";
+                        outputLabel.Text = $"{player} stabs the man from behind until they die.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6199,7 +6300,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 239:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} killed a man for robbery. Nowadays this would be seen as horrible, but this is set in a medieval fantasy land.";
+                        outputLabel.Text = $"{player} killed a man for robbery. Nowadays this would be seen as horrible, but this is set in a medieval fantasy land.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6209,7 +6310,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 240: //scene spooning thief
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} spoons the man until he dies.";
+                        outputLabel.Text = $"{player} spoons the man until he dies.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6220,7 +6321,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 241: //scene bloody spoon
                     {
                         //output
-                        outputLabel.Text = "Display: The spoon is a grossly effective murder weapon.";
+                        outputLabel.Text = "The spoon is a grossly effective murder weapon.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6231,9 +6332,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 242: //
                     {
                         //output
-                        outputLabel.Text = "Player: Hey buster... pal... little guy. Get out of here, or I'll hurt you.";
+                        outputLabel.Text = $"{player}: Hey buster... pal... little guy. Get out of here, or I'll hurt you.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6252,7 +6353,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Thief: Ah very scary, okay I will leave.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONthief;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6262,9 +6363,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 244: //icon default, scene thief flee out door
                     {
                         //output
-                        outputLabel.Text = $"Display: The thief scampers away, promising to never return. This was easier to do than {player} thought it would be.";
+                        outputLabel.Text = $"The thief scampers away, promising to never return. This was easier to do than {player} thought it would be.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6274,7 +6375,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 245: //scene opening window
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} gets tired and decides to sleep in one of the unlocked rooms.";
+                        outputLabel.Text = $"{player} gets tired and decides to sleep in one of the unlocked rooms.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6291,7 +6392,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = $"{player} suffers from severe stutters and fails to intimidate.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6302,7 +6403,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Thief: Nah I am staying, feel free to leave.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONthief;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6312,9 +6413,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 248: //default icon, black scene
                     {
                         //output
-                        outputLabel.Text = $"Display: His words are so powerful and chadly that {player} gives up on everything in life. They will now buy a house and raise a family of cats, all because of this thief.";
+                        outputLabel.Text = $"His words are so powerful and chadly that {player} gives up on everything in life. They will now buy a house and raise a family of cats, all because of this thief.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "GIVE UP";
@@ -6329,7 +6430,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 249: //scene spoon
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} arms themselves with a spoon...  certainly that'll be effective.";
+                        outputLabel.Text = $"{player} arms themselves with a spoon...  certainly that'll be effective.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6343,7 +6444,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 250:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is interested in meeting the Court Jester. They take a cart out to the Castle and pay the cart fee with what little money they have.";
+                        outputLabel.Text = $"{player} is interested in meeting the Court Jester. They take a cart out to the Castle and pay the cart fee with what little money they have.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6367,7 +6468,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 251: //scene castle exterior
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is amazed by the marble walls and the scale of the Castle.";
+                        outputLabel.Text = $"{player} is amazed by the marble walls and the scale of the Castle.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6378,9 +6479,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 252: //icon castle guard
                     {
                         //output
-                        outputLabel.Text = "Castle guard: Slow down pal. Not anyone can enter at a time like this...";
+                        outputLabel.Text = "Castle Guard: Slow down pal. Not anyone can enter at a time like this...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONcastleGuard;
 
                         //button settings
                         if (antiSocial == 1)
@@ -6404,8 +6505,8 @@ namespace Choose_Your_Own_Adventure_Game
                             optionOneBlocked.Visible = false;
                             optionOneButton.Enabled = true;
                             optionTwoButton.Text = "(Lie) 'I am here to tend to the garden.'";
-                            optionTwoBlocked.Visible = true;
-                            optionTwoButton.Enabled = false;
+                            optionTwoBlocked.Visible = false;
+                            optionTwoButton.Enabled = true;
                             if (knowsOfTunnels == 1)
                             {
                                 optionThreeButton.Text = "'The Church is tunneling underground.'";
@@ -6422,8 +6523,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 253: //icon default
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}, having the social capacity of a screwdriver, freezes up upon trying to figure out how to respond.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}, having the social capacity of a screwdriver, freezes up upon trying to figure out how to respond.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6433,7 +6534,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 254: //scene outside Inn
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} flees back to the Inn. The Inn is at least slightly familiar in this unknown kingdom.";
+                        outputLabel.Text = $"{player} flees back to the Inn. The Inn is at least slightly familiar in this unknown Kingdom.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6443,31 +6544,28 @@ namespace Choose_Your_Own_Adventure_Game
                 case 255: //icon castle gaurd
                     {
                         //output
-                        outputLabel.Text = "Castle guard: Sorry pal, we have no time to waste on outside affairs.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Castle Guard: Sorry pal, we have no time to waste on outside affairs.";
+                        iconBox.Image = ICONcastleGuard;
 
                         //button settings
-                        optionOneButton.Text = "Pick the lock";
-                        optionOneBlocked.Visible = false;
-                        optionOneButton.Enabled = true;
+                        optionOneButton.Text = "";
+                        optionOneBlocked.Visible = true;
+                        optionOneButton.Enabled = false;
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
-                        optionThreeButton.Text = "";
-                        optionThreeBlocked.Visible = true;
-                        optionThreeButton.Enabled = false;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Next";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
                 case 256: //default icon, scene outside Inn
                     {
                         //output
-                        outputLabel.Text = $"Display: With nowhere else to go, {player} heads back to the Inn.";
+                        outputLabel.Text = $"With nowhere else to go, {player} heads back to the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6477,7 +6575,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 257:
                     {
                         //output
-                        outputLabel.Text = "Castle guard: Of course, Hero. Our Mistress, the Court Jester, has been waiting for you.";
+                        outputLabel.Text = "Castle Guard: Of course, Hero. Our Mistress, the Court Jester, has been waiting for you.";
+                        iconBox.Image = ICONcastleGuard;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6498,8 +6597,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 258: //default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: The guard showed {player} a strangely high level of respect, even bowing their head and calling them 'Hero' with no hesitation.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"The guard showed {player} a strangely high level of respect, even bowing their head and addressing them as 'Hero' with no hesitation.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6509,7 +6608,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 259: //inside castle courtyard scene
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is motioned toward where the garden is, but they notice the Castle doors are wide open.";
+                        outputLabel.Text = $"{player} is motioned toward where the garden is, but they notice the Castle doors are wide open.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6528,7 +6627,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1230: //scene garden
                     {
                         //output
-                        outputLabel.Text = $"Display: Eyes pierce the flesh of {player}. Those eyes follow them everywhere they go whilst in the Castle.";
+                        outputLabel.Text = $"Eyes pierce the flesh of {player}. Those eyes follow them everywhere they go whilst in the courtyard.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6547,7 +6646,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1231: //
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is surrounded by red, blue, and purple flowers of all shapes and sizes.";
+                        outputLabel.Text = $"{player} is surrounded by red, blue, and purple flowers of all shapes and sizes.";
 
                         //button settings
                         optionOneButton.Text = "Stop to smell the flowers";
@@ -6565,7 +6664,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1232: //scene rose
                     {
                         //output
-                        outputLabel.Text = $"Display: The scent is hypnotizing. {player} had forgotten so much of their life before. They'll never be free to live safely with her omnipresent glare. Always waking in the Inn.";
+                        outputLabel.Text = $"The scent is hypnotizing. {player} had forgotten so much of their life before. They'll never be free to live safely with her omnipresent glare. Always waking in the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6584,7 +6683,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1233: // RESET THINGS HERE OR EARLIER
                     {
                         //output
-                        outputLabel.Text = $"Display: The silhouette of the Jester briefly flashes before player's eyes. They forget everything.";
+                        outputLabel.Text = $"The silhouette of the Jester briefly flashes before {player}'s eyes. They forget everything.";
 
                         //button settings
                         optionOneButton.Text = "FORGOTTEN";
@@ -6599,7 +6698,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1234: //scene crying flower
                     {
                         //output
-                        outputLabel.Text = "Display: The flowers shed their tears.";
+                        outputLabel.Text = "The flowers shed their tears.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6618,9 +6717,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1235:
                     {
                         //output
-                        outputLabel.Text = $"Display: The air is cold. The tears of the swaying flowers still flow, but {player}'s breath freezes before it can escape.";
+                        outputLabel.Text = $"The air is cold. The tears of the swaying flowers still flow, but {player}'s breath freezes before it can escape their mouth.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6630,9 +6729,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1236: //scene bloody crying rose
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} chokes on ice as they attempt to cough the bloody ice shards out.";
+                        outputLabel.Text = $"{player} chokes on ice as they attempt to cough the bloody fragments out.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -6649,7 +6748,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Mysterious Voice: I see you are both dishonest and untrustworthy. When I give my guidence out, I expect it to be followed.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6667,8 +6766,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1238: //default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: A familiar feminine voice echoes into {player}'s ears. It speaks in a calm yet degrading tone.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"A familiar feminine voice echoes into {player}'s ears. It speaks in a calm yet degrading tone.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6678,7 +6777,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1239: //scene castle doors
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} stands on the steps before the grand white doors.";
+                        outputLabel.Text = $"{player} stands on the steps before the grand white doors.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6699,7 +6798,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Mysterious voice: You exist for my benefit. I need you, my Hero...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6717,8 +6816,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1241: //default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s foot sways through the entrance.  As it makes contact with the polished inside floor, {player} feels as if their head is slammed back by an unknown force.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}'s foot sways through the entrance.  As it makes contact with the polished inside floor, {player} feels as if their head is slammed back by an unknown force.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6728,7 +6827,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1242: //scene player on one knee
                     {
                         //output
-                        outputLabel.Text = $"Display: The whiplash caused is enough to knock {player} to their knees.";
+                        outputLabel.Text = $"The whiplash caused is enough to knock {player} to their knees.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6739,7 +6838,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1243:
                     {
                         //output
-                        outputLabel.Text = $"Display: All of the stationed guards do not react at the sight of {player} collapsing down onto their knees.  They remain as if frozen, like statues.";
+                        outputLabel.Text = $"All of the stationed guards do not react at the sight of {player} collapsing down onto their knees.  They remain as if frozen, like statues.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6749,9 +6848,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1244: //mys icon, freezing on knees as flowers grow upwards
                     {
                         //output
-                        outputLabel.Text = "Mysterious Voice: I want you to go the Church next time. I would love you to birth their God.";
+                        outputLabel.Text = "Mysterious Voice: I want you to go the Church next time. I would love you to bring forth their God.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6761,8 +6860,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1245: //default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: Ice grows up {player}'s arms and legs as they begin to fade out of consciousness.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Ice grows up {player}'s arms and legs as they begin to fade out of consciousness.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6772,7 +6871,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1246: //scene jester (basially just colours, nothing clear should be made out)  RESET THINGS
                     {
                         //output
-                        outputLabel.Text = $"Display: The face of the Woman briefly flashes before {player}'s eyes. They forget everything. It seems the world itself was rewritten...";
+                        outputLabel.Text = $"The face of the Woman briefly flashes before {player}'s eyes. They forget everything. It seems the world itself was rewritten...";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6788,7 +6887,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1247:
                     {
                         //output
-                        outputLabel.Text = "Castle guard: Thanks for the information, but we are well aware of that situation.";
+                        outputLabel.Text = "Castle Guard: Thanks for the information, but we are well aware of that situation.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6809,7 +6908,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1248:
                     {
                         //output
-                        outputLabel.Text = "Castle guard: Our Mistress the Court Jester has been watching them closely.  She has ordered us to make no moves against them.";
+                        outputLabel.Text = "Castle Guard: Our Mistress the Court Jester has been watching them closely.  She has ordered us to make no moves against them.";
 
                         //button settings
                         optionOneButton.Text = "'Why don't you attack'?";
@@ -6827,7 +6926,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1249:
                     {
                         //output
-                        outputLabel.Text = "Castle guard: Two reasons. The biggest is public appearance. It doesn't look good when you attack a Church.";
+                        outputLabel.Text = "Castle Guard: Two reasons. The biggest is public appearance. It doesn't look good when you attack a Church.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6845,7 +6944,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1250:
                     {
                         //output
-                        outputLabel.Text = "Castle guard: And the second reason? They pose no threat to Her.";
+                        outputLabel.Text = "Castle Guard: And the second reason? They pose no threat to Her.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6855,22 +6954,19 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1251:
                     {
                         //output
-                        outputLabel.Text = "Castle guard: 'Been fun chatting with you, but you best be leaving now.";
+                        outputLabel.Text = "Castle Guard: 'Been fun chatting with you, but you best be leaving now.";
 
                         //button settings
-                        optionOneButton.Text = "Return to Inn";
-                        optionOneBlocked.Visible = false;
-                        optionOneButton.Enabled = true;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Return to Inn";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
                 case 1252:
                     {
                         //output
-                        outputLabel.Text = "Castle guard: She has a kind of omnipresent talent. I don't know how, but She can watch over us all.";
+                        outputLabel.Text = "Castle Guard: She has a kind of omnipresent talent. I don't know how, but She can watch over us all.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6888,7 +6984,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1253:
                     {
                         //output
-                        outputLabel.Text = "Castle guard: I asked Her about it myself one time, but I've sadly forgotten what She said to me...";
+                        outputLabel.Text = "Castle Guard: I asked Her about it myself one time, but I've sadly forgotten what She said to me...";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6898,7 +6994,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1254:
                     {
                         //output
-                        outputLabel.Text = "Castle guard: 'Let's forget our memories together...'  That's what she told me...";
+                        outputLabel.Text = "Castle Guard: 'Let's forget our memories together...'  That's what she told me...";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6908,28 +7004,21 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1255:
                     {
                         //output
-                        outputLabel.Text = "Castle guard: Been fun chatting with you, but you best be leaving now.";
+                        outputLabel.Text = "Castle Guard: Been fun chatting with you, but you best be leaving now.";
 
                         //button settings
-                        optionOneButton.Text = "Return to Inn";
-                        optionOneBlocked.Visible = false;
-                        optionOneButton.Enabled = true;
-                        optionFourButton.Text = "";
-                        optionFourBlocked.Visible = true;
-                        optionFourButton.Enabled = false;
+                        optionFourButton.Text = "Return to Inn";
+                        optionFourBlocked.Visible = false;
+                        optionFourButton.Enabled = true;
                     }
                     break;
 
                 case 1256: //scene flattened player, icon player
                     {
                         //output
-                        outputLabel.Text = "Player:  ^ ^&^RG &% AARRRR RRRRGGGGGGG * ^^R %% ";
+                        outputLabel.Text = $"{player}: ^ ^&^RG &% AARRRR RRRRGGGGGGG * ^^R %% ";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons; //Jon
-                        if (character == 2)
-                        {
-                            iconBox.Image = Properties.Resources.speechIcons; //shimshon
-                        }
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -6950,8 +7039,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1257: //icon default
                     {
                         //output
-                        outputLabel.Text = $"Display: Nobody cares that {player} is bleeding out.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"Nobody cares that {player} is bleeding out.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -6961,7 +7050,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1258:
                     {
                         //output
-                        outputLabel.Text = "Display: Their loud screams go unnoticed, or maybe the people are just too busy to care.";
+                        outputLabel.Text = "Their loud screams go unnoticed, or maybe the people are just too busy to care.";
 
                         //button settings
                         optionOneButton.Text = "Scream again, but louder";
@@ -6979,7 +7068,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 1259: //scene scream face
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} screams again, a shockingly disturbed scream of horror. Still, no one reacts.";
+                        outputLabel.Text = $"{player} screams again, a shockingly disturbed scream of horror. Still, no one reacts.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -6998,7 +7087,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 260: //scene dried out face
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} exerted all their remaining energy screaming.";
+                        outputLabel.Text = $"{player} exerted all their remaining energy screaming.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7014,7 +7103,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 261: //scene the immortal horse
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} tries to roll towards help, but instead rolls directly into an immortal horse...";
+                        outputLabel.Text = $"{player} tries to roll towards help, but instead rolls directly into an immortal horse...";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7033,7 +7122,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 262: //scene zoomed out horse next to carnival
                     {
                         //output
-                        outputLabel.Text = $"Display: Or at least the man running the carnival claims it is immortal. Much unlike {player}, who is dead now.";
+                        outputLabel.Text = $"Or at least the man running the carnival claims it is immortal. Much unlike {player}, who is dead now.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7049,7 +7138,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 263:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has decided to stay nearby the Inn, due to their strange trust towards the Inn Keeper.";
+                        outputLabel.Text = $"{player} has decided to stay nearby the Inn, due to their strange trust towards the Inn Keeper.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7070,7 +7159,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 264: //scene inn ouside night
                     {
                         //output
-                        outputLabel.Text = $"Display: As the night falls, {player} watches a man begin to scale the outside of the Inn.";
+                        outputLabel.Text = $"As the night falls, {player} watches a man begin to scale the outside of the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7089,9 +7178,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 265: //scene man clibing building looking down in fear, icon player
                     {
                         //output
-                        outputLabel.Text = "Player: SWOG FLOBBA!";
+                        outputLabel.Text = $"{player}: SWOG FLOBBA!";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7110,7 +7199,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Thief: Oy! You are a foul smelling thing, aren't ya?";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONthief;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -7120,9 +7209,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 267: //icon default, scene no more thief - same wall
                     {
                         //output
-                        outputLabel.Text = "Display: The man swings over a window sill, and into the second floor of the Inn.";
+                        outputLabel.Text = "The man swings over a window sill, and into the second floor of the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -7132,7 +7221,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 268:
                     {
                         //output
-                        outputLabel.Text = $"Display: The man shuts the window behind him. The next open window is on the third floor...";
+                        outputLabel.Text = $"The man shuts the window behind him. The next open window is on the third floor...";
 
                         //button settings
                         optionOneButton.Text = "Climb to third floor";
@@ -7150,9 +7239,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 269: //player icon, scene outside inn night
                     {
                         //output
-                        outputLabel.Text = "Player: @*&*&^@@@&@!!!";
+                        outputLabel.Text = $"{player}: @*&*&^kicw y lub^%%&&46 78(^@@@&@!!!";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7170,8 +7259,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 270: //default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: The ear piercing scream is more than enough to catch the attention of everyone nearby, including everyone inside the Inn.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"The ear piercing scream is more than enough to catch the attention of everyone nearby, including everyone inside the Inn.";
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -7181,7 +7270,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 271: //scene thief no pants running
                     {
                         //output
-                        outputLabel.Text = "Display: A loud thud can be heard from inside the Inn, followed by the thief scampering out the front door with no pants.";
+                        outputLabel.Text = "A loud thud can be heard from inside the Inn, followed by the thief scampering out the front door with no pants.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7192,9 +7281,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 272: //scene outside inn
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has successfully saved the Inn from the thief. They now rest in the Inn, satisfied with their adventure.";
+                        outputLabel.Text = $"{player} has successfully saved the Inn from the thief. They now rest in the Inn, satisfied with their adventure.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "END";
@@ -7209,7 +7298,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 273: //scene player jumping up window
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} leaps up to the third floor with no effort. The silently enter the building due to their sneaky bunny slippers.";
+                        outputLabel.Text = $"{player} leaps up to the third floor with no effort. The silently enter the building due to their sneaky bunny slippers.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7228,7 +7317,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 274: //scene inside inn second third floor, bunny slippers
                     {
                         //output
-                        outputLabel.Text = $"Display: The man can be heard rummaging through containers from the floor beneath {player}...";
+                        outputLabel.Text = $"The man can be heard rummaging through containers from the floor beneath {player}...";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7247,7 +7336,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 275: //scene black
                     {
                         //output
-                        outputLabel.Text = "Display: Wow, you really just chose that option. What do you think will happen?";
+                        outputLabel.Text = "Wow, you really just chose that option. What do you think will happen?";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7266,7 +7355,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 276: //scene skewered in the night
                     {
                         //output
-                        outputLabel.Text = $"Display: '{player} flies out the window like a bird.'  NOT! They fall to their death.";
+                        outputLabel.Text = $"'{player} flies out the window like a bird.'  NOPE! They fall to their death.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7292,7 +7381,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 278: //scene thief stealing
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} sneaks down stairs. They stare at the villain whilst he steals out of cupboards.";
+                        outputLabel.Text = $"{player} sneaks down stairs. They stare at the villain whilst he steals out of cupboards.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7311,7 +7400,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 279:
                     {
                         //output
-                        outputLabel.Text = "Display: What is the plan of action?";
+                        outputLabel.Text = "What is the plan of action?";
 
                         //button settings
                         optionOneButton.Text = "Scare the thief away";
@@ -7329,7 +7418,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 280: //scene sneak up on thief
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} creeps up behind the thief.";
+                        outputLabel.Text = $"{player} creeps up behind the thief.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7348,7 +7437,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 281:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} proceeds to jump up in front of him and yell 'BOO!'";
+                        outputLabel.Text = $"{player} proceeds to jump up in front of him and yell 'BOO!'";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -7358,7 +7447,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 282: //scene black
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is immediately struck by a frying pan in retaliation. {player} lies unconscious until the next day when they wake up in bed.";
+                        outputLabel.Text = $"{player} is immediately struck by a frying pan in retaliation. {player} lies unconscious until the next day when they wake up in bed.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7374,7 +7463,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 283: //scene doors being knocked (maybe)
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} begins running down the hallways, knocking on every door with a loud pound against the wood.";
+                        outputLabel.Text = $"{player} begins running down the hallways, knocking on every door with a loud pound against the wood.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7393,7 +7482,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 284: //scene thief no pants flee
                     {
                         //output
-                        outputLabel.Text = "Display: This action is enough to wake everyone up. The Inn Keeper swiftly charges the thief out of the Inn.";
+                        outputLabel.Text = "This action is enough to wake everyone up. The Inn Keeper swiftly charges the thief out of the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7404,7 +7493,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 285: //scene black
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has successfully saved the Inn from the thief. They now rest, satisfied.";
+                        outputLabel.Text = $"{player} has successfully saved the Inn from the thief. They now rest, satisfied.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7420,7 +7509,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 286: //scene running upwards
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} begins to chase the thief, and runs upwards--perpendicular to the walls.";
+                        outputLabel.Text = $"{player} begins to chase the thief, and runs upwards--perpendicular to the walls.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7439,7 +7528,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 287:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s terrifying power to defy gravity is enough to shock the thief into speeding up the climb.";
+                        outputLabel.Text = $"{player}'s terrifying power to defy gravity is enough to shock the thief into speeding up the climb.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -7449,7 +7538,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 288: //scene splat
                     {
                         //output
-                        outputLabel.Text = "Display: The thief loses his footing and falls from off the wall.";
+                        outputLabel.Text = "The thief loses his footing and falls from off the wall.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7462,7 +7551,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 289: //scene black
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has successfully saved the Inn from the thief. They now rest, satisfied.";
+                        outputLabel.Text = $"{player} has successfully saved the Inn from the thief. They now rest, satisfied.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7478,7 +7567,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 290:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is hungry for blood...";
+                        outputLabel.Text = $"{player} is hungry for blood...";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7499,7 +7588,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 291: //scene reflection window
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} sees a tall, green looking person in pink bunny slippers through a window.";
+                        outputLabel.Text = $"{player} sees a tall, green looking person in pink bunny slippers through a window.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7518,8 +7607,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 292: //shattered glass bleed out scene
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} shatters through the reflective glass window. They scrape their face off the glass shards and die.";
+                        outputLabel.Text = $"{player} shatters through the reflective glass window. They scrape their face off the glass shards and die.";
                         mainMenuBox.Image = Properties.Resources.scene;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "DEAD";
@@ -7534,7 +7624,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 293:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is peeved that the person looks just like them.";
+                        outputLabel.Text = $"{player} is peeved that the person looks just like them.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7552,7 +7642,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 294: //
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} wants to kill... but....";
+                        outputLabel.Text = $"{player} wants to kill... but....";
 
                         //button settings
                         optionOneButton.Text = "Sprint at it (KILL)";
@@ -7570,7 +7660,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 295: //scene window but with added hearts
                     {
                         //output
-                        outputLabel.Text = $"Display: The thing in the reflection of the window is exactly {player}'s type. Those long, gangly arms could probably give the most comforting hugs.";
+                        outputLabel.Text = $"The thing in the reflection of the window is exactly {player}'s type. Those long, gangly arms could probably give the most comforting hugs.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7589,7 +7679,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 296:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} wants to make a move on its new crush...";
+                        outputLabel.Text = $"{player} wants to make a move on its new crush...";
 
                         //button settings
                         optionOneButton.Text = "SPRINT AT IT (KILL KILL KILL)";
@@ -7607,7 +7697,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 297: //scene propose to reflection
                     {
                         //output
-                        outputLabel.Text = $"Display: The thing in the reflection of the window proposes at the same time as {player}!";
+                        outputLabel.Text = $"The thing in the reflection of the window proposes at the same time as {player}!";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7626,7 +7716,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 298: //scene heart
                     {
                         //output
-                        outputLabel.Text = "Display: The two of them were made for each other! They'll definitely live happily together.";
+                        outputLabel.Text = "The two of them were made for each other! They'll definitely live happily together.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7642,7 +7732,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 299:
                     {
                         //output
-                        outputLabel.Text = $"Display: The person who witnessed {player}'s crime stands before them.";
+                        outputLabel.Text = $"The person who witnessed {player}'s crime stands before them.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7688,7 +7778,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = $"Display: {player} attempts to decapitate the target and use their skull as a soccer ball.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7709,9 +7799,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 301: //default icon, scene arm rip
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} attempts to rip the target's arms off and use them to slam the target into the ground.";
+                        outputLabel.Text = $"{player} attempts to rip the target's arms off and use them to slam the target into the ground.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7732,9 +7822,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 302: //default icon, scene roundhouse
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} roundhouse kicks the target with enough force to level a village.";
+                        outputLabel.Text = $"{player} roundhouse kicks the target with enough force to level a village.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7755,9 +7845,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 303: //default icon, scene stomach rip
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} uses their boney hands in an attempt to rip open the target's stomach.";
+                        outputLabel.Text = $"{player} uses their boney hands in an attempt to rip open the target's stomach.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7778,7 +7868,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 304: //scene no damage
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} fails to leave any damage to the target.";
+                        outputLabel.Text = $"{player} fails to leave any damage to the target.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -7789,7 +7879,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 305: //
                     {
                         //output
-                        outputLabel.Text = $"Display: The Woman stands indifferent to {player}'s attempts to kill, and continues to speak calmly.";
+                        outputLabel.Text = $"The Woman stands indifferent to {player}'s attempts to kill, and continues to speak calmly.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -7800,7 +7890,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Mysterious Voice: I truly did not expect to see something like you.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionOneButton.Text = "kill";
@@ -7818,9 +7908,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 307: //icon default, scene attacking
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} desperately claws at the impervious flesh of the target.";
+                        outputLabel.Text = $"{player} desperately claws at the impervious flesh of the target.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7838,7 +7928,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 308: //
                     {
                         //output
-                        outputLabel.Text = "Display: The target calmly speaks:";
+                        outputLabel.Text = "The target calmly speaks:";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -7849,7 +7939,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Mysterious Voice: You didn't happen to see my Hero in there, did you? There is someone who must join the Church for me.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionOneButton.Text = "co-operate";
@@ -7867,9 +7957,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 310: //icon player, scene standing 
                     {
                         //output
-                        outputLabel.Text = "Player: Globey Slog bLu. Ai floop.";
+                        outputLabel.Text = $"{player}: Globey Slog bLu. Ai floop.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7888,7 +7978,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Mysterious Voice: I see... not here then.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -7898,9 +7988,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 312: //scene white, icon default
                     {
                         //output
-                        outputLabel.Text = $"Display: The world goes silent. The birds freeze in the air, the trees no longer breathe in the wind, and the sun's light blots out the darkness.";
+                        outputLabel.Text = $"The world goes silent. The birds freeze in the air, the trees no longer breathe in the wind, and the sun's light blots out the darkness.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -7910,7 +8000,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 313:
                     {
                         //output
-                        outputLabel.Text = "Display: No one, not even the Jester Herself, will remember what She did here. But it was necessary if she wants to kill the God of the Clouds.";
+                        outputLabel.Text = "No one, not even the Jester Herself, will remember what She did here. But it was necessary if She wants to kill the God of the Clouds.";
 
                         //button settings
                         optionOneButton.Text = "FORGOTTEN";
@@ -7925,9 +8015,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 314: //icon default, scene give up
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s mind has been broken by facing something that it could not over come.";
+                        outputLabel.Text = $"{player}'s mind has been broken by facing something that it could not over come.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7947,7 +8037,7 @@ namespace Choose_Your_Own_Adventure_Game
                         //output
                         outputLabel.Text = "Mysterious Voice: Please do not suffer, I will allow you to forget this tragedy. When you wake up, you'll forget what happened here...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONmysteriousVoice;
 
                         //button settings
                         optionOneButton.Text = "FORGOTTEN";
@@ -7962,9 +8052,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 316: //default icon, scene outside inn
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} wants to burn down the Inn.";
+                        outputLabel.Text = $"{player} wants to burn down the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -7985,7 +8075,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 317:
                     {
                         //output
-                        outputLabel.Text = "Display: They do not have a lighter, or any other fire starter.";
+                        outputLabel.Text = "They do not have a lighter, or any other fire starter.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -7995,7 +8085,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 318: //scene man walking
                     {
                         //output
-                        outputLabel.Text = "Display: A man walks by. Maybe he has a lighter on him...";
+                        outputLabel.Text = "A man walks by. Maybe he has a lighter on him...";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8014,7 +8104,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 319: //scene steal from pocket
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} attempts to take the lighter from the man's pocket.";
+                        outputLabel.Text = $"{player} attempts to take the lighter from the man's pocket.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8033,7 +8123,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 320: //scene lighter
                     {
                         //output
-                        outputLabel.Text = "Display: Player is successful.";
+                        outputLabel.Text = $"{player} is successful.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8071,7 +8161,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 322: //scene flaming Inn fireworks
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} burns alive inside the building.";
+                        outputLabel.Text = $"{player} burns alive inside the building.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8106,7 +8196,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 324: //scene kingdom on fire
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} gallops through the Kingdom, while on fire. The whole kingdom is lit up as they burn.";
+                        outputLabel.Text = $"{player} gallops through the Kingdom, while on fire. The whole kingdom is lit up as they burn.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8117,7 +8207,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 325:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} attempts to take the lighter from the man's pocket.";
+                        outputLabel.Text = $"{player} attempts to take the lighter from the man's pocket.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8135,7 +8225,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 326:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s broken arm dangles into the mans leg as {player} attempts to take the lighter.";
+                        outputLabel.Text = $"{player}'s broken arm dangles into the mans leg as {player} attempts to take the lighter.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -8147,7 +8237,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 327: //scene futuristic man pointing gun towards character (possibly framed at viewer)
                     {
                         //output
-                        outputLabel.Text = $"Display: The man feels {player}'s arm brush against them. The man instantly pulls out a gun and shoots {player}.";
+                        outputLabel.Text = $"The man feels {player}'s arm brush against them. The man instantly pulls out a gun and shoots {player}.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8158,7 +8248,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 328: //scene default black
                     {
                         //output
-                        outputLabel.Text = "Display: Maybe don't steal from a time traveler next time.";
+                        outputLabel.Text = "Maybe don't steal from a time traveler next time.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8174,7 +8264,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 329:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} attempts to rob the man, but their bloodlust quickly takes over.";
+                        outputLabel.Text = $"{player} attempts to rob the man, but their bloodlust quickly takes over.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8192,7 +8282,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 330: //lighter scene
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} looms over the man. From behind, {player} can see a lighter in the man's pocket.";
+                        outputLabel.Text = $"{player} looms over the man. From behind, {player} can see a lighter in the man's pocket.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8211,7 +8301,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 331: //scene throwing man through window
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} grabs the man by the legs and helicopter throws him into the Inn.";
+                        outputLabel.Text = $"{player} grabs the man by the legs and windmill pitches him into the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8233,7 +8323,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 333: //scene flaming Inn with firworks
                     {
                         //output
-                        outputLabel.Text = $"Display: {player}'s leg hairs are singed. They die from the pain.";
+                        outputLabel.Text = $"{player}'s leg hairs are singed by the fire. They die from the pain.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8249,7 +8339,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 334: //default icon, kingdom gate scene
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has spotted a large Kingdom gate nearby the Inn.";
+                        outputLabel.Text = $"{player} has spotted a large Kingdom gate nearby the Inn.";
                         mainMenuBox.Image = Properties.Resources.scene;
                         iconBox.Image = Properties.Resources.speechIcons;
 
@@ -8272,7 +8362,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 335:
                     {
                         //output
-                        outputLabel.Text = "Display: They want to leave the kingdom.";
+                        outputLabel.Text = $"{player} wants to leave the kingdom.";
 
                         //button settings
 
@@ -8283,9 +8373,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 336: //scene kingdom gate with guard, icon gate guard
                     {
                         //output
-                        outputLabel.Text = $"Border guard: Sorry, no one in, no one out. That is Her orders.";
+                        outputLabel.Text = $"Border Guard: Sorry, no one in, no one out. That is Her orders.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONcastleGuard;
 
                         //button settings
                         optionOneButton.Text = "Ask politely to leave";
@@ -8303,9 +8393,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 337: //scene leap at walls guard, icon default
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} leaps at the guard, grabbing at the guard's arms.";
+                        outputLabel.Text = $"{player} leaps at the guard, grabbing at the guard's arms.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8323,7 +8413,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 338: //scene gauntlets covered in blood
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} removes the iron-plated gauntlets of the guard and rams them into his thick neck.";
+                        outputLabel.Text = $"{player} removes the iron-plated gauntlets of the guard and rams them into his thick neck.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8334,7 +8424,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 339: //player silhoutte leaving kingdom, over hill
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} leaves the Kingdom, off to live happily ever after.";
+                        outputLabel.Text = $"{player} leaves the Kingdom, off to live happily ever after.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8347,16 +8437,13 @@ namespace Choose_Your_Own_Adventure_Game
                     }
                     break;
 
-                case 340: //player icon, remove "{player}" similar to "display"
+                case 340: //player icon
                     {
                         //output
                         outputLabel.Text = $"{player}: Uuug.Mep.er ah... Mep...";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons; //Jon's icon
-                        if (character == 2)
-                        {
-                            iconBox.Image = Properties.Resources.speechIcons;  //shimshon's icon
-                        }
+                        iconBox.Image = ICONcharacter;
+
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8374,8 +8461,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 341: //icon wall guard
                     {
                         //output
-                        outputLabel.Text = "Border guard: Ummm....Hey look. If you got an important package to deliver, some of us have been letting couriers through.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "Border Guard: Ummm....Hey look. If you got an important package to deliver, some of us have been letting couriers through.";
+                        iconBox.Image = ICONcastleGuard;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -8385,7 +8472,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 342:
                     {
                         //output
-                        outputLabel.Text = "Border guard: But you are not a courier. Sorry friend, with I could help you out.";
+                        outputLabel.Text = "Border Guard: But you are not a courier. Sorry friend, wish I could help you out.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -8441,9 +8528,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 345: //scene wall no guard, icon default
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is unable to leave through lawful means.";
+                        outputLabel.Text = $"{player} is unable to leave through lawful means.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "Climb the wall";
@@ -8461,7 +8548,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 346: //player flat on ground scene
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} falls immediately, doesn't even get an inch up the wall.";
+                        outputLabel.Text = $"{player} falls immediately, doesn't even get an inch up the wall.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8480,7 +8567,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 347: //scene black default
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has died from head trauma.";
+                        outputLabel.Text = $"{player} has died from head trauma.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8496,9 +8583,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 348: //scene "the THE", icon THE
                     {
                         //output
-                        outputLabel.Text = "Display: The THE (inside joke, you wouldn't get it)";
+                        outputLabel.Text = "The THE (inside joke, you wouldn't get it)";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8516,9 +8603,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 349: //black scene, default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has died from their broken fist.";
+                        outputLabel.Text = $"{player} has died from their broken fist.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "THE THE (DEAD)";
@@ -8533,8 +8620,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 350: //scene cube
                     {
                         //output
-                        outputLabel.Text = "Border guard: I see you have that weird cube. Those things are dangerous, I'll let you take it out with you.";
-                        mainMenuBox.Image = Properties.Resources.scene;
+                        outputLabel.Text = "Border Guard: I see you have that weird cube. Those things are dangerous, I'll let you take it out with you.";
+                        iconBox.Image = ICONcastleGuard;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -8544,9 +8631,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 351: //scene leaving kingdom, default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is allowed to leave the Kingdom because the guard thinks they are delivering a package elsewhere.";
+                        outputLabel.Text = $"{player} is allowed to leave the Kingdom because the guard thinks they are delivering a package elsewhere.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -8556,7 +8643,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 352:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} leaves the Kingdom. Dissatisfied eyes watch, plotting {player}'s next demise.";
+                        outputLabel.Text = $"{player} leaves the Kingdom. Dissatisfied eyes watch, plotting {player}'s next demise.";
 
                         //button settings
                         optionOneButton.Text = "THE END";
@@ -8571,7 +8658,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 353:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} leaves the Kingdom, off to live happily ever after.";
+                        outputLabel.Text = $"{player} leaves the Kingdom, off to live happily ever after.";
 
                         //button settings
                         optionOneButton.Text = "THE END";
@@ -8586,8 +8673,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 354: //jon player icon
                     {
                         //output
-                        outputLabel.Text = "Player: Can I get an exception, I don't actually know how I got here.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = $"{player}: Can I get an exception, I don't actually know how I got here.";
+                        iconBox.Image = ICONcharacter;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8606,7 +8693,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Border Guard: Yeah sure, why not. We've been letting merchants and the such though anyways.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONcastleGuard;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -8616,9 +8703,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 356: //default icon, scene leaving kingdom
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} leaves the Kingdom. Dissatisfied eyes watch, plotting {player}'s next demise.";
+                        outputLabel.Text = $"{player} leaves the Kingdom. Dissatisfied eyes watch, plotting {player}'s next demise.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "THE END";
@@ -8633,9 +8720,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 357: //default icon, menacing fist shake
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} shakes their fist at the guard menacingly.";
+                        outputLabel.Text = $"{player} shakes their fist at the guard menacingly.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8653,7 +8740,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 358: //player skewered by sword scene
                     {
                         //output
-                        outputLabel.Text = $"Display: The guard has none of that, he skewers {player} immediately.";
+                        outputLabel.Text = $"The guard has none of that, he skewers {player} immediately.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8664,7 +8751,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 359: //black default scene
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} bleeds out.";
+                        outputLabel.Text = $"{player} bleeds out.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8680,9 +8767,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 363: //scene looking through cage at dirty grassy overgrown hallway, default icon
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} wakes up in a small room. A metal gate stands between them and a bright corridor.";
+                        outputLabel.Text = $"{player} wakes up in a small room. A metal gate stands between them and a bright corridor.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONdefaultIcon;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8721,7 +8808,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 365: //default scene
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} chooses to rot in the cage.";
+                        outputLabel.Text = $"{player} chooses to rot in the cage.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8735,7 +8822,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 366: //scene white or maybe a grassy hallway exit
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is free to leave the Church.";
+                        outputLabel.Text = $"{player} is free to leave the Church.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8754,10 +8841,12 @@ namespace Choose_Your_Own_Adventure_Game
                 case 367:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is unable to pick locks, and is trapped in the cell.";
+                        outputLabel.Text = $"{player} is unable to pick locks, and is trapped in the cell.";
 
                         //button settings
                         optionOneButton.Text = "DEAD";
+                        optionTwoBlocked.Visible = false;
+                        optionTwoButton.Enabled = true;
                         optionTwoButton.Text = "";
                         optionTwoBlocked.Visible = true;
                         optionTwoButton.Enabled = false;
@@ -8781,9 +8870,9 @@ namespace Choose_Your_Own_Adventure_Game
                         startAnimBox.Visible = false;
 
                         //output
-                        outputLabel.Text = $"Display: {player} wakes up in a small room. The concrete walls are ice cold to the touch.";
+                        outputLabel.Text = $"{player} wakes up in a small room. The concrete walls are ice cold to the touch.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONDateSimNoDio;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8818,7 +8907,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 369: //scene hallway empty
                     {
                         //output
-                        outputLabel.Text = "Display: The most beautiful voice calls your name from the dark of a hallway.";
+                        outputLabel.Text = "The most beautiful voice calls your name from the dark of a hallway.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8837,7 +8926,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 370:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} makes their way through the hallway.";
+                        outputLabel.Text = $"{player} makes their way through the hallway.";
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8855,7 +8944,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 371: //hallway light hitting black void
                     {
                         //output
-                        outputLabel.Text = "Display: Light peers through a crack in the walls. It shines down on the figure.";
+                        outputLabel.Text = "Light peers through a crack in the walls. It shines down on the figure.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8893,7 +8982,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 373:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} cries their heart out.";
+                        outputLabel.Text = $"{player} cries their heart out.";
                         mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
@@ -8909,7 +8998,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 374: //scene smiling void
                     {
                         //output
-                        outputLabel.Text = $"Display: It feels the same way about you.";
+                        outputLabel.Text = $"It feels the same way about you.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -8928,7 +9017,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 375:
                     {
                         //output
-                        outputLabel.Text = "Display: The smell of roses begins to overtake the room. You are absorbed into its beautiful black pupils.";
+                        outputLabel.Text = "The smell of roses begins to overtake the room. You are absorbed into its beautiful black pupils.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -8956,8 +9045,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 377: //jon player icon
                     {
                         //output
-                        outputLabel.Text = "Player: We should go somewhere... maybe we can: ";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "_______: We should go somewhere... maybe we can: ";
+                        iconBox.Image = ICONYou;
 
                         //button settings
                         optionOneButton.Text = "walk around the lakeside together";
@@ -8968,9 +9057,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 378: //scene smiling crying void, default icon
                     {
                         //output
-                        outputLabel.Text = "Display: It is ecstatic! It wanted to go walk around with you for as long as it can remember!";
+                        outputLabel.Text = "It is ecstatic! It wanted to go walk around with you for as long as it can remember!";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONDateSimNoDio;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -8999,7 +9088,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 380:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has never been so hurt.";
+                        outputLabel.Text = $"{player} has never been so hurt.";
                         mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
@@ -9015,9 +9104,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 381: //scene smiling crying void, default icon
                     {
                         //output
-                        outputLabel.Text = "Display: It is ecstatic! It wanted to go to the theatre with you for as long as it can remember!";
+                        outputLabel.Text = "It is ecstatic! It wanted to go to the theatre with you for as long as it can remember!";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONDateSimNoDio;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -9046,7 +9135,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 383:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has died of heartbreak.";
+                        outputLabel.Text = $"{player} has died of heartbreak.";
                         mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
@@ -9062,9 +9151,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 384: //jon icon, black scene
                     {
                         //output
-                        outputLabel.Text = "Player: I cannot do enough for you.";
+                        outputLabel.Text = "_______: I cannot do enough for you.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONYou;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -9082,9 +9171,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 385: //default icon, smiling void scene
                     {
                         //output
-                        outputLabel.Text = "Display: It loves you all the same, despite your inadequacies.";
+                        outputLabel.Text = "It loves you all the same, despite your inadequacies.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONDateSimNoDio;
 
                         //button settings
                         optionOneButton.Text = "Ask why it loves you";
@@ -9132,7 +9221,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 388:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has died of overthinking.";
+                        outputLabel.Text = $"{player} has died of overthinking.";
                         mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
@@ -9148,8 +9237,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 389: //jon icon
                     {
                         //output
-                        outputLabel.Text = "----------------";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "--- ---- -- ---- -- --";
+                        iconBox.Image = ICONYou;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -9167,9 +9256,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 390: //scene bigger void smile, default icon
                     {
                         //output
-                        outputLabel.Text = "Display: It gives you a smile.";
+                        outputLabel.Text = "It gives you a smile.";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONDateSimNoDio;
 
                         //button settings
                         optionOneButton.Text = "'I love you'";
@@ -9187,8 +9276,8 @@ namespace Choose_Your_Own_Adventure_Game
                 case 391: //It icon
                     {
                         //output
-                        outputLabel.Text = "It: I love you too!";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        outputLabel.Text = "_______: I love you too!";
+                        iconBox.Image = ICONIt;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -9207,7 +9296,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = $"You feel incredibly warm. This is the happiest {player} has ever been.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONDateSimNoDio;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -9337,7 +9426,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 400:
                     {
                         //output
-                        outputLabel.Text = "Display: You are berated with apologies. In the end, you are too passive to fight against its will.";
+                        outputLabel.Text = "You are berated with apologies. In the end, you are too passive to fight against its will.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -9347,7 +9436,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 401:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} wishes everything was just slightly different.";
+                        outputLabel.Text = $"{player} wishes everything was just slightly different.";
                         mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
@@ -9409,9 +9498,9 @@ namespace Choose_Your_Own_Adventure_Game
                 case 405: //jon player icon, scene black
                     {
                         //output
-                        outputLabel.Text = "--------------!";
+                        outputLabel.Text = "_______";
                         mainMenuBox.Image = Properties.Resources.scene;
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONYou;
 
                         //button settings
                         optionOneButton.Text = "";
@@ -9430,7 +9519,7 @@ namespace Choose_Your_Own_Adventure_Game
                     {
                         //output
                         outputLabel.Text = "Your voice is not heard. Your love is left unexpressed.";
-                        iconBox.Image = Properties.Resources.speechIcons;
+                        iconBox.Image = ICONDateSimNoDio;
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -9440,7 +9529,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 407:
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} has died of heartbreak.";
+                        outputLabel.Text = $"{player} has died of heartbreak.";
                         mainMenuBox.Image = Properties.Resources.HeartDrop;
 
                         //button settings
@@ -9456,7 +9545,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 409: //scene fast run boards
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} sprints towards the window at full velocity, ripping floor boards up off the ground with their incredible speed.";
+                        outputLabel.Text = $"{player} sprints towards the window at full velocity, ripping floor boards up off the ground with their incredible speed.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -9475,7 +9564,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 410: //scene mid air
                     {
                         //output
-                        outputLabel.Text = $"Display: Without thinking, {player} jumps out of the window. They fall three stories before landing onto a soft haystack.";
+                        outputLabel.Text = $"Without thinking, {player} jumps out of the window. They fall three stories before landing onto a soft haystack.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -9486,7 +9575,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 411: ///scene standing casually
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is uninjured.";
+                        outputLabel.Text = $"{player} is uninjured.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -9497,7 +9586,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 412: ///scene ripping boards up
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} sprints towards the window at full velocity, ripping floor boards up off the ground with their incredible speed.";
+                        outputLabel.Text = $"{player} sprints towards the window at full velocity, ripping floor boards up off the ground with their incredible speed.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -9516,7 +9605,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 413: ///scene faceplant
                     {
                         //output
-                        outputLabel.Text = $"Display: Without thinking, {player} jumps out of the window. They fall three stories before faceplanting into the concrete.";
+                        outputLabel.Text = $"Without thinking, {player} jumps out of the window. They fall three stories before faceplanting into the concrete.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -9527,7 +9616,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 414: ///scene broken legs
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} is injured, and will no longer be able to move.";
+                        outputLabel.Text = $"{player} is injured, and will no longer be able to move.";
                         mainMenuBox.Image = Properties.Resources.scene;
 
                         //button settings
@@ -9541,7 +9630,7 @@ namespace Choose_Your_Own_Adventure_Game
                 case 415: //
                     {
                         //output
-                        outputLabel.Text = $"Display: {player} should not jump from windows.";
+                        outputLabel.Text = $"{player} should not jump from windows.";
 
                         //button settings
                         optionFourButton.Text = "Next";
@@ -9632,6 +9721,8 @@ namespace Choose_Your_Own_Adventure_Game
                         hasSpoon = 0;
                         insideDateSim = 0;
                         mainUiBox.Image = Properties.Resources.Ui;
+                        iconBox.Image = ICONdefaultIcon;
+
 
                         //buttons
                         playAgainButton.Visible = true;
